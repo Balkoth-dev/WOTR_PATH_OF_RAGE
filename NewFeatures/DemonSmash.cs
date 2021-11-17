@@ -84,7 +84,7 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                 demonSmash.ResourceAssetIds = new string[0];
                 demonSmash.EffectOnEnemy = AbilityEffectOnUnit.Harmful;
                 demonSmash.EffectOnAlly = AbilityEffectOnUnit.Harmful;
-                demonSmash.LocalizedDuration = Helpers.CreateString(demonSmash + ".Duration", "Instantaneous");
+                demonSmash.LocalizedDuration = new LocalizedString();
                 demonSmash.LocalizedSavingThrow = Helpers.CreateString(demonSmash + ".SavingThrow", "None");
                 
                 demonSmash.AddComponent<ContextRankConfig>(c => {
@@ -93,16 +93,30 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                     c.m_StepLevel = 2;
                     c.m_Progression = ContextRankProgression.MultiplyByModifier;
                 });
+                var fireballAbilityTargetsAround = fireball.GetComponent<AbilityTargetsAround>();
 
-                demonSmash.AddComponent<AbilityTargetsAround>(c => fireball.GetComponent<AbilityTargetsAround>());
-                demonSmash.EditComponent<AbilityTargetsAround>(c => {
-                    c.m_Radius.m_Value = 4; 
+                demonSmash.AddComponent<AbilityTargetsAround>(c =>
+                {
+                    c.m_Condition = fireballAbilityTargetsAround.m_Condition;
+                    c.m_Flags = fireballAbilityTargetsAround.m_Flags;
+                    c.m_IncludeDead = fireballAbilityTargetsAround.m_IncludeDead;
+                    c.m_PrototypeLink = fireballAbilityTargetsAround.m_PrototypeLink;
+                    c.m_Radius = new Kingmaker.Utility.Feet() { m_Value = 5 };
+                    c.m_SpreadSpeed = fireballAbilityTargetsAround.m_SpreadSpeed;
+                    c.m_TargetType = fireballAbilityTargetsAround.m_TargetType;
+                    c.name = fireballAbilityTargetsAround.name;
                 });
 
-                demonSmash.AddComponent<AbilityDeliverProjectile>(c => fireball.GetComponent<AbilityDeliverProjectile>());
+                demonSmash.AddComponent<AbilityDeliverProjectile>(c => {
+                    c.m_Projectiles = fireball.GetComponent<AbilityDeliverProjectile>().m_Projectiles;
+                    c.m_LineWidth = new Kingmaker.Utility.Feet() { m_Value = 5 };
+                    c.m_Weapon = fireball.GetComponent<AbilityDeliverProjectile>().m_Weapon;
+                    c.NeedAttackRoll = true;
+                });
+
                 demonSmash.EditComponent<AbilityDeliverProjectile>(c => {
                     c.m_Projectiles.AddItem(demonSmashProjectile.ToReference<BlueprintProjectileReference>());
-                    c.NeedAttackRoll = true; });
+                    });
 
                 var demonSmashDamage = Helpers.Create<ContextActionDealDamage>(c => {
                     c.DamageType = new DamageTypeDescription
