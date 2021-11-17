@@ -105,6 +105,10 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                     c.m_SpreadSpeed = fireballAbilityTargetsAround.m_SpreadSpeed;
                     c.m_TargetType = fireballAbilityTargetsAround.m_TargetType;
                     c.name = fireballAbilityTargetsAround.name;
+                    c.m_Condition = new ConditionsChecker()
+                    {
+                        Conditions = new Condition[0]
+                    };
                 });
 
                 demonSmash.AddComponent<AbilityDeliverProjectile>(c => {
