@@ -55,7 +55,6 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                 var demonSmashProjectile = Helpers.CreateCopy(fireball00, bp => {
                     bp.AssetGuid = demonSmashProGuid;
                 });
-                demonSmashProjectile.AssetGuid = demonSmashProGuid;
                 demonSmashProjectile.ProjectileHit.HitFx = demonChargeProjectile.GetComponent<AbilitySpawnFx>().PrefabLink;
                 demonSmashProjectile.ProjectileHit.MissFx = demonChargeProjectile.GetComponent<AbilitySpawnFx>().PrefabLink;
 
@@ -72,21 +71,22 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                 demonSmash.m_Description = Helpers.CreateString(demonSmash + ".Description", "This is\n a description.");
 
                 demonSmash.Range = AbilityRange.Weapon;
-                demonSmash.Animation = CastAnimationStyle.Directional; // Change to Coup de Grace
+                demonSmash.Animation = CastAnimationStyle.Touch; // Change to Coup De Grace
                 demonSmash.CanTargetPoint = false;
                 demonSmash.CanTargetSelf = false;
                 demonSmash.SpellResistance = false;
                 demonSmash.CanTargetEnemies = true;
                 demonSmash.CanTargetFriends = true;
-                demonSmash.Type = AbilityType.Physical;
+                demonSmash.Type = AbilityType.Supernatural;
                 demonSmash.m_Icon = telekineticFist.m_Icon;
                 demonSmash.HasFastAnimation = true;
                 demonSmash.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Move;
-                demonSmash.ResourceAssetIds = telekineticFist.ResourceAssetIds;
+                demonSmash.ResourceAssetIds = new string[0];
                 demonSmash.EffectOnEnemy = AbilityEffectOnUnit.Harmful;
+                demonSmash.EffectOnAlly = AbilityEffectOnUnit.Harmful;
                 demonSmash.LocalizedDuration = Helpers.CreateString(demonSmash + ".Duration", "Instantaneous");
                 demonSmash.LocalizedSavingThrow = Helpers.CreateString(demonSmash + ".SavingThrow", "None");
-
+                
                 demonSmash.AddComponent<ContextRankConfig>(c => {
                     c.m_Type = AbilityRankType.DamageDice;
                     c.m_BaseValueType = ContextRankBaseValueType.MythicLevel;
@@ -94,12 +94,17 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                     c.m_Progression = ContextRankProgression.MultiplyByModifier;
                 });
 
-                demonSmash.AddComponent<AbilityDeliverProjectile>(c => telekineticFist.GetComponent<AbilityDeliverProjectile>());
+                demonSmash.AddComponent<AbilityTargetsAround>(c => fireball.GetComponent<AbilityTargetsAround>());
+                demonSmash.EditComponent<AbilityTargetsAround>(c => {
+                    c.m_Radius.m_Value = 4; 
+                });
+
+                demonSmash.AddComponent<AbilityDeliverProjectile>(c => fireball.GetComponent<AbilityDeliverProjectile>());
                 demonSmash.EditComponent<AbilityDeliverProjectile>(c => {
                     c.m_Projectiles.AddItem(demonSmashProjectile.ToReference<BlueprintProjectileReference>());
                     c.NeedAttackRoll = true; });
 
-                var dealDamage = Helpers.Create<ContextActionDealDamage>(c => {
+                var demonSmashDamage = Helpers.Create<ContextActionDealDamage>(c => {
                     c.DamageType = new DamageTypeDescription
                     {
                         Type = DamageType.Energy,
@@ -128,7 +133,7 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                 });
                 demonSmash.AddComponent<AbilityEffectRunAction>(c => {
                     c.Actions = new ActionList();
-                    c.Actions.Actions = new GameAction[] { dealDamage };
+                    c.Actions.Actions = new GameAction[] { demonSmashDamage };
                 });
 
                 Helpers.AddBlueprint(demonSmash, demonSmashGuid);
