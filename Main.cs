@@ -1,5 +1,9 @@
-﻿using HarmonyLib;
+﻿using BlueprintCore.Blueprints;
+using HarmonyLib;
+using Kingmaker.Blueprints;
+using System.Linq;
 using UnityModManagerNet;
+using WOTR_PATH_OF_RAGE.Utilities;
 
 namespace WOTR_PATH_OF_RAGE
 {
@@ -9,6 +13,7 @@ namespace WOTR_PATH_OF_RAGE
         static bool Load(UnityModManager.ModEntry modEntry)
         {
             var harmony = new Harmony(modEntry.Info.Id);
+            AssetLoader.ModEntry = modEntry;
             modInfo = modEntry;
             harmony.PatchAll();
             return true;

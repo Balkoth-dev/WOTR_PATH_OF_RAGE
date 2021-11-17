@@ -9,22 +9,9 @@ namespace WOTR_PATH_OF_RAGE.MechanicsChanges
         [HarmonyPatch(typeof(SpellDescriptorOperations), "HasAnyFlag")]
         class Patch
         {
-            static void Postfix(ref bool __result)
+            static void Postfix(SpellDescriptor descriptor, SpellDescriptor flags, ref bool __result)
             {
-                if (__result == false)
-                {
-                    __result = true;
-                }
-                Main.Log("PostFix");
-            }
-        }
-
-        [HarmonyPatch(typeof(BlueprintsCache), "Init")]
-        class Patch2
-        {
-            static void Postfix()
-            {
-                Main.Log("BLUBBBLES");
+                __result = (descriptor & flags) > SpellDescriptor.None;
             }
         }
     }
