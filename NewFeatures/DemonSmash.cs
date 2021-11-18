@@ -22,6 +22,9 @@ using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.RuleSystem;
 using Kingmaker.Enums;
 using Kingmaker.ElementsSystem;
+using Kingmaker.Designers.EventConditionActionSystem.Actions;
+using Kingmaker.UnitLogic.Mechanics.Conditions;
+using WOTR_PATH_OF_RAGE.New_Rules;
 
 namespace TabletopTweaks.NewContent.MythicAbilities
 {
@@ -52,7 +55,8 @@ namespace TabletopTweaks.NewContent.MythicAbilities
 
                 var demonSmashProGuid = new BlueprintGuid(new Guid("fec53329-817f-4aa6-a921-0be9867a8930"));
 
-                var demonSmashProjectile = Helpers.CreateCopy(fireball00, bp => {
+                var demonSmashProjectile = Helpers.CreateCopy(fireball00, bp =>
+                {
                     bp.AssetGuid = demonSmashProGuid;
                 });
                 demonSmashProjectile.ProjectileHit.HitFx = demonChargeProjectile.GetComponent<AbilitySpawnFx>().PrefabLink;
@@ -71,7 +75,7 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                 demonSmash.m_Description = Helpers.CreateString(demonSmash + ".Description", "This is\n a description.");
 
                 demonSmash.Range = AbilityRange.Weapon;
-                demonSmash.Animation = CastAnimationStyle.Touch; // Change to Coup De Grace
+                demonSmash.Animation = CastAnimationStyle.CoupDeGrace; // Change to Coup De Grace
                 demonSmash.CanTargetPoint = false;
                 demonSmash.CanTargetSelf = false;
                 demonSmash.SpellResistance = false;
@@ -80,18 +84,19 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                 demonSmash.Type = AbilityType.Supernatural;
                 demonSmash.m_Icon = telekineticFist.m_Icon;
                 demonSmash.HasFastAnimation = true;
-                demonSmash.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Move;
+                demonSmash.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard;
                 demonSmash.ResourceAssetIds = new string[0];
                 demonSmash.EffectOnEnemy = AbilityEffectOnUnit.Harmful;
                 demonSmash.EffectOnAlly = AbilityEffectOnUnit.Harmful;
                 demonSmash.LocalizedDuration = new LocalizedString();
                 demonSmash.LocalizedSavingThrow = Helpers.CreateString(demonSmash + ".SavingThrow", "None");
-                
-                demonSmash.AddComponent<ContextRankConfig>(c => {
+
+                demonSmash.AddComponent<ContextRankConfig>(c =>
+                {
                     c.m_Type = AbilityRankType.DamageDice;
                     c.m_BaseValueType = ContextRankBaseValueType.MythicLevel;
-                    c.m_StepLevel = 2;
-                    c.m_Progression = ContextRankProgression.MultiplyByModifier;
+                    c.m_StepLevel = 3;
+                    c.m_Progression = ContextRankProgression.AsIs;
                 });
                 var fireballAbilityTargetsAround = fireball.GetComponent<AbilityTargetsAround>();
 
@@ -111,18 +116,8 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                     };
                 });
 
-                demonSmash.AddComponent<AbilityDeliverProjectile>(c => {
-                    c.m_Projectiles = fireball.GetComponent<AbilityDeliverProjectile>().m_Projectiles;
-                    c.m_LineWidth = new Kingmaker.Utility.Feet() { m_Value = 5 };
-                    c.m_Weapon = fireball.GetComponent<AbilityDeliverProjectile>().m_Weapon;
-                    c.NeedAttackRoll = true;
-                });
-
-                demonSmash.EditComponent<AbilityDeliverProjectile>(c => {
-                    c.m_Projectiles.AddItem(demonSmashProjectile.ToReference<BlueprintProjectileReference>());
-                    });
-
-                var demonSmashDamage = Helpers.Create<ContextActionDealDamage>(c => {
+                var demonSmashDamageUnholy = Helpers.Create<ContextActionDealDamage>(c =>
+                {
                     c.DamageType = new DamageTypeDescription
                     {
                         Type = DamageType.Energy,
@@ -139,19 +134,105 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                         DiceType = DiceType.D6,
                         DiceCountValue = new ContextValue()
                         {
-                            ValueType = ContextValueType.Simple,
-                            Value = 1
+                            ValueType = ContextValueType.Rank,
+                            ValueRank = AbilityRankType.DamageDice
                         },
                         BonusValue = new ContextValue
                         {
-                            ValueType = ContextValueType.Rank,
-                            ValueRank = AbilityRankType.DamageBonus
+                            ValueType = ContextValueType.Simple,
+                            ValueRank = AbilityRankType.DamageDice
                         }
                     };
+                    c.IsAoE = true;
                 });
-                demonSmash.AddComponent<AbilityEffectRunAction>(c => {
+                var demonSmashDamageFire = Helpers.Create<ContextActionDealDamage>(c =>
+                {
+                    c.DamageType = new DamageTypeDescription
+                    {
+                        Type = DamageType.Energy,
+                        Energy = DamageEnergyType.Fire
+                    };
+                    c.Duration = new ContextDurationValue()
+                    {
+                        m_IsExtendable = true,
+                        DiceCountValue = new ContextValue(),
+                        BonusValue = new ContextValue()
+                    };
+                    c.Value = new ContextDiceValue
+                    {
+                        DiceType = DiceType.D6,
+                        DiceCountValue = new ContextValue()
+                        {
+                            ValueType = ContextValueType.Rank,
+                            ValueRank = AbilityRankType.DamageDice
+                        },
+                        BonusValue = new ContextValue
+                        {
+                            ValueType = ContextValueType.Simple,
+                            ValueRank = AbilityRankType.DamageDice
+                        }
+                    };
+                    c.IsAoE = true;
+                });
+
+                var demonSmashFx = Helpers.Create<ContextActionProjectileFx>(c =>
+                {
+                    c.m_Projectile = demonSmashProjectile.ToReference<BlueprintProjectileReference>();
+                });
+                var demonSmashFx2 = Helpers.Create<ContextActionProjectileFx>(c =>
+                {
+                    c.m_Projectile = fireball00.ToReference<BlueprintProjectileReference>();
+                });
+
+                var conditionalEffects = new Conditional()
+                {
+                    ConditionsChecker = new ConditionsChecker()
+                    {
+                        Conditions = new Condition[] {
+                            new ContextConditionIsMainTarget() {
+                                Not = false
+                            }
+                        }
+                    },
+                    IfTrue = new ActionList()
+                    {
+                        Actions = new GameAction[] { demonSmashFx, demonSmashFx2 }
+                    },
+                    IfFalse = new ActionList()
+                };
+
+                BlueprintAbilityResourceReference demonRageResource = BlueprintTool.Get<BlueprintAbilityResource>("f3bf174f0f86b4f45a823e9ed6ccc7a5").ToReference<BlueprintAbilityResourceReference>();
+
+                var contextResourceIncrease = Helpers.Create<ContextActionIncreaseRageRounds>(c =>
+                {
+                    c.m_resource = demonRageResource;
+                    c.m_resourceAmount = 1;
+                });
+
+                var contextMeleeAction = Helpers.Create<ContextActionMeleeAttack>();
+
+                var conditionalDamage = new Conditional()
+                {
+                    ConditionsChecker = new ConditionsChecker()
+                    {
+                        Conditions = new Condition[] {
+                            new ContextConditionIsCaster() {
+                                Not = true
+                            }
+                        }
+                    },
+                    IfTrue = new ActionList()
+                    {
+                        Actions = new GameAction[] { contextResourceIncrease, demonSmashDamageUnholy, demonSmashDamageFire }
+                    },
+                    IfFalse = new ActionList()
+                };
+
+                demonSmash.AddComponent<AbilityEffectRunAction>(c =>
+                {
                     c.Actions = new ActionList();
-                    c.Actions.Actions = new GameAction[] { demonSmashDamage };
+                    c.Actions.Actions = new GameAction[] { conditionalDamage, conditionalEffects };
+                    c.SavingThrowType = Kingmaker.EntitySystem.Stats.SavingThrowType.Unknown;
                 });
 
                 Helpers.AddBlueprint(demonSmash, demonSmashGuid);

@@ -8,9 +8,11 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 
 namespace WOTR_PATH_OF_RAGE.New_Rules
 {
-    [TypeId("114f3881649e4cb2a9e2e0693f1ae5e0")]
+    [TypeId("a1aef9afc9b44bf19688535a56c59e40")]
     class ContextActionIncreaseRageRounds : ContextAction
     {
+        public BlueprintAbilityResourceReference m_resource;
+        public int m_resourceAmount;
         public override string GetCaption()
         {
             return string.Format("Increases your Demon Rage rounds");
@@ -18,16 +20,10 @@ namespace WOTR_PATH_OF_RAGE.New_Rules
 
         public override void RunAction()
         {
-            var Caster = base.Context.MaybeCaster;
-            if (Caster == null) { return; }
-            Caster.Resources.Restore(m_destinationResource, m_destinationAmount);
+            var caster = base.Context.MaybeCaster;
+            if (caster == null) { return; }
+            caster.Resources.Restore(m_resource, m_resourceAmount);
         }
 
-        public BlueprintAbilityResourceReference m_sourceResource;
-        public BlueprintAbilityResourceReference m_destinationResource;
-        public int m_sourceAmount;
-        public int m_destinationAmount;
-        public ActionList FailedActions;
-        public ContextValue SaveDC;
     }
 }

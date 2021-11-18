@@ -12,8 +12,8 @@ namespace WOTR_PATH_OF_RAGE
     {
         public static void RemoveComponents<T>(this BlueprintScriptableObject obj) where T : BlueprintComponent
         {
-            var compnents_to_remove = obj.GetComponents<T>().ToArray();
-            foreach (var c in compnents_to_remove)
+            var components_to_remove = obj.GetComponents<T>().ToArray();
+            foreach (var c in components_to_remove)
             {
                 obj.SetComponents(obj.ComponentsArray.RemoveFromArray(c));
             }

@@ -14,6 +14,11 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.UnitLogic.ActivatableAbilities.Restrictions;
 using WOTR_PATH_OF_RAGE.Utilities;
+using Kingmaker.UnitLogic.Mechanics.Components;
+using Kingmaker.Enums;
+using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.Blueprints.Classes.Spells;
+using WOTR_PATH_OF_RAGE.MechanicsChanges;
 
 namespace WOTR_PATH_OF_RAGE.DemonRage
 {
@@ -31,6 +36,8 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
 
                 Main.Log("Patching Demonic Aspects");
                 PatchDemonAspectIcons();
+                PatchBrimorakAspect();
+                PatchKalavakusAspect();
             }
 
             static void PatchDemonAspectIcons()
@@ -133,5 +140,31 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                 Main.Log("Patching Aspect Icons Complete");
             }
         }
+
+        static void PatchBrimorakAspect()
+        {
+            var brimorakAspectEffectBuff = BlueprintTool.Get<BlueprintBuff>("f154542e0b97908479a578dd7bf6d3f7");
+            brimorakAspectEffectBuff.RemoveComponents<ContextRankConfig>();
+            brimorakAspectEffectBuff.AddComponent<ContextRankConfig>(c =>
+            {
+                c.m_Type = AbilityRankType.StatBonus;
+                c.m_BaseValueType = ContextRankBaseValueType.MythicLevel;
+                c.m_StepLevel = 3;
+                c.m_Max = 20;
+                c.m_Progression = ContextRankProgression.Div2PlusStep;
+            });
+            brimorakAspectEffectBuff.RemoveComponents<DraconicBloodlineArcana>();
+            brimorakAspectEffectBuff.AddComponent<BrimorakAspectDamage>();
+            Main.Log("Patching Brimorak Aspect Complete");
+        }
+
+        static void PatchKalavakusAspect()
+        {
+            var kalavakusAspectEffectBuff = BlueprintTool.Get<BlueprintBuff>("c9cdd3af3c5f93c4fb8e9119adaa582e");
+            kalavakusAspectEffectBuff.EditComponent<AddInitiatorAttackWithWeaponTrigger>(c =>
+            c.RangeType = WeaponRangeType.Melee);
+            Main.Log("Patching Brimorak Aspect Complete");
+        }
+
     }
 }

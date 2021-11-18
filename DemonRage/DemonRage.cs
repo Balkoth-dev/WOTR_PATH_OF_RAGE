@@ -42,7 +42,7 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                     demonicRageActivatableAbility.OnlyInCombat = false;
                     demonicRageActivatableAbility.DeactivateImmediately = false;
                     demonicRageActivatableAbility.DeactivateIfCombatEnded = true;
-            //        demonicRageActivatableAbility.ActivationType = new AbilityActivationType();
+                    demonicRageActivatableAbility.ActivationType = new AbilityActivationType();
                     demonicRageActivatableAbility.EditComponent<ActivatableAbilityResourceLogic>(c => c.SpendType = ActivatableAbilityResourceLogic.ResourceSpendType.NewRound);
                     demonicRageActivatableAbility.m_Icon = abyssalStorm.m_Icon;
 
@@ -72,7 +72,7 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                 var demonRageBuff = BlueprintTool.Get<BlueprintBuff>("36ca5ecd8e755a34f8da6b42ad4c965f");
                 demonRageBuff.m_Icon = abyssalStorm.m_Icon;
 
-             //   demonRageBuff.RemoveComponents<CombatStateTrigger>();
+                demonRageBuff.RemoveComponents<CombatStateTrigger>();
 
                 var demonRageResource = BlueprintTool.Get<BlueprintAbilityResource>("f3bf174f0f86b4f45a823e9ed6ccc7a5");
 

@@ -11,7 +11,7 @@ namespace WOTR_PATH_OF_RAGE.MechanicsChanges
         {
             static void Postfix(SpellDescriptor descriptor, SpellDescriptor flags, ref bool __result)
             {
-                __result = (descriptor & flags) > SpellDescriptor.None;
+                __result |= flags == SpellDescriptor.None;
             }
         }
     }
