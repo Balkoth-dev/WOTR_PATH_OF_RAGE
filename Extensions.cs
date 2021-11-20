@@ -1,6 +1,7 @@
 ﻿using BlueprintCore.Blueprints;
 using JetBrains.Annotations;
 using Kingmaker.Blueprints;
+using Kingmaker.ElementsSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;

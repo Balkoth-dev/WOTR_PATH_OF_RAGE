@@ -1,9 +1,12 @@
 ﻿using JetBrains.Annotations;
 using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Localization;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using static UnityModManagerNet.UnityModManager;
 
@@ -83,6 +86,27 @@ namespace WOTR_PATH_OF_RAGE.Utilities
             };
             textToLocalizedString[value] = localized;
             return localized;
+        }
+        public static void SetFeatures(this BlueprintFeatureSelection selection, params BlueprintFeature[] features)
+        {
+            selection.m_AllFeatures = selection.m_Features = features.Select(bp => bp.ToReference<BlueprintFeatureReference>()).ToArray();
+        }
+        public static void AddFeatures(this BlueprintFeatureSelection selection, params BlueprintFeature[] features)
+        {
+            foreach (var feature in features)
+            {
+                var featureReference = feature.ToReference<BlueprintFeatureReference>();
+                if (!selection.m_AllFeatures.Contains(featureReference))
+                {
+                    selection.m_AllFeatures = selection.m_AllFeatures.AppendToArray(featureReference);
+                }
+                if (!selection.m_Features.Contains(featureReference))
+                {
+                    selection.m_Features = selection.m_Features.AppendToArray(featureReference);
+                }
+            }
+            selection.m_AllFeatures = selection.m_AllFeatures.OrderBy(feature => feature.Get().Name).ToArray();
+            selection.m_Features = selection.m_Features.OrderBy(feature => feature.Get().Name).ToArray();
         }
     }
 }
