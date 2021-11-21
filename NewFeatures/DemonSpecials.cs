@@ -56,6 +56,7 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                 AddDemonSoul();
                 AddDemonSpecialsToSelection();
                 AddDemonSpecialSelectionToMythic();
+                AddDemonBlast();
             }
             public static void AddDemonSpecialFeatures()
             {
@@ -462,12 +463,13 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                     LocalizedDuration = new LocalizedString()
                 };
                 demonSoul.m_DisplayName = Helpers.CreateString(demonSoul + ".Name", "Consume Souls");
-                demonSoul.LocalizedSavingThrow = Helpers.CreateString(demonSoul + ".SavingThrow", "None");
-                var demonSoulDescription = "You consume nearby souls of the recently dead, destroying their bodies and boosting your own abilities.\nWhen you do so, " +
-                    "you gain a +2 attack bonus. In addition all special Demon spells DCs increase by 1 for each soul consumed (Max 30). This bonus lasts two minutes with an additional minute every two mythic ranks. " +
-                    "You restore an round of Demon Rage and a random spell-slot in your (non-merged) Demon spellbook per soul consumed.\nYou may use this ability once per day with an addtional use at 6th and 9th mythic rank.";
-                demonSoul.m_Description = Helpers.CreateString(demonSoul + ".Description", demonSoulDescription);
-
+                demonSoul.LocalizedSavingThrow = new LocalizedString();
+                demonSoul.m_Description = new LocalizedString();
+                   var demonSoulDescription = "You consume nearby souls of the recently dead, destroying their bodies and boosting your own abilities.\nWhen you do so, " +
+                       "you gain a +2 attack bonus. In addition all special Demon spells DCs increase by 1 for each soul consumed, max 30. This bonus lasts two minutes with an additional minute every two mythic ranks. " +
+                       "You restore an round of Demon Rage and a random spell-slot in your (non-merged) Demon spellbook per soul consumed.\nYou may use this ability once per day with an addtional use at 6th and 9th mythic rank.";
+                   demonSoul.m_Description = Helpers.CreateString(demonSoul + ".Description", demonSoulDescription);
+                
                 var fireballAbilityTargetsAround = fireball.GetComponent<AbilityTargetsAround>();
                 demonSoul.AddComponent<AbilityTargetsAround>(c =>
                 {
@@ -569,6 +571,54 @@ namespace TabletopTweaks.NewContent.MythicAbilities
 
                 Helpers.AddBlueprint(demonSoulFeature, demonSoulFeatureGuid);
                 Main.Log("Consume Souls Feature Added " + demonSoulFeature.AssetGuid.ToString());
+
+            }
+
+            public static void AddDemonBlast()
+            {
+                if(Main.settings.AddDemonBlast == false)
+                {
+                    return;
+                }
+
+                var demonChargeMainAbility = BlueprintTool.Get<BlueprintAbility>("1b677ed598d47a048a0f6b4b671b8f84");
+
+                var demonBlastGuid = new BlueprintGuid(new Guid("6fc3b519-1853-4144-9e4a-4fd803b34d35"));
+
+                var demonBlast = Helpers.CreateCopy(demonChargeMainAbility, bp =>
+                {
+                    bp.AssetGuid = demonBlastGuid;
+                    bp.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonBlast.png");
+                });
+                demonBlast.m_DisplayName = Helpers.CreateString(demonBlast + ".Name", "Demonic Blast");
+                demonBlast.LocalizedSavingThrow = Helpers.CreateString(demonBlast + ".SavingThrow", "None");
+                var demonSoulDescription = "As a {g|Encyclopedia:Move_Action}move action{/g}, you can let loose an explosion, dealing {g|Encyclopedia:Dice}2d6{/g} unholy {g|Encyclopedia:Damage}damage{/g} " +
+                    "per mythic rank to all enemies in a 10 feet range.\n An enemy can only be damaged by this ability or Demonic Charge once per {g|Encyclopedia:Combat_Round}round{/g}.";
+                demonBlast.m_Description = Helpers.CreateString(demonBlast + ".Description", demonSoulDescription);
+
+                demonBlast.RemoveComponents<AbilityCustomTeleportation>();
+
+                var babauAspectFeature = BlueprintTool.Get<BlueprintFeature>("99a34a0fa0c3a154fbc5b11fe2d18009");
+                var demonSoulFeatureGuid = new BlueprintGuid(new Guid("6cf0d55c-050c-497a-8b98-e245435ce6aa"));
+
+                var demonBlastFeature = Helpers.CreateCopy(babauAspectFeature, bp =>
+                {
+                    bp.AssetGuid = demonSoulFeatureGuid;
+                    bp.m_DisplayName = demonBlast.m_DisplayName;
+                    bp.m_Description = demonBlast.m_Description;
+                    bp.m_Icon = demonBlast.m_Icon;
+                });
+
+                demonBlastFeature.EditComponent<AddFacts>(c =>
+                {
+                    c.m_Facts = new BlueprintUnitFactReference[]{
+                        demonBlast.ToReference<BlueprintUnitFactReference>()
+                    };
+                });
+
+                var demonProgression = BlueprintTool.Get<BlueprintProgression>("285fe49f7df8587468f676aa49362213");
+
+                demonProgression.LevelEntries[1].m_Features.Add(demonBlastFeature.ToReference<BlueprintFeatureBaseReference>());
 
             }
 

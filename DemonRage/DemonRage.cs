@@ -79,13 +79,6 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                 demonRageResource.m_MaxAmount.StartingLevel = 1;
                 demonRageResource.m_MaxAmount.LevelStep = 1;
                 demonRageResource.m_MaxAmount.PerStepIncrease = 3;
-                demonRageResource.m_Max = 100;
-
-                var standartRageActivateableAbility = BlueprintTool.Get<BlueprintActivatableAbility>("df6a2cce8e3a9bd4592fb1968b83f730");
-                standartRageActivateableAbility.RemoveComponents<RestrictionHasFact>();
-
-                var bloodragerStandartRageActivateableAbility = BlueprintTool.Get<BlueprintActivatableAbility>("e3a0056eedac7754ca9a50603ba05177");
-                bloodragerStandartRageActivateableAbility.RemoveComponents<RestrictionHasFact>();
 
                 Main.Log("Patching Demonic Rage Complete");
             }

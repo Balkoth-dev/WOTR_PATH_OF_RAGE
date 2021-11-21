@@ -24,6 +24,7 @@ namespace WOTR_PATH_OF_RAGE
             public bool PatchBaseRagesForDemon = true;
             public bool PatchAbyssalStorm = true;
             public bool PatchBloodHaze = true;
+            public bool AddDemonBlast = true;
 
             public override void Save(UnityModManager.ModEntry modEntry)
             {
@@ -91,7 +92,7 @@ namespace WOTR_PATH_OF_RAGE
                 UI.Toggle("Kalvakus Aspect Fix".bold(), ref settings.PatchKalavakusAspect);
                 if (settings.PatchKalavakusAspect)
                 {
-                    UI.Label("Kalvakus Aspect's bonus attack will only work on melee.".green().size(10));
+                    UI.Label("Kalvakus Aspect's bonus attack will only work while you have a melee weapon.".green().size(10));
                 }
                 else
                 {
@@ -141,6 +142,15 @@ namespace WOTR_PATH_OF_RAGE
                 else
                 {
                     UI.Label("Blood Haze is unchanged from vanilla".red().size(10));
+                }
+                UI.Toggle("Demon Blast Addition".bold(), ref settings.AddDemonBlast);
+                if (settings.AddDemonBlast)
+                {
+                    UI.Label("At Mythic Rank 4 you gain an ability to use Demonic Charge that isn't a teleport. This is for instances where you can't use Demonic Charge".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Demonic Blast is not added".red().size(10));
                 }
             }
         }

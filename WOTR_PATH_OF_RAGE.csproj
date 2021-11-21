@@ -178,6 +178,7 @@
     <Content Include="Output\Assets\Abilities\Baubau.png" />
     <Content Include="Output\Assets\Abilities\Brimorak.png" />
     <Content Include="Output\Assets\Abilities\Coloxus.png" />
+    <Content Include="Output\Assets\Abilities\DemonBlast.png" />
     <Content Include="Output\Assets\Abilities\DemonRage.png" />
     <Content Include="Output\Assets\Abilities\DemonSmash.png" />
     <Content Include="Output\Assets\Abilities\DemonSoul.png" />
