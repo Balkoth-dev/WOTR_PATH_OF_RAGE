@@ -43,6 +43,10 @@ namespace WOTR_PATH_OF_RAGE.Spells
             }
             static void PatchAbyssalStorm()
             {
+                if (Main.settings.PatchAbyssalStorm == false)
+                {
+                    return;
+                }
                 var abyssalStorm = BlueprintTool.Get<BlueprintAbility>("58e9e2883bca1574e9c932e72fd361f9");
 
                 abyssalStorm.EditComponent<AbilityTargetsAround>(c =>

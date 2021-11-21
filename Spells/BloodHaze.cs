@@ -20,6 +20,9 @@ using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.Blueprints.Classes.Spells;
 using WOTR_PATH_OF_RAGE.MechanicsChanges;
 using Kingmaker.Designers.Mechanics.Buffs;
+using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.UnitLogic.Mechanics.Actions;
+using Kingmaker.ElementsSystem;
 
 namespace WOTR_PATH_OF_RAGE.Spells
 {
@@ -40,17 +43,28 @@ namespace WOTR_PATH_OF_RAGE.Spells
             }
             static void PatchBloodHaze()
             {
-                var bloodHaze = BlueprintTool.Get<BlueprintAbility>("04b0ea02e1db66c44a8c31b0d0badff8");
+                if (Main.settings.PatchBloodHaze == false)
+                {
+                    return;
+                }
+                var bloodHaze = BlueprintTool.Get<BlueprintAbility>("68f4129f658d02244ad57a4bfe3a5e61");
+                var bloodHazeBuff = BlueprintTool.Get<BlueprintBuff>("173af01d6aae5574ba0391e277e9b168");
 
-                var bloodHazeDescription = "You make your blood boil, making you faster and more ferocious. For 1 {g|Encyclopedia:Combat_Round}round{/g} per two caster levels," +
-                                           " you gain an extra attack that stacks with the effects of the Haste {g|Encyclopedia:Spell}spell{/g} and a 30ft enhancement bonus to movement speed.\nAdditionally, every time you reduce a creature below zero {g|Encyclopedia:HP}HP{/g}," +
-                                           " you prolong the effect. If the killed creature had more HD than your {g|Encyclopedia:Caster_Level}caster level{/g}, the duration is increased by 3 rounds. " +
-                                           "Otherwise, it is increased by 1 round.";
+                var bloodHazeDescription = "You make your blood boil, making you faster and more ferocious. For 1 {g|Encyclopedia:Combat_Round}round{/g} per two caster levels, " +
+                    "you gain the effects of the Haste {g|Encyclopedia:Spell}spell{/g} and a +2 Profane bonus to attack.\n Additionally, every time you reduce a creature below zero {g|Encyclopedia:HP}HP{/g}, you " +
+                    "prolong the effect. If the killed creature had more HD than your {g|Encyclopedia:Caster_Level}caster level{/g}, the duration is increased by 3 rounds. " +
+                    "Otherwise, it is increased by 1 round.";
 
                 bloodHaze.m_Description = Helpers.CreateString(bloodHaze + ".Description", bloodHazeDescription);
+                bloodHazeBuff.m_Description = bloodHaze.m_Description;
 
-                bloodHaze.RemoveComponents<BuffExtraAttack>();
-                bloodHaze.AddComponent<BuffExtraAttack>(c => c.Number = 1);
+                bloodHazeBuff.AddComponent<AddContextStatBonus>(c =>
+                {
+                    c.Multiplier = 2;
+                    c.Stat = Kingmaker.EntitySystem.Stats.StatType.AdditionalAttackBonus;
+                    c.Descriptor = ModifierDescriptor.Profane;
+                    c.Value = 1;
+                });
 
                 Main.Log("Blood Haze Patched");
 

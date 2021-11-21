@@ -388,12 +388,12 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                     bp.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonSoulBuff.png");
                     bp.Components = new BlueprintComponent[] { };
                     bp.Stacking = StackingType.Rank;
-                    bp.Ranks = 100;
+                    bp.Ranks = 30;
                 });
 
                 demonSoulBuff.AddComponent<IncreaseSpelllistDC>(c =>
                 {
-                    c.BonusDC = 2;
+                    c.BonusDC = 1;
                     c.m_SpellList = demonSpelllist.ToReference<BlueprintSpellListReference>();
                     c.Descriptor = ModifierDescriptor.UntypedStackable;
                 });
@@ -464,7 +464,7 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                 demonSoul.m_DisplayName = Helpers.CreateString(demonSoul + ".Name", "Consume Souls");
                 demonSoul.LocalizedSavingThrow = Helpers.CreateString(demonSoul + ".SavingThrow", "None");
                 var demonSoulDescription = "You consume nearby souls of the recently dead, destroying their bodies and boosting your own abilities.\nWhen you do so, " +
-                    "you gain a +2 attack bonus. In addition all special Demon spells DCs increase by 2 for each soul consumed. This bonus lasts two minutes with an additional minute every two mythic ranks. " +
+                    "you gain a +2 attack bonus. In addition all special Demon spells DCs increase by 1 for each soul consumed (Max 30). This bonus lasts two minutes with an additional minute every two mythic ranks. " +
                     "You restore an round of Demon Rage and a random spell-slot in your (non-merged) Demon spellbook per soul consumed.\nYou may use this ability once per day with an addtional use at 6th and 9th mythic rank.";
                 demonSoul.m_Description = Helpers.CreateString(demonSoul + ".Description", demonSoulDescription);
 
@@ -587,6 +587,10 @@ namespace TabletopTweaks.NewContent.MythicAbilities
 
             public static void AddDemonSpecialSelectionToMythic()
             {
+                if (Main.settings.AddDemonSpecialSelectionToMythic == false)
+                {
+                    return;
+                }
                 var demonSpecialSelection = BlueprintTool.Get<BlueprintFeatureSelection>("1df9edd3e5f4485793e57a40e1d567f2");
 
                 var demonProgression = BlueprintTool.Get<BlueprintProgression>("285fe49f7df8587468f676aa49362213");

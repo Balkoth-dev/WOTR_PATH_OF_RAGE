@@ -38,11 +38,15 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                 PatchDemonAspectIcons();
                 PatchBrimorakAspect();
                 PatchKalavakusAspect();
+                PatchShadowDemonAspect();
             }
 
             static void PatchDemonAspectIcons()
             {
-
+                if(Main.settings.PatchDemonAspectIcons == false)
+                {
+                    return;
+                }
                 var babauAspectIcon = AssetLoader.LoadInternal("Abilities", "Baubau.png");
                 var brimorakAspectIcon = AssetLoader.LoadInternal("Abilities", "Brimorak.png");
                 var incubusAspectIcon = AssetLoader.LoadInternal("Abilities", "Incubus.png");
@@ -143,6 +147,10 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
 
         static void PatchBrimorakAspect()
         {
+            if (Main.settings.PatchBrimorakAspect == false)
+            {
+                return;
+            }
             var brimorakAspectEffectBuff = BlueprintTool.Get<BlueprintBuff>("f154542e0b97908479a578dd7bf6d3f7");
             brimorakAspectEffectBuff.RemoveComponents<ContextRankConfig>();
             brimorakAspectEffectBuff.AddComponent<ContextRankConfig>(c =>
@@ -160,10 +168,24 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
 
         static void PatchKalavakusAspect()
         {
+            if (Main.settings.PatchKalavakusAspect == false)
+            {
+                return;
+            }
             var kalavakusAspectEffectBuff = BlueprintTool.Get<BlueprintBuff>("c9cdd3af3c5f93c4fb8e9119adaa582e");
             kalavakusAspectEffectBuff.EditComponent<AddInitiatorAttackWithWeaponTrigger>(c =>
             c.RangeType = WeaponRangeType.Melee);
             Main.Log("Patching Brimorak Aspect Complete");
+        }
+        static void PatchShadowDemonAspect()
+        {
+            if (Main.settings.PatchShadowDemonAspect == false)
+            {
+                return;
+            }
+            var shadowDemonAspectSwitchBuff = BlueprintTool.Get<BlueprintBuff>("d5336d599d004e74d9af6b8967c3f217");
+            shadowDemonAspectSwitchBuff.RemoveComponents<AddContextStatBonus>();
+            Main.Log("Patching Shadow Demon Aspect Complete");
         }
 
     }

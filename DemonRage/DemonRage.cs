@@ -31,11 +31,15 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
 
                 Main.Log("Patching Demonic Rage");
                 PatchDemonRage();
-                PatchRagesForDemon();
+                PatchBaseRagesForDemon();
             }
 
             static void PatchDemonRage()
             {
+                if (Main.settings.PatchDemonRage == false)
+                {
+                    return;
+                }
                 var abyssalStorm = BlueprintTool.Get<BlueprintAbility>("58e9e2883bca1574e9c932e72fd361f9");
 
                 var demonicRageActivatableAbility = BlueprintTool.Get<BlueprintActivatableAbility>("0999f99d6157e5c4888f4cfe2d1ce9d6");
@@ -87,7 +91,7 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
             }
         }
 
-        static void PatchRagesForDemon()
+        static void PatchBaseRagesForDemon()
         {
             var standartRageActivateableAbility = BlueprintTool.Get<BlueprintActivatableAbility>("df6a2cce8e3a9bd4592fb1968b83f730");
             standartRageActivateableAbility.RemoveComponents<RestrictionHasFact>();
