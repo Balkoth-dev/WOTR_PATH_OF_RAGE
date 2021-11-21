@@ -25,6 +25,7 @@ namespace WOTR_PATH_OF_RAGE
             public bool PatchAbyssalStorm = true;
             public bool PatchBloodHaze = true;
             public bool AddDemonBlast = true;
+            public bool PatchDemonLordAspects = true;
 
             public override void Save(UnityModManager.ModEntry modEntry)
             {
@@ -151,6 +152,15 @@ namespace WOTR_PATH_OF_RAGE
                 else
                 {
                     UI.Label("Demonic Blast is not added".red().size(10));
+                }
+                UI.Toggle("Demon Lord Aspects Progression Fix".bold(), ref settings.PatchDemonLordAspects);
+                if (settings.PatchDemonLordAspects)
+                {
+                    UI.Label("Demon Lord Aspects are written to be given one at 9 and another at 10. This fixes that.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Demon Lord Aspect progression is not fixed.".red().size(10));
                 }
             }
         }

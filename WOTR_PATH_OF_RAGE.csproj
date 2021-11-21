@@ -157,10 +157,18 @@
     <Compile Include="Main.cs" />
     <Compile Include="MechanicsChanges\BrimorakAspectDamage.cs" />
     <Compile Include="MechanicsChanges\ContextActionApplyBuffSimple.cs" />
+    <Compile Include="MechanicsChanges\ContextConditionCasterHasBuff.cs" />
     <Compile Include="MechanicsChanges\IncreaseSpelllistDC.cs" />
     <Compile Include="MechanicsChanges\ContextActionRestoreRandomSpell.cs" />
-    <Compile Include="NewFeatures\DemonSpecials.cs" />
+    <Compile Include="NewFeatures\DemonBlast.cs" />
+    <Compile Include="NewFeatures\DemonPolymorph.cs" />
+    <Compile Include="NewFeatures\DemonSmash.cs" />
+    <Compile Include="NewFeatures\DemonSoul.cs" />
+    <Compile Include="NewFeatures\AddDemonSpecials.cs" />
+    <Compile Include="NewFeatures\SpecialFeatures.cs" />
+    <Compile Include="NewFeatures\SpecialResources.cs" />
     <Compile Include="NewRules\IncreaseRageRounds.cs" />
+    <Compile Include="Progression\DemonProgression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spells\AbyssalStorm.cs" />
     <Compile Include="Spells\BloodHaze.cs" />
@@ -179,6 +187,7 @@
     <Content Include="Output\Assets\Abilities\Brimorak.png" />
     <Content Include="Output\Assets\Abilities\Coloxus.png" />
     <Content Include="Output\Assets\Abilities\DemonBlast.png" />
+    <Content Include="Output\Assets\Abilities\DemonPolymorph.png" />
     <Content Include="Output\Assets\Abilities\DemonRage.png" />
     <Content Include="Output\Assets\Abilities\DemonSmash.png" />
     <Content Include="Output\Assets\Abilities\DemonSoul.png" />
