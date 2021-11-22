@@ -22,8 +22,22 @@ namespace WOTR_PATH_OF_RAGE.New_Rules
         {
             var caster = base.Context.MaybeCaster;
             if (caster == null) { return; }
-            caster.Resources.Restore(m_resource, m_resourceAmount);
+            if (m_RandomChance)
+            {
+                var randomInt = UnityEngine.Random.Range(1, 101);
+                if (randomInt <= m_RandomChancePercent)
+                {
+                    caster.Resources.Restore(m_resource, m_resourceAmount);
+                }
+            }
+            else
+            {
+                caster.Resources.Restore(m_resource, m_resourceAmount);
+            }
         }
+
+        public bool m_RandomChance;
+        public int m_RandomChancePercent;
 
     }
 }

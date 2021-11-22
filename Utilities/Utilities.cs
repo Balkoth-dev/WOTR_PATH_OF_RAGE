@@ -49,6 +49,12 @@ namespace WOTR_PATH_OF_RAGE.Utilities
             init?.Invoke(result);
             return result;
         }
+        public static T GenericAction<T>(Action<T> init = null) where T : Kingmaker.ElementsSystem.GameAction, new()
+        {
+            var result = (T)Kingmaker.ElementsSystem.Element.CreateInstance(typeof(T));
+            init?.Invoke(result);
+            return result;
+        }
 
         public static void AddBlueprint([NotNull] SimpleBlueprint blueprint, BlueprintGuid assetId)
         {

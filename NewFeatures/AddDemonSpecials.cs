@@ -51,12 +51,14 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                 Initialized = true;
 
                 Main.Log("Patching Demonic Smash");
+                DemonBlast.AddDemonBlast();
                 SpecialFeatures.AddDemonSpecialFeatures();
                 SpecialResources.AddDemonSpecialResources();
+                DemonSmashProjectile.AddDemonSmashProjectile();
                 DemonSmash.AddDemonSmash();
                 DemonSoul.AddDemonSoul();
                 DemonPolymorph.AddDemonPolymorph();
-                DemonBlast.AddDemonBlast();
+                DemonRip.AddDemonRip();
                 AddDemonSpecialsToSelection();
             }
            
@@ -67,8 +69,9 @@ namespace TabletopTweaks.NewContent.MythicAbilities
                 var demonSmashFeature = BlueprintTool.Get<BlueprintFeature>("23d7996386d64d67a83e79f5bc5fedaf");
                 var demonSoulFeature = BlueprintTool.Get<BlueprintFeature>("30dcbf939783418c881d15f623d53bf9");
                 var demonPolyFeature = BlueprintTool.Get<BlueprintFeature>("bbd26df513044c01a56b5fad024a86bc");
+                var demonRipFeature = BlueprintTool.Get<BlueprintFeature>("6f4041fd6be843a8ae935fe1307aba08");
 
-                demonSpecialSelection.SetFeatures(demonSmashFeature, demonSoulFeature, demonPolyFeature);
+                demonSpecialSelection.SetFeatures(demonSmashFeature, demonSoulFeature, demonPolyFeature, demonRipFeature);
 
                 Main.Log("Demonic Specials Added To Selection");
 

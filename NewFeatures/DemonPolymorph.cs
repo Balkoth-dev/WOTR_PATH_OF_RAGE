@@ -33,6 +33,7 @@ using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using WOTR_PATH_OF_RAGE.MechanicsChanges;
+using Kingmaker.Blueprints.Items.Ecnchantments;
 
 namespace WOTR_PATH_OF_RAGE.NewFeatures
 {
@@ -60,12 +61,12 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonicFormIIINalfeshneeBuff = BlueprintTool.Get<BlueprintBuff>("469a412c607bf4f43aabe62c2de22837");
             var demonicFormIINabasuBuff = BlueprintTool.Get<BlueprintBuff>("82d638a78c1a7704684555189ba85d88");
             var demonicFormIIIGlabrezuBuff = BlueprintTool.Get<BlueprintBuff>("f65726a206c68af4085af036f58aca45");
-            var kitsunePolymorphBuff = BlueprintTool.Get<BlueprintBuff>("ee6c7f5437a57ad48aaf47320129df33");
+            var keen = BlueprintTool.Get<BlueprintWeaponEnchantment>("102a9c8c9b7a75e4fb5844e79deaf4c0").ToReference<BlueprintFeatureReference>();
 
             var demonPolyResource = BlueprintTool.Get<BlueprintAbilityResource>("fb938b3d9deb46b3b3a44de61cd2d574");
 
             BlueprintAbility demonicFormIVBalor = BlueprintTool.Get<BlueprintAbility>("0258a875670fa134590c6ffdc23da2cf");
-
+           
             var demonBalorFormGuid = new BlueprintGuid(new Guid("e30768ff-138f-4ab5-b947-03df2aa72a6a"));
 
             var demonBalorForm = Helpers.CreateCopy(demonicFormIVBalor, bp =>
@@ -91,7 +92,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             Helpers.AddBlueprint(demonBalorForm, demonBalorFormGuid);
 
             Main.Log("Demon Balor Form Added" + demonBalorForm.AssetGuid.ToString());
-
+            ///
             var demonPolymorphFeatureGuid = new BlueprintGuid(new Guid("bbd26df5-1304-4c01-a56b-5fad024a86bc"));
 
             var demonPolymorphFeature = Helpers.Create<BlueprintFeature>(c =>
@@ -108,7 +109,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             });
             demonPolymorphFeature.m_DisplayName = Helpers.CreateString(demonPolymorphFeature + ".Name", "Unleashed Demon");
             var demonPolymorphDescription = "You learn you unleash the demons within you.\n" +
-                                            "While polymorphed into a demonic form, your attacks deal 2d6 extra Unholy damage and any critical hit will restore a round of Demon Rage.\n" +
+                                            "While polymorphed into a demonic form, for each attack that hits you deal an extra 2d6 + Mythic Rank extra Unholy damage and have a 10% chance to restore a round of Demon Rage.\n" +
                                             "In addition, you gain the ability to transform yourself into a Balor as Demon Form IV for 1 minute. You may do this an addtional time at 6th and 9th mythic rank.";
             demonPolymorphFeature.m_Description = Helpers.CreateString(demonPolymorphFeature + ".Description", demonPolymorphDescription);
 
@@ -122,6 +123,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             {
                 c.m_resource = demonRageResource;
                 c.m_resourceAmount = 1;
+                c.m_RandomChance = true;
+                c.m_RandomChancePercent = 10;
             });
 
             var polymorphCondition = new Condition[] {
@@ -151,12 +154,49 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 Operation = Operation.Or
             };
 
-            var conditionalBuff = new Conditional()
+
+            demonPolymorphFeature.AddComponent<ContextRankConfig>(c =>
+            {
+                c.m_Type = AbilityRankType.DamageBonus;
+                c.m_BaseValueType = ContextRankBaseValueType.MythicLevel;
+                c.m_Progression = ContextRankProgression.AsIs;
+            });
+
+
+            var demonPolyDamageUnholy = Helpers.Create<ContextActionDealDamage>(c =>
+            {
+                c.DamageType = new DamageTypeDescription
+                {
+                    Type = DamageType.Energy,
+                    Energy = DamageEnergyType.Unholy
+                };
+                c.Duration = new ContextDurationValue()
+                {
+                    m_IsExtendable = true,
+                    DiceCountValue = new ContextValue(),
+                    BonusValue = new ContextValue()
+                };
+                c.Value = new ContextDiceValue
+                {
+                    DiceType = DiceType.D6,
+                    DiceCountValue = new ContextValue()
+                    {
+                        Value = 2
+                    },
+                    BonusValue = new ContextValue
+                    {
+                        ValueType = ContextValueType.Rank,
+                        ValueRank = AbilityRankType.DamageBonus
+                    }
+                };
+            });
+
+            var conditionalAttack = new Conditional()
             {
                 ConditionsChecker = polymorphConditionsChecker,
                 IfTrue = new ActionList()
                 {
-                    Actions = new GameAction[] { contextResourceIncrease }
+                    Actions = new GameAction[] { contextResourceIncrease, demonPolyDamageUnholy }
                 },
                 IfFalse = new ActionList()
             };
@@ -164,28 +204,10 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             demonPolymorphFeature.AddComponent<AddInitiatorAttackWithWeaponTrigger>(c =>
             {
                 c.OnlyHit = true;
-                c.CriticalHit = true;
                 c.Action = new ActionList();
-                c.Action.Actions = new GameAction[] { conditionalBuff };
+                c.Action.Actions = new GameAction[] { conditionalAttack };
             });
 
-            demonPolymorphFeature.AddComponent<WeaponConditionalDamageDice>(c =>
-            {
-                c.Conditions = polymorphConditionsChecker;
-                c.Damage = new DamageDescription()
-                {
-                    Dice = new DiceFormula()
-                    {
-                        m_Dice = DiceType.D6,
-                        m_Rolls = 1
-                    },
-                    TypeDescription = new DamageTypeDescription()
-                    {
-                        Type = DamageType.Energy,
-                        Energy = DamageEnergyType.Unholy
-                    }
-                };
-            });
 
             demonPolymorphFeature.AddComponent<AddFacts>(c =>
             {

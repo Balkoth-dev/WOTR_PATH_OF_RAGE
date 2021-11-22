@@ -75,7 +75,7 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
 
                 var demonRageResource = BlueprintTool.Get<BlueprintAbilityResource>("f3bf174f0f86b4f45a823e9ed6ccc7a5");
 
-                demonRageResource.m_MaxAmount.BaseValue = 17;
+                demonRageResource.m_MaxAmount.BaseValue = 11;
                 demonRageResource.m_MaxAmount.StartingLevel = 1;
                 demonRageResource.m_MaxAmount.LevelStep = 1;
                 demonRageResource.m_MaxAmount.PerStepIncrease = 3;

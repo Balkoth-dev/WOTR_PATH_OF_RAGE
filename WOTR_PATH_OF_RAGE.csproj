@@ -156,13 +156,15 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MechanicsChanges\BrimorakAspectDamage.cs" />
-    <Compile Include="MechanicsChanges\ContextActionApplyBuffSimple.cs" />
+    <Compile Include="MechanicsChanges\ContextActionCastSpellSimple.cs" />
     <Compile Include="MechanicsChanges\ContextConditionCasterHasBuff.cs" />
     <Compile Include="MechanicsChanges\IncreaseSpelllistDC.cs" />
     <Compile Include="MechanicsChanges\ContextActionRestoreRandomSpell.cs" />
     <Compile Include="NewFeatures\DemonBlast.cs" />
     <Compile Include="NewFeatures\DemonPolymorph.cs" />
+    <Compile Include="NewFeatures\DemonRip.cs" />
     <Compile Include="NewFeatures\DemonSmash.cs" />
+    <Compile Include="NewFeatures\DemonSmashProjectile.cs" />
     <Compile Include="NewFeatures\DemonSoul.cs" />
     <Compile Include="NewFeatures\AddDemonSpecials.cs" />
     <Compile Include="NewFeatures\SpecialFeatures.cs" />
@@ -189,6 +191,7 @@
     <Content Include="Output\Assets\Abilities\DemonBlast.png" />
     <Content Include="Output\Assets\Abilities\DemonPolymorph.png" />
     <Content Include="Output\Assets\Abilities\DemonRage.png" />
+    <Content Include="Output\Assets\Abilities\DemonRip.png" />
     <Content Include="Output\Assets\Abilities\DemonSmash.png" />
     <Content Include="Output\Assets\Abilities\DemonSoul.png" />
     <Content Include="Output\Assets\Abilities\DemonSoulBuff.png" />

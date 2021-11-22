@@ -49,6 +49,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var fireball = BlueprintTool.Get<BlueprintAbility>("2d81362af43aeac4387a3d4fced489c3");
             var demonSoulResource = BlueprintTool.Get<BlueprintAbilityResource>("0c9c6e7290a9412fade8d97291a005e3");
             var demonSpellbook = BlueprintTool.Get<BlueprintSpellbook>("e3daa889c72982e45a026f62cc84937d");
+            var demonChargeProjectile = BlueprintTool.Get<BlueprintAbility>("4b18d0f44f57cbf4c91f094addfed9f4");
 
             ///
 
@@ -58,7 +59,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             {
                 bp.AssetGuid = demonSoulBuffGuid;
                 bp.m_DisplayName = Helpers.CreateString(bp + ".Name", "Consumed Soul");
-                bp.m_Description = Helpers.CreateString(bp + ".Description", "You have consumed a number of souls, you gain +2 to all attacks and a stacking DC bonus to all Demon spells per soul consumed.");
+                bp.m_Description = Helpers.CreateString(bp + ".Description", "You have consumed a number of souls, you gain a stacking DC bonus to all Demon spells per soul consumed.");
                 bp.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonSoulBuff.png");
                 bp.Components = new BlueprintComponent[] { };
                 bp.Stacking = StackingType.Rank;
@@ -70,13 +71,6 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.BonusDC = 1;
                 c.m_SpellList = demonSpelllist.ToReference<BlueprintSpellListReference>();
                 c.Descriptor = ModifierDescriptor.UntypedStackable;
-            });
-
-            demonSoulBuff.AddComponent<AddContextStatBonus>(c =>
-            {
-                c.Multiplier = 2;
-                c.Stat = Kingmaker.EntitySystem.Stats.StatType.AdditionalAttackBonus;
-                c.Value = 1;
             });
 
             Helpers.AddBlueprint(demonSoulBuff, demonSoulBuffGuid);
@@ -91,6 +85,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             });
 
             demonSoulProjectile.View = mythic4lvlDemon_AbyssalChains00_Projectile.View;
+            demonSoulProjectile.ProjectileHit.HitFx = demonChargeProjectile.GetComponent<AbilitySpawnFx>().PrefabLink;
+            demonSoulProjectile.ProjectileHit.MissFx = demonChargeProjectile.GetComponent<AbilitySpawnFx>().PrefabLink;
 
             Helpers.AddBlueprint(demonSoulProjectile, demonSoulProjectileGuid);
 
@@ -140,17 +136,16 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             demonSoul.LocalizedSavingThrow = new LocalizedString();
             demonSoul.m_Description = new LocalizedString();
             var demonSoulDescription = "You consume nearby souls of the recently dead, destroying their bodies and boosting your own abilities.\nWhen you do so, " +
-                "you gain a +2 attack bonus. In addition all special Demon spells DCs increase by 1 for each soul consumed, max 30. This bonus lasts two minutes with an additional minute every two mythic ranks. " +
+                "all special Demon spells DCs increase by 1 for each soul consumed, max 30. This bonus lasts two minutes with an additional minute every two mythic ranks. " +
                 "You restore an round of Demon Rage and a random spell-slot in your (non-merged) Demon spellbook per soul consumed.\nYou may use this ability once per day with an addtional use at 6th and 9th mythic rank.";
             demonSoul.m_Description = Helpers.CreateString(demonSoul + ".Description", demonSoulDescription);
 
-            var fireballAbilityTargetsAround = fireball.GetComponent<AbilityTargetsAround>();
             demonSoul.AddComponent<AbilityTargetsAround>(c =>
             {
                 c.m_IncludeDead = true;
                 c.m_Radius = new Kingmaker.Utility.Feet() { m_Value = 30 };
                 c.m_TargetType = TargetType.Any;
-                c.name = fireballAbilityTargetsAround.name;
+                c.name = "AreaDemonSoulEffect";
                 c.m_Condition = new ConditionsChecker()
                 {
                     Conditions = new Condition[] {
@@ -223,6 +218,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonSoulFeature = Helpers.Create<BlueprintFeature>(c =>
             {
                 c.AssetGuid = demonSoulFeatureGuid;
+                c.name = "DemonSoul" + c.AssetGuid;
                 c.m_DisplayName = demonSoul.m_DisplayName;
                 c.m_Description = demonSoul.m_Description;
                 c.m_Icon = demonSoul.m_Icon;

@@ -40,25 +40,14 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
     {
         public static void AddDemonSmash()
         {
-            var fireball00 = BlueprintTool.Get<BlueprintProjectile>("8927afa172e0fc54484a29fa0c4c40c4");
             var fireball = BlueprintTool.Get<BlueprintAbility>("2d81362af43aeac4387a3d4fced489c3");
             var demonChargeMainAbility = BlueprintTool.Get<BlueprintAbility>("1b677ed598d47a048a0f6b4b671b8f84");
-            var demonChargeProjectile = BlueprintTool.Get<BlueprintAbility>("4b18d0f44f57cbf4c91f094addfed9f4");
             var telekineticFist = BlueprintTool.Get<BlueprintAbility>("810992c76efdde84db707a0444cf9a1c");
             var touchItem = BlueprintTool.Get<BlueprintItemWeapon>("bb337517547de1a4189518d404ec49d4");
             var demonSmashResource = BlueprintTool.Get<BlueprintAbilityResource>("40536705671e4e96979a10a41ea6057e");
+            var fireball00 = BlueprintTool.Get<BlueprintProjectile>("8927afa172e0fc54484a29fa0c4c40c4");
 
-            var demonSmashProGuid = new BlueprintGuid(new Guid("fec53329-817f-4aa6-a921-0be9867a8930"));
-
-            var demonSmashProjectile = Helpers.CreateCopy(fireball00, bp =>
-            {
-                bp.AssetGuid = demonSmashProGuid;
-            });
-            demonSmashProjectile.ProjectileHit.HitFx = demonChargeProjectile.GetComponent<AbilitySpawnFx>().PrefabLink;
-            demonSmashProjectile.ProjectileHit.MissFx = demonChargeProjectile.GetComponent<AbilitySpawnFx>().PrefabLink;
-
-            Helpers.AddBlueprint(demonSmashProjectile, demonSmashProGuid);
-            Main.Log("Demonic Projectile Added " + demonSmashProjectile.AssetGuid.ToString());
+            var demonSmashProjectile = BlueprintTool.Get<BlueprintProjectile>("fec53329817f4aa6a9210be9867a8930");
 
             var demonSmashGuid = new BlueprintGuid(new Guid("3013d646-3fa3-4ff8-bb46-eba61b6ed581"));
 
@@ -261,6 +250,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonSmashFeature = Helpers.Create<BlueprintFeature>(c =>
             {
                 c.AssetGuid = demonSmashFeatureGuid;
+                c.name = "DemonSmash" + c.AssetGuid;
                 c.m_DisplayName = demonSmash.m_DisplayName;
                 c.m_Description = demonSmash.m_Description;
                 c.m_Icon = demonSmash.m_Icon;

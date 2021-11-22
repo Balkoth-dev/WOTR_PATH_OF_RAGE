@@ -40,10 +40,6 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
     {
         public static void AddDemonBlast()
         {
-            if (Main.settings.AddDemonBlast == false)
-            {
-                return;
-            }
 
             var demonChargeMainAbility = BlueprintTool.Get<BlueprintAbility>("1b677ed598d47a048a0f6b4b671b8f84");
 
@@ -54,6 +50,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 bp.AssetGuid = demonBlastGuid;
                 bp.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonBlast.png");
                 bp.Range = AbilityRange.Personal;
+                bp.CanTargetSelf = true;
                 bp.name = "Demon Blast";
 
             });
@@ -69,12 +66,11 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
 
             Main.Log("Demon Blast Added");
 
-            var babauAspectFeature = BlueprintTool.Get<BlueprintFeature>("99a34a0fa0c3a154fbc5b11fe2d18009");
-            var demonSoulFeatureGuid = new BlueprintGuid(new Guid("6cf0d55c-050c-497a-8b98-e245435ce6aa"));
+            var demonBlastFeatureGuid = new BlueprintGuid(new Guid("6cf0d55c-050c-497a-8b98-e245435ce6aa"));
 
             var demonBlastFeature = Helpers.Create<BlueprintFeature>(c =>
             {
-                c.AssetGuid = demonSoulFeatureGuid;
+                c.AssetGuid = demonBlastFeatureGuid;
                 c.m_DisplayName = demonBlast.m_DisplayName;
                 c.m_Description = demonBlast.m_Description;
                 c.m_Icon = demonBlast.m_Icon;
@@ -94,8 +90,14 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                     };
             });
 
-            Helpers.AddBlueprint(demonBlastFeature, demonSoulFeatureGuid);
+            Helpers.AddBlueprint(demonBlastFeature, demonBlastFeatureGuid);
 
+            Main.Log("Demon Blast Feature Created" + demonBlastFeatureGuid);
+
+            if (Main.settings.AddDemonBlast == false)
+            {
+                return;
+            }
             var demonProgression = BlueprintTool.Get<BlueprintProgression>("285fe49f7df8587468f676aa49362213");
 
             demonProgression.LevelEntries[0].m_Features.Add(demonBlastFeature.ToReference<BlueprintFeatureBaseReference>());
