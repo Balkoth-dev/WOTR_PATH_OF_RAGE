@@ -61,7 +61,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 "{g|Encyclopedia:Energy_Damage}unholy{/g} and {g|Encyclopedia:Dice}1d6{/g} {g|Encyclopedia:Energy_Damage}fire{/g} " +
                 "{g|Encyclopedia:Damage}damage{/g} per mythic rank in a five foot radius to all targets.\n" +
                 "For each target affected you regain one round of Demon Rage. \n" +
-                "You may do this 2 times a day with an additional time every mythic rank.";
+                "You may do this 2 times a day with an additional time every other mythic rank.";
             demonSmash.m_Description = Helpers.CreateString(demonSmash + ".Description", demonSmashDescription);
 
 

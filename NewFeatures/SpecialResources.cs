@@ -47,14 +47,21 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             {
                 bp.AssetGuid = demonSmashResourceGuid;
                 bp.name = "DemonSmashResource"+ bp.AssetGuid;
-                bp.m_MaxAmount.m_ClassDiv = new BlueprintCharacterClassReference[] { demonMythicClass };
-                bp.m_MaxAmount.BaseValue = 2;
-                bp.m_MaxAmount.StartingLevel = 2;
-                bp.m_MaxAmount.LevelStep = 1;
-                bp.m_MaxAmount.PerStepIncrease = 1;
-                bp.m_MaxAmount.IncreasedByLevel = true;
-                bp.m_MaxAmount.IncreasedByLevelStartPlusDivStep = true;
-                bp.Components = new BlueprintComponent[]{ };
+                bp.m_Min = 1;
+                bp.m_MaxAmount = new BlueprintAbilityResource.Amount
+                {
+                    BaseValue = 1,
+                    IncreasedByStat = false,
+                    m_ClassDiv = new BlueprintCharacterClassReference[] { demonMythicClass },
+                    m_Class = new BlueprintCharacterClassReference[] { demonMythicClass },
+                    m_Archetypes = new BlueprintArchetypeReference[0],
+                    m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                    IncreasedByLevelStartPlusDivStep = true,
+                    StartingLevel = 1,
+                    LevelStep = 2,
+                    PerStepIncrease = 1,
+                    StartingIncrease = 1
+                };
             });
 
             Helpers.AddBlueprint(demonSmashResource, demonSmashResourceGuid);
@@ -64,15 +71,21 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonSoulResource = Helpers.Create<BlueprintAbilityResource>(bp =>
             {
                 bp.AssetGuid = demonSoulResourceGuid;
-                bp.name = "demonSoulResource" + bp.AssetGuid;
-                bp.m_MaxAmount.m_ClassDiv = new BlueprintCharacterClassReference[] { demonMythicClass };
-                bp.m_MaxAmount.BaseValue = 1;
-                bp.m_MaxAmount.StartingLevel = 3;
-                bp.m_MaxAmount.LevelStep = 3;
-                bp.m_MaxAmount.PerStepIncrease = 1;
-                bp.m_MaxAmount.IncreasedByLevel = true;
-                bp.m_MaxAmount.IncreasedByLevelStartPlusDivStep = true;
-                bp.Components = new BlueprintComponent[] { };
+                bp.name = "DemonSoulResource" + bp.AssetGuid;
+                bp.m_MaxAmount = new BlueprintAbilityResource.Amount
+                {
+                    BaseValue = 0,
+                    IncreasedByStat = false,
+                    m_ClassDiv = new BlueprintCharacterClassReference[] { demonMythicClass },
+                    m_Class = new BlueprintCharacterClassReference[] { demonMythicClass },
+                    m_Archetypes = new BlueprintArchetypeReference[0],
+                    m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                    IncreasedByLevelStartPlusDivStep = true,
+                    StartingLevel = 1,
+                    LevelStep = 3,
+                    PerStepIncrease = 1,
+                    StartingIncrease = 1
+                };
             });
 
             Helpers.AddBlueprint(demonSoulResource, demonSoulResourceGuid);
@@ -82,33 +95,69 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonPolyResource = Helpers.Create<BlueprintAbilityResource>(bp =>
             {
                 bp.AssetGuid = demonPolyResourceGuid;
-                bp.name = "demonPolyResource" + bp.AssetGuid;
-                bp.m_MaxAmount.m_ClassDiv = new BlueprintCharacterClassReference[] { demonMythicClass };
-                bp.m_MaxAmount.BaseValue = 1;
-                bp.m_MaxAmount.StartingLevel = 3;
-                bp.m_MaxAmount.LevelStep = 3;
-                bp.m_MaxAmount.PerStepIncrease = 1;
-                bp.m_MaxAmount.IncreasedByLevel = true;
-                bp.m_MaxAmount.IncreasedByLevelStartPlusDivStep = true;
-                bp.Components = new BlueprintComponent[] { };
+                bp.name = "DemonPolyResource" + bp.AssetGuid;
+                bp.m_MaxAmount = new BlueprintAbilityResource.Amount
+                {
+                    BaseValue = 0,
+                    IncreasedByStat = false,
+                    m_ClassDiv = new BlueprintCharacterClassReference[] { demonMythicClass },
+                    m_Class = new BlueprintCharacterClassReference[] { demonMythicClass },
+                    m_Archetypes = new BlueprintArchetypeReference[0],
+                    m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                    IncreasedByLevelStartPlusDivStep = true,
+                    StartingLevel = 1,
+                    LevelStep = 3,
+                    PerStepIncrease = 1,
+                    StartingIncrease = 1
+                };
             });
 
             Helpers.AddBlueprint(demonPolyResource, demonPolyResourceGuid);
 
-            var demonRipResourceGuid = new BlueprintGuid(new Guid("32444033-a717-4b6a-8c10-e2cff8810233"));
+            var demonRipResourceGuid = new BlueprintGuid(new Guid("d7a3af1b-dffd-4d31-9982-71bffd04822f"));
 
             var demonRipResource = Helpers.Create<BlueprintAbilityResource>(bp =>
             {
                 bp.AssetGuid = demonRipResourceGuid;
-                bp.name = "demonRipResource" + bp.AssetGuid;
-                bp.m_MaxAmount.m_ClassDiv = new BlueprintCharacterClassReference[] { demonMythicClass };
-                bp.m_MaxAmount.BaseValue = 3;
-                bp.m_MaxAmount.StartingLevel = 1;
-                bp.m_MaxAmount.LevelStep = 1;
-                bp.m_MaxAmount.PerStepIncrease = 1;
-                bp.m_MaxAmount.IncreasedByLevel = true;
-                bp.m_MaxAmount.IncreasedByLevelStartPlusDivStep = true;
-                bp.Components = new BlueprintComponent[] { };
+                bp.name = "DemonRipResource" + bp.AssetGuid;
+                bp.m_MaxAmount = new BlueprintAbilityResource.Amount
+                {
+                    BaseValue = 2,
+                    IncreasedByStat = false,
+                    m_ClassDiv = new BlueprintCharacterClassReference[] { demonMythicClass },
+                    m_Class = new BlueprintCharacterClassReference[] { demonMythicClass },
+                    m_Archetypes = new BlueprintArchetypeReference[0],
+                    m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                    IncreasedByLevelStartPlusDivStep = true,
+                    StartingLevel = 1,
+                    LevelStep = 1,
+                    PerStepIncrease = 1,
+                    StartingIncrease = 1
+                };
+            });
+
+            Helpers.AddBlueprint(demonRipResource, demonRipResourceGuid);
+
+            var demonTearResourceGuid = new BlueprintGuid(new Guid("3c30cf94-f6de-45a9-a799-43970fa7a2f5"));
+
+            var demonTearResource = Helpers.Create<BlueprintAbilityResource>(bp =>
+            {
+                bp.AssetGuid = demonTearResourceGuid;
+                bp.name = "DemonTearResource" + bp.AssetGuid;
+                bp.m_MaxAmount = new BlueprintAbilityResource.Amount
+                {
+                    BaseValue = 2,
+                    IncreasedByStat = false,
+                    m_ClassDiv = new BlueprintCharacterClassReference[] { demonMythicClass },
+                    m_Class = new BlueprintCharacterClassReference[] { demonMythicClass },
+                    m_Archetypes = new BlueprintArchetypeReference[0],
+                    m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                    IncreasedByLevelStartPlusDivStep = true,
+                    StartingLevel = 1,
+                    LevelStep = 1,
+                    PerStepIncrease = 1,
+                    StartingIncrease = 1
+                };
             });
 
             Helpers.AddBlueprint(demonRipResource, demonRipResourceGuid);

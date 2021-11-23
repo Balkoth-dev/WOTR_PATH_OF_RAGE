@@ -20,12 +20,14 @@ namespace WOTR_PATH_OF_RAGE
             public bool PatchBrimorakAspect = true;
             public bool PatchKalavakusAspect = true;
             public bool PatchShadowDemonAspect = true;
+            public bool PatchSuccubusAspect = true;
             public bool PatchDemonAspectIcons = true;
             public bool PatchBaseRagesForDemon = true;
             public bool PatchAbyssalStorm = true;
             public bool PatchBloodHaze = true;
             public bool AddDemonBlast = true;
             public bool PatchDemonLordAspects = true;
+            public bool PatchMajorAspects = true;
 
             public override void Save(UnityModManager.ModEntry modEntry)
             {
@@ -90,6 +92,15 @@ namespace WOTR_PATH_OF_RAGE
                 {
                     UI.Label("Brimorak Aspect is unchanged from vanilla".red().size(10));
                 }
+                UI.Toggle("Succubus Aspect Fix".bold(), ref settings.PatchBrimorakAspect);
+                if (settings.PatchSuccubusAspect)
+                {
+                    UI.Label("Succubus Aspect now properly gives a malus to Attack Bonus instead of AC".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Succubus Aspect is unchanged from vanilla".red().size(10));
+                }
                 UI.Toggle("Kalvakus Aspect Fix".bold(), ref settings.PatchKalavakusAspect);
                 if (settings.PatchKalavakusAspect)
                 {
@@ -116,6 +127,24 @@ namespace WOTR_PATH_OF_RAGE
                 else
                 {
                     UI.Label("Aspect icons are unchanged from vanilla".red().size(10));
+                }
+                UI.Toggle("Major Aspects Progression Fix".bold(), ref settings.PatchMajorAspects);
+                if (settings.PatchMajorAspects)
+                {
+                    UI.Label("Major Aspects are written to be given one at 5 but it gives two. This fixes that.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Major Aspects progression is unchanged.".red().size(10));
+                }
+                UI.Toggle("Demon Lord Aspects Progression Fix".bold(), ref settings.PatchDemonLordAspects);
+                if (settings.PatchDemonLordAspects)
+                {
+                    UI.Label("Demon Lord Aspects are written to be given one at 9 and another at 10. This fixes that.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Demon Lord Aspect progression is unchanged.".red().size(10));
                 }
                 UI.Toggle("Allow Toggling Of Rages".bold(), ref settings.PatchBaseRagesForDemon);
                 if (settings.PatchBaseRagesForDemon)
@@ -152,15 +181,6 @@ namespace WOTR_PATH_OF_RAGE
                 else
                 {
                     UI.Label("Demonic Blast is not added".red().size(10));
-                }
-                UI.Toggle("Demon Lord Aspects Progression Fix".bold(), ref settings.PatchDemonLordAspects);
-                if (settings.PatchDemonLordAspects)
-                {
-                    UI.Label("Demon Lord Aspects are written to be given one at 9 and another at 10. This fixes that.".green().size(10));
-                }
-                else
-                {
-                    UI.Label("Demon Lord Aspect progression is not fixed.".red().size(10));
                 }
             }
         }

@@ -52,7 +52,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var fireball00 = BlueprintTool.Get<BlueprintProjectile>("8927afa172e0fc54484a29fa0c4c40c4");
             var demonSmashProjectile = BlueprintTool.Get<BlueprintProjectile>("fec53329817f4aa6a9210be9867a8930");
 
-            var demonRipResource = BlueprintTool.Get<BlueprintAbilityResource>("32444033a7174b6a8c10e2cff8810233");
+            var demonRipResource = BlueprintTool.Get<BlueprintAbilityResource>("d7a3af1bdffd4d31998271bffd04822f");
 
             var demonChargeProjectile = BlueprintTool.Get<BlueprintAbility>("4b18d0f44f57cbf4c91f094addfed9f4");
             ///
@@ -69,7 +69,9 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRip.png");
                 c.Range = AbilityRange.Unlimited;
                 c.m_DisplayName = Helpers.CreateString(c + ".Name", "Carnage Blast");
-                c.m_Description = Helpers.CreateString(c + ".Description", "Deals 2d6 damage in a 5 foot area.");
+                c.LocalizedSavingThrow = new LocalizedString();
+                c.LocalizedDuration = new LocalizedString();
+                c.m_Description = Helpers.CreateString(c + ".Description", "Deals 2d6 + Mythic Rank damage in a 5 foot area.");
             });
 
             demonRipBlast.AddComponent<AbilityTargetsAround>(c =>
@@ -160,6 +162,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.name = "Victim of Carnage" + c.AssetGuid;
                 c.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRip.png");
                 c.m_DisplayName = Helpers.CreateString(c + ".Name", "Victim of Carnage");
+                c.m_Description = Helpers.CreateString(c + ".Description", "Target takes 1d6 Unholy damage per round.\nWhen they die they deal 2d6 + Mythic Rank of damage to allies in a 5 foot radius");
             });
 
             var dismemberContext = Helpers.Create<ContextActionMarkForceDismemberOwner>(c =>
@@ -274,7 +277,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             });
 
             Helpers.AddBlueprint(demonRipAuraBuff, demonRipAuraBuffGuid);
-
+            ///
 
             var demonRipGuid = new BlueprintGuid(new Guid("3b571402-e82b-491a-a967-1eb7c77fcda2"));
 

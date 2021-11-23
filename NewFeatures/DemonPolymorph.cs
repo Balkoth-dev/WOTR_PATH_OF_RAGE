@@ -109,7 +109,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             });
             demonPolymorphFeature.m_DisplayName = Helpers.CreateString(demonPolymorphFeature + ".Name", "Unleashed Demon");
             var demonPolymorphDescription = "You learn you unleash the demons within you.\n" +
-                                            "While polymorphed into a demonic form, for each attack that hits you deal an extra 2d6 + Mythic Rank extra Unholy damage and have a 10% chance to restore a round of Demon Rage.\n" +
+                                            "While polymorphed into a demonic form, for each attack that hits you deal an extra 1d6 + Mythic Rank extra Unholy damage and have a 15% chance to restore a round of Demon Rage.\n" +
                                             "In addition, you gain the ability to transform yourself into a Balor as Demon Form IV for 1 minute. You may do this an addtional time at 6th and 9th mythic rank.";
             demonPolymorphFeature.m_Description = Helpers.CreateString(demonPolymorphFeature + ".Description", demonPolymorphDescription);
 
@@ -124,7 +124,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_resource = demonRageResource;
                 c.m_resourceAmount = 1;
                 c.m_RandomChance = true;
-                c.m_RandomChancePercent = 10;
+                c.m_RandomChancePercent = 15;
             });
 
             var polymorphCondition = new Condition[] {
@@ -181,7 +181,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                     DiceType = DiceType.D6,
                     DiceCountValue = new ContextValue()
                     {
-                        Value = 2
+                        Value = 1
                     },
                     BonusValue = new ContextValue
                     {

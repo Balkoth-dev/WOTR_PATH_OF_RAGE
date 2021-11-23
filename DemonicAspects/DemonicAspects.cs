@@ -39,6 +39,7 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                 PatchBrimorakAspect();
                 PatchKalavakusAspect();
                 PatchShadowDemonAspect();
+                PatchSuccubusDemonAspect();
             }
 
             static void PatchDemonAspectIcons()
@@ -186,6 +187,17 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
             var shadowDemonAspectSwitchBuff = BlueprintTool.Get<BlueprintBuff>("d5336d599d004e74d9af6b8967c3f217");
             shadowDemonAspectSwitchBuff.RemoveComponents<AddContextStatBonus>();
             Main.Log("Patching Shadow Demon Aspect Complete");
+        }
+        static void PatchSuccubusDemonAspect()
+        {
+            if (Main.settings.PatchSuccubusAspect == false)
+            {
+                return;
+            }
+            var succubusAspectEnemyBuff = BlueprintTool.Get<BlueprintBuff>("5a350c892f24f4f4880b93805be6c89b");
+            var succubusAspectContextStatBonus = (AddContextStatBonus)succubusAspectEnemyBuff.Components[1];
+            succubusAspectContextStatBonus.Stat = Kingmaker.EntitySystem.Stats.StatType.AdditionalAttackBonus;
+            Main.Log("Patching Succubus Aspect Complete");
         }
 
     }

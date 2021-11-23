@@ -155,9 +155,13 @@
     <Compile Include="DemonRage\DemonRage.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="MechanicsChanges\AbilityCasterSecondaryWeaponCheck.cs" />
     <Compile Include="MechanicsChanges\BrimorakAspectDamage.cs" />
+    <Compile Include="MechanicsChanges\BuffExtraAttackDemon.cs" />
     <Compile Include="MechanicsChanges\ContextActionCastSpellSimple.cs" />
     <Compile Include="MechanicsChanges\ContextConditionCasterHasBuff.cs" />
+    <Compile Include="MechanicsChanges\ContextConditionHasWeapons.cs" />
+    <Compile Include="MechanicsChanges\DemonRend.cs" />
     <Compile Include="MechanicsChanges\IncreaseSpelllistDC.cs" />
     <Compile Include="MechanicsChanges\ContextActionRestoreRandomSpell.cs" />
     <Compile Include="NewFeatures\DemonBlast.cs" />
@@ -167,6 +171,7 @@
     <Compile Include="NewFeatures\DemonSmashProjectile.cs" />
     <Compile Include="NewFeatures\DemonSoul.cs" />
     <Compile Include="NewFeatures\AddDemonSpecials.cs" />
+    <Compile Include="NewFeatures\DemonTear.cs" />
     <Compile Include="NewFeatures\SpecialFeatures.cs" />
     <Compile Include="NewFeatures\SpecialResources.cs" />
     <Compile Include="NewRules\IncreaseRageRounds.cs" />
@@ -195,6 +200,7 @@
     <Content Include="Output\Assets\Abilities\DemonSmash.png" />
     <Content Include="Output\Assets\Abilities\DemonSoul.png" />
     <Content Include="Output\Assets\Abilities\DemonSoulBuff.png" />
+    <Content Include="Output\Assets\Abilities\DemonTear.png" />
     <Content Include="Output\Assets\Abilities\Deskari.png" />
     <Content Include="Output\Assets\Abilities\Incubus.png" />
     <Content Include="Output\Assets\Abilities\Kabriri.png" />
