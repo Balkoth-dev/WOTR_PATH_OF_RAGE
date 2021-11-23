@@ -16,6 +16,9 @@ using Kingmaker.UnitLogic.ActivatableAbilities.Restrictions;
 using WOTR_PATH_OF_RAGE.Utilities;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Utility;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WOTR_PATH_OF_RAGE.DemonProgression
 {
@@ -34,7 +37,6 @@ namespace WOTR_PATH_OF_RAGE.DemonProgression
                 demonProgression = BlueprintTool.Get<BlueprintProgression>("285fe49f7df8587468f676aa49362213");
                 Main.Log("Patching Demon Progression");
                 AddDemonSpecialSelectionToMythic();
-                PatchMajorAspects();
                 PatchDemonLordAspects();
             }
 
@@ -50,18 +52,6 @@ namespace WOTR_PATH_OF_RAGE.DemonProgression
 
                 Main.Log("Demonic Specials Added To Mythic");
             }
-            public static void PatchMajorAspects()
-            {
-                if (Main.settings.PatchMajorAspects == false)
-                {
-                    return;
-                }
-                var demonMajorAspectFeature = BlueprintTool.Get<BlueprintFeatureSelection>("5eba1d83a078bdd49a0adc79279e1ffe").ToReference<BlueprintFeatureBaseReference>();
-
-                demonProgression.LevelEntries[4] = LevelEntry.Empty;
-
-                Main.Log("Demonic Major Aspect Progression Patched");
-            }
             public static void PatchDemonLordAspects()
             {
                 if (Main.settings.PatchDemonLordAspects == false)
@@ -72,6 +62,7 @@ namespace WOTR_PATH_OF_RAGE.DemonProgression
 
                 demonProgression.LevelEntries[6].m_Features.Add(demonLordAspectFeature);
                 demonProgression.LevelEntries[7].m_Features.Remove(demonLordAspectFeature);
+
 
 
                 Main.Log("Demonic Lord Aspect Progression Patched");

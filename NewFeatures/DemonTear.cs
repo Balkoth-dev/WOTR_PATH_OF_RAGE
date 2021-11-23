@@ -48,8 +48,10 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var devilClawRight00 = BlueprintTool.Get<BlueprintProjectile>("f76e194520d6f9946bb48d8852ce9e8c").ToReference<BlueprintProjectileReference>();
             var clawType = BlueprintTool.Get<BlueprintWeaponType>("d4f7aee36efe0b54e810c9d3407b6ab3").ToReference<BlueprintWeaponTypeReference>();
             var bleed1d4Buff = BlueprintTool.Get<BlueprintBuff>("5eb68bfe186d71a438d4f85579ce40c1").ToReference<BlueprintBuffReference>();
-            var mythic3lvlDemon_Devour00_Projectile = BlueprintTool.Get<BlueprintProjectile>("18513d8a51677444a9a186d786b0f230").ToReference<BlueprintProjectileReference>();
-            
+            var bloodHazeBuff = BlueprintTool.Get<BlueprintBuff>("173af01d6aae5574ba0391e277e9b168");
+
+            var demonTearResource = BlueprintTool.Get<BlueprintAbilityResource>("3c30cf94f6de45a9a79943970fa7a2f5");
+
             ///
             var demonTearBuffGuid = new BlueprintGuid(new Guid("0ca731b3-293c-4dea-a30c-1a5444e901d6"));
 
@@ -64,6 +66,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonTear.png");
                 c.m_Flags = BlueprintBuff.Flags.HiddenInUi;
                 c.Components = new BlueprintComponent[] { };
+                c.FxOnStart = bloodHazeBuff.FxOnStart;
+                c.FxOnRemove = bloodHazeBuff.FxOnRemove;
             });
 
             demonTearBuff.AddComponent<CombatStateTrigger>(c => {
@@ -121,6 +125,13 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.LocalizedSavingThrow = Helpers.CreateString(c + ".SavingThrow", "None");
             });
 
+            demonTearAbility.AddComponent<AbilityResourceLogic>(c =>
+            {
+                c.Amount = 1;
+                c.m_IsSpendResource = true;
+                c.m_RequiredResource = demonTearResource.ToReference<BlueprintAbilityResourceReference>();
+            });
+
             demonTearAbility.AddComponent<AbilityCasterInCombat>();
             
             demonTearAbility.AddComponent<AbilityEffectRunAction>(c => {
@@ -170,10 +181,6 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.name = "Rend Asunder"+c.AssetGuid;
             });
 
-            var demonTearDevourFx = Helpers.Create<ContextActionProjectileFx>(c =>
-            {
-                c.m_Projectile = mythic3lvlDemon_Devour00_Projectile;
-            });
             var demonTearRightFx = Helpers.Create<ContextActionProjectileFx>(c =>
             {
                 c.m_Projectile = devilClawRight00;                
@@ -246,6 +253,12 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_Facts = new BlueprintUnitFactReference[]{
                         demonTearAbility.ToReference<BlueprintUnitFactReference>()
                     };
+            });
+
+            demonTearFeature.AddComponent<AddAbilityResources>(c =>
+            {
+                c.RestoreAmount = true;
+                c.m_Resource = demonTearResource.ToReference<BlueprintAbilityResourceReference>();
             });
 
             Helpers.AddBlueprint(demonTearFeature, demonTearFeatureGuid);

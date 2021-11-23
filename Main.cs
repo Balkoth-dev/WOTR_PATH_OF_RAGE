@@ -27,7 +27,6 @@ namespace WOTR_PATH_OF_RAGE
             public bool PatchBloodHaze = true;
             public bool AddDemonBlast = true;
             public bool PatchDemonLordAspects = true;
-            public bool PatchMajorAspects = true;
 
             public override void Save(UnityModManager.ModEntry modEntry)
             {
@@ -127,15 +126,6 @@ namespace WOTR_PATH_OF_RAGE
                 else
                 {
                     UI.Label("Aspect icons are unchanged from vanilla".red().size(10));
-                }
-                UI.Toggle("Major Aspects Progression Fix".bold(), ref settings.PatchMajorAspects);
-                if (settings.PatchMajorAspects)
-                {
-                    UI.Label("Major Aspects are written to be given one at 5 but it gives two. This fixes that.".green().size(10));
-                }
-                else
-                {
-                    UI.Label("Major Aspects progression is unchanged.".red().size(10));
                 }
                 UI.Toggle("Demon Lord Aspects Progression Fix".bold(), ref settings.PatchDemonLordAspects);
                 if (settings.PatchDemonLordAspects)

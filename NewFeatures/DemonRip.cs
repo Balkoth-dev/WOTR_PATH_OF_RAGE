@@ -162,7 +162,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.name = "Victim of Carnage" + c.AssetGuid;
                 c.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRip.png");
                 c.m_DisplayName = Helpers.CreateString(c + ".Name", "Victim of Carnage");
-                c.m_Description = Helpers.CreateString(c + ".Description", "Target takes 1d6 Unholy damage per round.\nWhen they die they deal 2d6 + Mythic Rank of damage to allies in a 5 foot radius");
+                c.m_Description = Helpers.CreateString(c + ".Description", "Target becomes vulnerable to Unholy damage.\nIn addition, the target " +
+                                                            "takes 1d6 Unholy damage per round.\nWhen they die they deal 2d6 + Mythic Rank of damage to enemies in a 5 foot radius");
             });
 
             var dismemberContext = Helpers.Create<ContextActionMarkForceDismemberOwner>(c =>
@@ -231,6 +232,10 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.Actions.Actions = new GameAction[] { contextResourceIncrease, demonRipBuffContextActionCastSpell };
             });
 
+            demonRipBuff.AddComponent<AddEnergyVulnerability>(c => {
+                c.Type = DamageEnergyType.Unholy;
+            });
+
             Helpers.AddBlueprint(demonRipBuff, demonRipBuffGuid);
             ///
 
@@ -293,7 +298,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             });
 
             var demonRipDescription = "You let loose a 30ft aura of carnage that causes enemies to die more often in explosive fashion.\n" +
-                                      "Enemies take 1d6 Unholy damage per round. Each time an enemy dies while affected by this aura you " +
+                                      "Enemies take 1d6 Unholy damage per round, become vulnerable to Unholy damage, and each time an enemy dies while affected by this aura you " +
                                       "restore a round of rage and they deal 2d6 Unholy damage + Mythic Rank to all enemies within 5 feet.\n" +
                                       "You may use this ability for a number of rounds equal to your mythic rank.";
             demonRip.m_Description = Helpers.CreateString(demonRip + ".Description", demonRipDescription);
