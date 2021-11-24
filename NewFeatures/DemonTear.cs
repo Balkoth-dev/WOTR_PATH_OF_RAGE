@@ -109,10 +109,10 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.AssetGuid = demonTearAbilityGuid;
                 c.name = "Frenzy" + c.AssetGuid;
                 c.m_DisplayName = Helpers.CreateString(c + ".Name", "Frenzy");
-                c.m_Description = Helpers.CreateString(c + ".Description", "During combat you can go into a frenzy so long as you are only using claws, gaining an extra attack that stacks with haste.\n" +
+                c.m_Description = Helpers.CreateString(c + ".Description", "During combat you can go into a frenzy so long as you are only using claws, gaining an extra attack that stacks with haste. " +
                                                                            "The number of attacks increase by 1 at 6th and 9th Mythic Rank.\n" +
-                                                                           "You may only use this ability when using claws in both hands.\n" +
-                                                                           "This lasts until the end of combat or until you equip a weapon or shield.\n" +
+                                                                           "You may only use this ability when using claws in both hands. " +
+                                                                           "This ability lasts until the end of combat or until you equip a weapon or shield.\n" +
                                                                            "You may use this ability three times per day, with an additional time at 6th and 9th mythic rank.");
                 c.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonTear.png");
                 c.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free;
@@ -162,9 +162,9 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
 
             var demonTearFeatureGuid = new BlueprintGuid(new Guid("b044212d-111b-4e26-8653-44982084e5c7"));
             var demonTearDescription = "They are rage, brutal, without mercy. But you. You will be worse. Rend Asunder, until it is done.\n" +
-                                       "Your claws deal 1d4 bleeding damage and you gain the Rend ability so long as you only have claws equipped, dealing 2d8 * Mythic Rank Unholy damage when both claw attacks hit.\n" +
-                                       "Whenever you successfully Rend, you have a 50% chance of gaining a round of Demon Rage\n" +
-                                       "In addition you gain the ability to frenzy, gaining additional attacks as long as you wield only claws.\n" +
+                                       "Your claws deal 1d4 bleeding damage and you gain the Rend ability so long as you only have claws equipped, dealing 2d8 * Mythic Rank Unholy damage when both claw attacks hit. " +
+                                       "Whenever you successfully Rend, you have a 50% chance of gaining a round of Demon Rage.\n" +
+                                       "In addition you gain the ability to frenzy, gaining additional attacks that stack with Haste as long as you wield only claws.\n" +
                                        "This bonus does not apply when polymorphed.";
             var demonTearFeature = Helpers.Create<BlueprintFeature>(c =>
             {
