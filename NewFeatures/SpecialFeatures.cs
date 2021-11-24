@@ -9,7 +9,7 @@ using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.UnitLogic.FactLogic;
-using BlueprintCore.Blueprints.Abilities;
+using BlueprintCore.Utils;
 using Kingmaker.Localization;
 using UnityEngine;
 using static Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell;

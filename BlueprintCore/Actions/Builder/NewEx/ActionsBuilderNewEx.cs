@@ -1,4 +1,3 @@
-
 namespace BlueprintCore.Actions.Builder.NewEx
 {
   /// <summary>

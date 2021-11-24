@@ -1,4 +1,3 @@
-using BlueprintCore.Blueprints;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.ElementsSystem;
@@ -331,14 +330,12 @@ namespace BlueprintCore.Actions.Builder.UpgraderEx
 
     //----- Auto Generated -----//
 
-
-
     /// <summary>
     /// Adds <see cref="SetRaceFromBlueprint"/> (Auto Generated)
     /// </summary>
     [Generated]
     [Implements(typeof(SetRaceFromBlueprint))]
-    public static ActionsBuilder AddSetRaceFromBlueprint(this ActionsBuilder builder)
+    public static ActionsBuilder SetRaceFromBlueprint(this ActionsBuilder builder)
     {
       return builder.Add(ElementTool.Create<SetRaceFromBlueprint>());
     }
@@ -347,19 +344,18 @@ namespace BlueprintCore.Actions.Builder.UpgraderEx
     /// Adds <see cref="RemoveSpell"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Spell"><see cref="BlueprintAbility"/></param>
-    /// <param name="m_Spellbook"><see cref="BlueprintSpellbook"/></param>
+    /// <param name="spell"><see cref="BlueprintAbility"/></param>
+    /// <param name="spellbook"><see cref="BlueprintSpellbook"/></param>
     [Generated]
     [Implements(typeof(RemoveSpell))]
-    public static ActionsBuilder AddRemoveSpell(
+    public static ActionsBuilder RemoveSpell(
         this ActionsBuilder builder,
-        string m_Spell,
-        string m_Spellbook)
+        string spell = null,
+        string spellbook = null)
     {
-      
       var element = ElementTool.Create<RemoveSpell>();
-      element.m_Spell = BlueprintTool.GetRef<BlueprintAbilityReference>(m_Spell);
-      element.m_Spellbook = BlueprintTool.GetRef<BlueprintSpellbookReference>(m_Spellbook);
+      element.m_Spell = BlueprintTool.GetRef<BlueprintAbilityReference>(spell);
+      element.m_Spellbook = BlueprintTool.GetRef<BlueprintSpellbookReference>(spellbook);
       return builder.Add(element);
     }
 
@@ -367,16 +363,16 @@ namespace BlueprintCore.Actions.Builder.UpgraderEx
     /// Adds <see cref="RestoreClassFeature"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Feature"><see cref="BlueprintFeature"/></param>
+    /// <param name="feature"><see cref="BlueprintFeature"/></param>
     [Generated]
     [Implements(typeof(RestoreClassFeature))]
-    public static ActionsBuilder AddRestoreClassFeature(
+    public static ActionsBuilder RestoreClassFeature(
         this ActionsBuilder builder,
-        string m_Feature)
+        string feature = null)
     {
-      
       var element = ElementTool.Create<RestoreClassFeature>();
-      element.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(m_Feature);
+      element.m_Feature = BlueprintTool.GetRef<BlueprintFeatureReference>(feature);
       return builder.Add(element);
-    }  }
+    }
+  }
 }

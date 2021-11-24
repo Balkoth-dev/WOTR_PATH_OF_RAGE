@@ -1,4 +1,3 @@
-using BlueprintCore.Blueprints;
 using BlueprintCore.Utils;
 using Kingmaker.Assets.Designers.EventConditionActionSystem.Conditions;
 using Kingmaker.Blueprints;
@@ -7,7 +6,6 @@ using Kingmaker.ElementsSystem;
 using Kingmaker.Enums;
 using Kingmaker.Globalmap.Blueprints;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
-using System;
 namespace BlueprintCore.Conditions.Builder.AreaEx
 {
   /// <summary>
@@ -19,25 +17,20 @@ namespace BlueprintCore.Conditions.Builder.AreaEx
   {
     //----- Auto Generated -----//
 
-
-
     /// <summary>
     /// Adds <see cref="ContextConditionDungeonStage"/> (Auto Generated)
     /// </summary>
     [Generated]
     [Implements(typeof(ContextConditionDungeonStage))]
-    public static ConditionsBuilder AddContextConditionDungeonStage(
+    public static ConditionsBuilder ContextConditionDungeonStage(
         this ConditionsBuilder builder,
-        Int32 MinLevel,
-        Int32 MaxLevel,
+        int minLevel = default,
+        int maxLevel = default,
         bool negate = false)
     {
-      builder.Validate(MinLevel);
-      builder.Validate(MaxLevel);
-      
       var element = ElementTool.Create<ContextConditionDungeonStage>();
-      element.MinLevel = MinLevel;
-      element.MaxLevel = MaxLevel;
+      element.MinLevel = minLevel;
+      element.MaxLevel = maxLevel;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -47,11 +40,10 @@ namespace BlueprintCore.Conditions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(InCapital))]
-    public static ConditionsBuilder AddInCapital(
+    public static ConditionsBuilder InCapital(
         this ConditionsBuilder builder,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<InCapital>();
       element.Not = negate;
       return builder.Add(element);
@@ -61,17 +53,16 @@ namespace BlueprintCore.Conditions.Builder.AreaEx
     /// Adds <see cref="AreaVisited"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Area"><see cref="BlueprintArea"/></param>
+    /// <param name="area"><see cref="BlueprintArea"/></param>
     [Generated]
     [Implements(typeof(AreaVisited))]
-    public static ConditionsBuilder AddAreaVisited(
+    public static ConditionsBuilder AreaVisited(
         this ConditionsBuilder builder,
-        string m_Area,
+        string area = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<AreaVisited>();
-      element.m_Area = BlueprintTool.GetRef<BlueprintAreaReference>(m_Area);
+      element.m_Area = BlueprintTool.GetRef<BlueprintAreaReference>(area);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -80,17 +71,16 @@ namespace BlueprintCore.Conditions.Builder.AreaEx
     /// Adds <see cref="CurrentAreaIs"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Area"><see cref="BlueprintArea"/></param>
+    /// <param name="area"><see cref="BlueprintArea"/></param>
     [Generated]
     [Implements(typeof(CurrentAreaIs))]
-    public static ConditionsBuilder AddCurrentAreaIs(
+    public static ConditionsBuilder CurrentAreaIs(
         this ConditionsBuilder builder,
-        string m_Area,
+        string area = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<CurrentAreaIs>();
-      element.m_Area = BlueprintTool.GetRef<BlueprintAreaReference>(m_Area);
+      element.m_Area = BlueprintTool.GetRef<BlueprintAreaReference>(area);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -100,21 +90,20 @@ namespace BlueprintCore.Conditions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(IsLootEmpty))]
-    public static ConditionsBuilder AddIsLootEmpty(
+    public static ConditionsBuilder IsLootEmpty(
         this ConditionsBuilder builder,
-        EntityReference LootObject,
-        MapObjectEvaluator MapObject,
-        Boolean EvaluateMapObject,
+        EntityReference lootObject,
+        MapObjectEvaluator mapObject,
+        bool evaluateMapObject = default,
         bool negate = false)
     {
-      builder.Validate(LootObject);
-      builder.Validate(MapObject);
-      builder.Validate(EvaluateMapObject);
-      
+      builder.Validate(lootObject);
+      builder.Validate(mapObject);
+    
       var element = ElementTool.Create<IsLootEmpty>();
-      element.LootObject = LootObject;
-      element.MapObject = MapObject;
-      element.EvaluateMapObject = EvaluateMapObject;
+      element.LootObject = lootObject;
+      element.MapObject = mapObject;
+      element.EvaluateMapObject = evaluateMapObject;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -124,15 +113,13 @@ namespace BlueprintCore.Conditions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(IsPartyInNaturalSetting))]
-    public static ConditionsBuilder AddIsPartyInNaturalSetting(
+    public static ConditionsBuilder IsPartyInNaturalSetting(
         this ConditionsBuilder builder,
-        GlobalMapZone Setting,
+        GlobalMapZone setting = default,
         bool negate = false)
     {
-      builder.Validate(Setting);
-      
       var element = ElementTool.Create<IsPartyInNaturalSetting>();
-      element.Setting = Setting;
+      element.Setting = setting;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -141,17 +128,16 @@ namespace BlueprintCore.Conditions.Builder.AreaEx
     /// Adds <see cref="LocationRevealed"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Location"><see cref="BlueprintGlobalMapPoint"/></param>
+    /// <param name="location"><see cref="BlueprintGlobalMapPoint"/></param>
     [Generated]
     [Implements(typeof(LocationRevealed))]
-    public static ConditionsBuilder AddLocationRevealed(
+    public static ConditionsBuilder LocationRevealed(
         this ConditionsBuilder builder,
-        string m_Location,
+        string location = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<LocationRevealed>();
-      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(m_Location);
+      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(location);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -161,15 +147,15 @@ namespace BlueprintCore.Conditions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(MapObjectDestroyed))]
-    public static ConditionsBuilder AddMapObjectDestroyed(
+    public static ConditionsBuilder MapObjectDestroyed(
         this ConditionsBuilder builder,
-        MapObjectEvaluator MapObject,
+        MapObjectEvaluator mapObject,
         bool negate = false)
     {
-      builder.Validate(MapObject);
-      
+      builder.Validate(mapObject);
+    
       var element = ElementTool.Create<MapObjectDestroyed>();
-      element.MapObject = MapObject;
+      element.MapObject = mapObject;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -179,15 +165,15 @@ namespace BlueprintCore.Conditions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(MapObjectRevealed))]
-    public static ConditionsBuilder AddMapObjectRevealed(
+    public static ConditionsBuilder MapObjectRevealed(
         this ConditionsBuilder builder,
-        MapObjectEvaluator MapObject,
+        MapObjectEvaluator mapObject,
         bool negate = false)
     {
-      builder.Validate(MapObject);
-      
+      builder.Validate(mapObject);
+    
       var element = ElementTool.Create<MapObjectRevealed>();
-      element.MapObject = MapObject;
+      element.MapObject = mapObject;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -197,18 +183,17 @@ namespace BlueprintCore.Conditions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(PartyInScriptZone))]
-    public static ConditionsBuilder AddPartyInScriptZone(
+    public static ConditionsBuilder PartyInScriptZone(
         this ConditionsBuilder builder,
-        PartyInScriptZone.CheckType m_Check,
-        EntityReference m_ScriptZone,
+        EntityReference scriptZone,
+        PartyInScriptZone.CheckType check = default,
         bool negate = false)
     {
-      builder.Validate(m_Check);
-      builder.Validate(m_ScriptZone);
-      
+      builder.Validate(scriptZone);
+    
       var element = ElementTool.Create<PartyInScriptZone>();
-      element.m_Check = m_Check;
-      element.m_ScriptZone = m_ScriptZone;
+      element.m_Check = check;
+      element.m_ScriptZone = scriptZone;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -218,18 +203,18 @@ namespace BlueprintCore.Conditions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(UnitInScriptZone))]
-    public static ConditionsBuilder AddUnitInScriptZone(
+    public static ConditionsBuilder UnitInScriptZone(
         this ConditionsBuilder builder,
-        UnitEvaluator Unit,
-        MapObjectEvaluator ScriptZone,
+        UnitEvaluator unit,
+        MapObjectEvaluator scriptZone,
         bool negate = false)
     {
-      builder.Validate(Unit);
-      builder.Validate(ScriptZone);
-      
+      builder.Validate(unit);
+      builder.Validate(scriptZone);
+    
       var element = ElementTool.Create<UnitInScriptZone>();
-      element.Unit = Unit;
-      element.ScriptZone = ScriptZone;
+      element.Unit = unit;
+      element.ScriptZone = scriptZone;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -238,20 +223,20 @@ namespace BlueprintCore.Conditions.Builder.AreaEx
     /// Adds <see cref="UnitIsInAreaPart"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_AreaPart"><see cref="BlueprintAreaPart"/></param>
+    /// <param name="areaPart"><see cref="BlueprintAreaPart"/></param>
     [Generated]
     [Implements(typeof(UnitIsInAreaPart))]
-    public static ConditionsBuilder AddUnitIsInAreaPart(
+    public static ConditionsBuilder UnitIsInAreaPart(
         this ConditionsBuilder builder,
-        string m_AreaPart,
-        UnitEvaluator Unit,
+        UnitEvaluator unit,
+        string areaPart = null,
         bool negate = false)
     {
-      builder.Validate(Unit);
-      
+      builder.Validate(unit);
+    
       var element = ElementTool.Create<UnitIsInAreaPart>();
-      element.m_AreaPart = BlueprintTool.GetRef<BlueprintAreaPartReference>(m_AreaPart);
-      element.Unit = Unit;
+      element.m_AreaPart = BlueprintTool.GetRef<BlueprintAreaPartReference>(areaPart);
+      element.Unit = unit;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -261,15 +246,15 @@ namespace BlueprintCore.Conditions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(UnitIsInFogOfWar))]
-    public static ConditionsBuilder AddUnitIsInFogOfWar(
+    public static ConditionsBuilder UnitIsInFogOfWar(
         this ConditionsBuilder builder,
-        UnitEvaluator Target,
+        UnitEvaluator target,
         bool negate = false)
     {
-      builder.Validate(Target);
-      
+      builder.Validate(target);
+    
       var element = ElementTool.Create<UnitIsInFogOfWar>();
-      element.Target = Target;
+      element.Target = target;
       element.Not = negate;
       return builder.Add(element);
     }

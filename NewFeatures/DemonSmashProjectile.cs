@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WOTR_PATH_OF_RAGE.Utilities;
+using BlueprintCore.Utils;
 
 namespace WOTR_PATH_OF_RAGE.NewFeatures
 {

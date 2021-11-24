@@ -1,4 +1,3 @@
-using BlueprintCore.Blueprints;
 using BlueprintCore.Utils;
 using Kingmaker.Assets.UnitLogic.Mechanics.Actions;
 using Kingmaker.Blueprints;
@@ -11,7 +10,6 @@ using Kingmaker.Sound;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.Visual.Animation;
 using Kingmaker.Visual.Animation.Actions;
-using System;
 using UnityEngine;
 
 namespace BlueprintCore.Actions.Builder.AVEx
@@ -130,24 +128,19 @@ namespace BlueprintCore.Actions.Builder.AVEx
 
     //----- Auto Generated -----//
 
-
-
     /// <summary>
     /// Adds <see cref="OverrideRainIntesity"/> (Auto Generated)
     /// </summary>
     [Generated]
     [Implements(typeof(OverrideRainIntesity))]
-    public static ActionsBuilder AddOverrideRainIntesity(
+    public static ActionsBuilder OverrideRainIntesity(
         this ActionsBuilder builder,
-        Single RainIntensity,
-        Single Duration)
+        float rainIntensity = default,
+        float duration = default)
     {
-      builder.Validate(RainIntensity);
-      builder.Validate(Duration);
-      
       var element = ElementTool.Create<OverrideRainIntesity>();
-      element.RainIntensity = RainIntensity;
-      element.Duration = Duration;
+      element.RainIntensity = rainIntensity;
+      element.Duration = duration;
       return builder.Add(element);
     }
 
@@ -156,23 +149,16 @@ namespace BlueprintCore.Actions.Builder.AVEx
     /// </summary>
     [Generated]
     [Implements(typeof(Play2DSound))]
-    public static ActionsBuilder AddPlay2DSound(
+    public static ActionsBuilder Play2DSound(
         this ActionsBuilder builder,
-        String SoundName,
-        Boolean SetSex,
-        Boolean SetRace)
+        string soundName,
+        bool setSex = default,
+        bool setRace = default)
     {
-      foreach (var item in SoundName)
-      {
-        builder.Validate(item);
-      }
-      builder.Validate(SetSex);
-      builder.Validate(SetRace);
-      
       var element = ElementTool.Create<Play2DSound>();
-      element.SoundName = SoundName;
-      element.SetSex = SetSex;
-      element.SetRace = SetRace;
+      element.SoundName = soundName;
+      element.SetSex = setSex;
+      element.SetRace = setRace;
       return builder.Add(element);
     }
 
@@ -181,29 +167,22 @@ namespace BlueprintCore.Actions.Builder.AVEx
     /// </summary>
     [Generated]
     [Implements(typeof(Play3DSound))]
-    public static ActionsBuilder AddPlay3DSound(
+    public static ActionsBuilder Play3DSound(
         this ActionsBuilder builder,
-        String SoundName,
-        EntityReference SoundSourceObject,
-        Boolean SetSex,
-        Boolean SetRace,
-        Boolean SetCurrentSpeaker)
+        string soundName,
+        EntityReference soundSourceObject,
+        bool setSex = default,
+        bool setRace = default,
+        bool setCurrentSpeaker = default)
     {
-      foreach (var item in SoundName)
-      {
-        builder.Validate(item);
-      }
-      builder.Validate(SoundSourceObject);
-      builder.Validate(SetSex);
-      builder.Validate(SetRace);
-      builder.Validate(SetCurrentSpeaker);
-      
+      builder.Validate(soundSourceObject);
+    
       var element = ElementTool.Create<Play3DSound>();
-      element.SoundName = SoundName;
-      element.SoundSourceObject = SoundSourceObject;
-      element.SetSex = SetSex;
-      element.SetRace = SetRace;
-      element.SetCurrentSpeaker = SetCurrentSpeaker;
+      element.SoundName = soundName;
+      element.SoundSourceObject = soundSourceObject;
+      element.SetSex = setSex;
+      element.SetRace = setRace;
+      element.SetCurrentSpeaker = setCurrentSpeaker;
       return builder.Add(element);
     }
 
@@ -212,23 +191,21 @@ namespace BlueprintCore.Actions.Builder.AVEx
     /// </summary>
     [Generated]
     [Implements(typeof(PlayAnimationOneShot))]
-    public static ActionsBuilder AddPlayAnimationOneShot(
+    public static ActionsBuilder PlayAnimationOneShot(
         this ActionsBuilder builder,
-        AnimationClipWrapper m_ClipWrapper,
-        UnitEvaluator Unit,
-        Single TransitionIn,
-        Single TransitionOut)
+        AnimationClipWrapper clipWrapper,
+        UnitEvaluator unit,
+        float transitionIn = default,
+        float transitionOut = default)
     {
-      builder.Validate(m_ClipWrapper);
-      builder.Validate(Unit);
-      builder.Validate(TransitionIn);
-      builder.Validate(TransitionOut);
-      
+      builder.Validate(clipWrapper);
+      builder.Validate(unit);
+    
       var element = ElementTool.Create<PlayAnimationOneShot>();
-      element.m_ClipWrapper = m_ClipWrapper;
-      element.Unit = Unit;
-      element.TransitionIn = TransitionIn;
-      element.TransitionOut = TransitionOut;
+      element.m_ClipWrapper = clipWrapper;
+      element.Unit = unit;
+      element.TransitionIn = transitionIn;
+      element.TransitionOut = transitionOut;
       return builder.Add(element);
     }
 
@@ -237,23 +214,14 @@ namespace BlueprintCore.Actions.Builder.AVEx
     /// </summary>
     [Generated]
     [Implements(typeof(PlayCustomMusic))]
-    public static ActionsBuilder AddPlayCustomMusic(
+    public static ActionsBuilder PlayCustomMusic(
         this ActionsBuilder builder,
-        String MusicEventStart,
-        String MusicEventStop)
+        string musicEventStart,
+        string musicEventStop)
     {
-      foreach (var item in MusicEventStart)
-      {
-        builder.Validate(item);
-      }
-      foreach (var item in MusicEventStop)
-      {
-        builder.Validate(item);
-      }
-      
       var element = ElementTool.Create<PlayCustomMusic>();
-      element.MusicEventStart = MusicEventStart;
-      element.MusicEventStop = MusicEventStop;
+      element.MusicEventStart = musicEventStart;
+      element.MusicEventStop = musicEventStop;
       return builder.Add(element);
     }
 
@@ -261,25 +229,23 @@ namespace BlueprintCore.Actions.Builder.AVEx
     /// Adds <see cref="PlayCutscene"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Cutscene"><see cref="Cutscene"/></param>
+    /// <param name="cutscene"><see cref="Cutscene"/></param>
     [Generated]
     [Implements(typeof(PlayCutscene))]
-    public static ActionsBuilder AddPlayCutscene(
+    public static ActionsBuilder PlayCutscene(
         this ActionsBuilder builder,
-        string m_Cutscene,
-        Boolean PutInQueue,
-        Boolean CheckExistence,
-        ParametrizedContextSetter Parameters)
+        ParametrizedContextSetter parameters,
+        string cutscene = null,
+        bool putInQueue = default,
+        bool checkExistence = default)
     {
-      builder.Validate(PutInQueue);
-      builder.Validate(CheckExistence);
-      builder.Validate(Parameters);
-      
+      builder.Validate(parameters);
+    
       var element = ElementTool.Create<PlayCutscene>();
-      element.m_Cutscene = BlueprintTool.GetRef<CutsceneReference>(m_Cutscene);
-      element.PutInQueue = PutInQueue;
-      element.CheckExistence = CheckExistence;
-      element.Parameters = Parameters;
+      element.m_Cutscene = BlueprintTool.GetRef<CutsceneReference>(cutscene);
+      element.PutInQueue = putInQueue;
+      element.CheckExistence = checkExistence;
+      element.Parameters = parameters;
       return builder.Add(element);
     }
 
@@ -288,20 +254,14 @@ namespace BlueprintCore.Actions.Builder.AVEx
     /// </summary>
     [Generated]
     [Implements(typeof(ReloadMechanic))]
-    public static ActionsBuilder AddReloadMechanic(
+    public static ActionsBuilder ReloadMechanic(
         this ActionsBuilder builder,
-        String Desc,
-        Boolean ClearFx)
+        string desc,
+        bool clearFx = default)
     {
-      foreach (var item in Desc)
-      {
-        builder.Validate(item);
-      }
-      builder.Validate(ClearFx);
-      
       var element = ElementTool.Create<ReloadMechanic>();
-      element.Desc = Desc;
-      element.ClearFx = ClearFx;
+      element.Desc = desc;
+      element.ClearFx = clearFx;
       return builder.Add(element);
     }
 
@@ -310,14 +270,14 @@ namespace BlueprintCore.Actions.Builder.AVEx
     /// </summary>
     [Generated]
     [Implements(typeof(SetSoundState))]
-    public static ActionsBuilder AddSetSoundState(
+    public static ActionsBuilder SetSoundState(
         this ActionsBuilder builder,
-        AkStateReference m_State)
+        AkStateReference state)
     {
-      builder.Validate(m_State);
-      
+      builder.Validate(state);
+    
       var element = ElementTool.Create<SetSoundState>();
-      element.m_State = m_State;
+      element.m_State = state;
       return builder.Add(element);
     }
 
@@ -326,26 +286,25 @@ namespace BlueprintCore.Actions.Builder.AVEx
     /// </summary>
     [Generated]
     [Implements(typeof(ShowBark))]
-    public static ActionsBuilder AddShowBark(
+    public static ActionsBuilder ShowBark(
         this ActionsBuilder builder,
-        LocalizedString WhatToBark,
-        SharedStringAsset WhatToBarkShared,
-        Boolean BarkDurationByText,
-        UnitEvaluator TargetUnit,
-        MapObjectEvaluator TargetMapObject)
+        SharedStringAsset whatToBarkShared,
+        UnitEvaluator targetUnit,
+        MapObjectEvaluator targetMapObject,
+        LocalizedString whatToBark = null,
+        bool barkDurationByText = default)
     {
-      builder.Validate(WhatToBark);
-      builder.Validate(WhatToBarkShared);
-      builder.Validate(BarkDurationByText);
-      builder.Validate(TargetUnit);
-      builder.Validate(TargetMapObject);
-      
+      builder.Validate(whatToBark);
+      builder.Validate(whatToBarkShared);
+      builder.Validate(targetUnit);
+      builder.Validate(targetMapObject);
+    
       var element = ElementTool.Create<ShowBark>();
-      element.WhatToBark = WhatToBark;
-      element.WhatToBarkShared = WhatToBarkShared;
-      element.BarkDurationByText = BarkDurationByText;
-      element.TargetUnit = TargetUnit;
-      element.TargetMapObject = TargetMapObject;
+      element.WhatToBark = whatToBark ?? Constants.Empty.String;
+      element.WhatToBarkShared = whatToBarkShared;
+      element.BarkDurationByText = barkDurationByText;
+      element.TargetUnit = targetUnit;
+      element.TargetMapObject = targetMapObject;
       return builder.Add(element);
     }
 
@@ -354,17 +313,17 @@ namespace BlueprintCore.Actions.Builder.AVEx
     /// </summary>
     [Generated]
     [Implements(typeof(SpawnFx))]
-    public static ActionsBuilder AddSpawnFx(
+    public static ActionsBuilder SpawnFx(
         this ActionsBuilder builder,
-        TransformEvaluator Target,
-        GameObject FxPrefab)
+        TransformEvaluator target,
+        GameObject fxPrefab)
     {
-      builder.Validate(Target);
-      builder.Validate(FxPrefab);
-      
+      builder.Validate(target);
+      builder.Validate(fxPrefab);
+    
       var element = ElementTool.Create<SpawnFx>();
-      element.Target = Target;
-      element.FxPrefab = FxPrefab;
+      element.Target = target;
+      element.FxPrefab = fxPrefab;
       return builder.Add(element);
     }
 
@@ -373,7 +332,7 @@ namespace BlueprintCore.Actions.Builder.AVEx
     /// </summary>
     [Generated]
     [Implements(typeof(StopCustomMusic))]
-    public static ActionsBuilder AddStopCustomMusic(this ActionsBuilder builder)
+    public static ActionsBuilder StopCustomMusic(this ActionsBuilder builder)
     {
       return builder.Add(ElementTool.Create<StopCustomMusic>());
     }
@@ -382,22 +341,21 @@ namespace BlueprintCore.Actions.Builder.AVEx
     /// Adds <see cref="StopCutscene"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Cutscene"><see cref="Cutscene"/></param>
+    /// <param name="cutscene"><see cref="Cutscene"/></param>
     [Generated]
     [Implements(typeof(StopCutscene))]
-    public static ActionsBuilder AddStopCutscene(
+    public static ActionsBuilder StopCutscene(
         this ActionsBuilder builder,
-        string m_Cutscene,
-        UnitEvaluator WithUnit,
-        StopCutscene.UnitCheckType m_CheckType)
+        UnitEvaluator withUnit,
+        string cutscene = null,
+        StopCutscene.UnitCheckType checkType = default)
     {
-      builder.Validate(WithUnit);
-      builder.Validate(m_CheckType);
-      
+      builder.Validate(withUnit);
+    
       var element = ElementTool.Create<StopCutscene>();
-      element.m_Cutscene = BlueprintTool.GetRef<CutsceneReference>(m_Cutscene);
-      element.WithUnit = WithUnit;
-      element.m_CheckType = m_CheckType;
+      element.m_Cutscene = BlueprintTool.GetRef<CutsceneReference>(cutscene);
+      element.WithUnit = withUnit;
+      element.m_CheckType = checkType;
       return builder.Add(element);
     }
 
@@ -406,17 +364,16 @@ namespace BlueprintCore.Actions.Builder.AVEx
     /// </summary>
     [Generated]
     [Implements(typeof(ToggleObjectFx))]
-    public static ActionsBuilder AddToggleObjectFx(
+    public static ActionsBuilder ToggleObjectFx(
         this ActionsBuilder builder,
-        MapObjectEvaluator Target,
-        Boolean ToggleOn)
+        MapObjectEvaluator target,
+        bool toggleOn = default)
     {
-      builder.Validate(Target);
-      builder.Validate(ToggleOn);
-      
+      builder.Validate(target);
+    
       var element = ElementTool.Create<ToggleObjectFx>();
-      element.Target = Target;
-      element.ToggleOn = ToggleOn;
+      element.Target = target;
+      element.ToggleOn = toggleOn;
       return builder.Add(element);
     }
 
@@ -425,17 +382,16 @@ namespace BlueprintCore.Actions.Builder.AVEx
     /// </summary>
     [Generated]
     [Implements(typeof(ToggleObjectMusic))]
-    public static ActionsBuilder AddToggleObjectMusic(
+    public static ActionsBuilder ToggleObjectMusic(
         this ActionsBuilder builder,
-        MapObjectEvaluator Target,
-        Boolean ToggleOn)
+        MapObjectEvaluator target,
+        bool toggleOn = default)
     {
-      builder.Validate(Target);
-      builder.Validate(ToggleOn);
-      
+      builder.Validate(target);
+    
       var element = ElementTool.Create<ToggleObjectMusic>();
-      element.Target = Target;
-      element.ToggleOn = ToggleOn;
+      element.Target = target;
+      element.ToggleOn = toggleOn;
       return builder.Add(element);
     }
   }

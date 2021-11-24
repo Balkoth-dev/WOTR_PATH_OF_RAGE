@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints;
+using BlueprintCore.Utils;
 using JetBrains.Annotations;
 using Kingmaker.Blueprints;
 using Kingmaker.ElementsSystem;

@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.Abilities;
+using BlueprintCore.Utils;
 using BlueprintCore;
 using BlueprintCore.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Blueprints;

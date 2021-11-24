@@ -1,6 +1,7 @@
 using BlueprintCore.Utils;
 using Kingmaker.Designers.EventConditionActionSystem.Conditions;
 using Kingmaker.ElementsSystem;
+using System;
 using System.Collections.Generic;
 
 namespace BlueprintCore.Conditions.Builder
@@ -26,7 +27,7 @@ namespace BlueprintCore.Conditions.Builder
   /// <para>
   /// If a method calls for a string to represent any type of blueprint, you can pass the blueprint's
   /// <see cref="Kingmaker.Blueprints.SimpleBlueprint.AssetGuid">AssetGuid</see> as a string or as a name you already
-  /// provided using <see cref="Blueprints.BlueprintTool.AddGuidsByName">AddGuidsByName()</see>.
+  /// provided using <see cref="Utils.BlueprintTool.AddGuidsByName">AddGuidsByName()</see>.
   /// </para>
   /// 
   /// <list type="table">
@@ -149,6 +150,18 @@ namespace BlueprintCore.Conditions.Builder
       Validate(condition);
       Conditions.Add(condition);
       return this;
+    }
+
+    /// <summary>Adds a <see cref="Condition"/> of the specified type to the checker.</summary>
+    /// 
+    /// <remarks>It is recommended to only call this when adding a condition type not supported by the builder.</remarks>
+    /// 
+    /// <param name="init">Optional initialization <see cref="Action"/> run on the condition.</param>
+    public ConditionsBuilder Add<C>(Action<C> init) where C : Condition, new()
+    {
+      var condition = ElementTool.Create<C>();
+      init?.Invoke(condition);
+      return Add(condition);
     }
 
     /// <summary>

@@ -9,7 +9,6 @@ using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.UnitLogic.FactLogic;
-using BlueprintCore.Blueprints.Abilities;
 using Kingmaker.Localization;
 using UnityEngine;
 using static Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell;
@@ -34,6 +33,7 @@ using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using WOTR_PATH_OF_RAGE.MechanicsChanges;
 using Kingmaker.Blueprints.Items.Ecnchantments;
+using BlueprintCore.Utils;
 
 namespace WOTR_PATH_OF_RAGE.NewFeatures
 {

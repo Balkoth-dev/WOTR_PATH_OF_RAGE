@@ -1,4 +1,3 @@
-using BlueprintCore.Blueprints;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Utils;
 using Kingmaker.Assets.UnitLogic.Mechanics.Actions;
@@ -23,7 +22,6 @@ using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.Utility;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BlueprintCore.Actions.Builder.ContextEx
@@ -2041,21 +2039,19 @@ namespace BlueprintCore.Actions.Builder.ContextEx
 
     //----- Auto Generated -----//
 
-
-
     /// <summary>
     /// Adds <see cref="ContextActionAcceptBurn"/> (Auto Generated)
     /// </summary>
     [Generated]
     [Implements(typeof(ContextActionAcceptBurn))]
-    public static ActionsBuilder AddContextActionAcceptBurn(
+    public static ActionsBuilder ContextActionAcceptBurn(
         this ActionsBuilder builder,
-        ContextValue Value)
+        ContextValue value = null)
     {
-      builder.Validate(Value);
-      
+      builder.Validate(value);
+    
       var element = ElementTool.Create<ContextActionAcceptBurn>();
-      element.Value = Value;
+      element.Value = value ?? ContextValues.Constant(0);
       return builder.Add(element);
     }
 
@@ -2064,14 +2060,14 @@ namespace BlueprintCore.Actions.Builder.ContextEx
     /// </summary>
     [Generated]
     [Implements(typeof(ContextActionHealBurn))]
-    public static ActionsBuilder AddContextActionHealBurn(
+    public static ActionsBuilder ContextActionHealBurn(
         this ActionsBuilder builder,
-        ContextValue Value)
+        ContextValue value = null)
     {
-      builder.Validate(Value);
-      
+      builder.Validate(value);
+    
       var element = ElementTool.Create<ContextActionHealBurn>();
-      element.Value = Value;
+      element.Value = value ?? ContextValues.Constant(0);
       return builder.Add(element);
     }
 
@@ -2080,20 +2076,18 @@ namespace BlueprintCore.Actions.Builder.ContextEx
     /// </summary>
     [Generated]
     [Implements(typeof(BuffActionAddStatBonus))]
-    public static ActionsBuilder AddBuffActionAddStatBonus(
+    public static ActionsBuilder BuffActionAddStatBonus(
         this ActionsBuilder builder,
-        StatType Stat,
-        ContextValue Value,
-        ModifierDescriptor Descriptor)
+        StatType stat = default,
+        ContextValue value = null,
+        ModifierDescriptor descriptor = default)
     {
-      builder.Validate(Stat);
-      builder.Validate(Value);
-      builder.Validate(Descriptor);
-      
+      builder.Validate(value);
+    
       var element = ElementTool.Create<BuffActionAddStatBonus>();
-      element.Stat = Stat;
-      element.Value = Value;
-      element.Descriptor = Descriptor;
+      element.Stat = stat;
+      element.Value = value ?? ContextValues.Constant(0);
+      element.Descriptor = descriptor;
       return builder.Add(element);
     }
 
@@ -2102,7 +2096,7 @@ namespace BlueprintCore.Actions.Builder.ContextEx
     /// </summary>
     [Generated]
     [Implements(typeof(AbilityCustomSharedBurden))]
-    public static ActionsBuilder AddAbilityCustomSharedBurden(this ActionsBuilder builder)
+    public static ActionsBuilder AbilityCustomSharedBurden(this ActionsBuilder builder)
     {
       return builder.Add(ElementTool.Create<AbilityCustomSharedBurden>());
     }
@@ -2112,7 +2106,7 @@ namespace BlueprintCore.Actions.Builder.ContextEx
     /// </summary>
     [Generated]
     [Implements(typeof(AbilityCustomSharedGrace))]
-    public static ActionsBuilder AddAbilityCustomSharedGrace(this ActionsBuilder builder)
+    public static ActionsBuilder AbilityCustomSharedGrace(this ActionsBuilder builder)
     {
       return builder.Add(ElementTool.Create<AbilityCustomSharedGrace>());
     }
@@ -2122,7 +2116,7 @@ namespace BlueprintCore.Actions.Builder.ContextEx
     /// </summary>
     [Generated]
     [Implements(typeof(ContextActionDetachFromSpawner))]
-    public static ActionsBuilder AddContextActionDetachFromSpawner(this ActionsBuilder builder)
+    public static ActionsBuilder ContextActionDetachFromSpawner(this ActionsBuilder builder)
     {
       return builder.Add(ElementTool.Create<ContextActionDetachFromSpawner>());
     }
@@ -2132,14 +2126,14 @@ namespace BlueprintCore.Actions.Builder.ContextEx
     /// </summary>
     [Generated]
     [Implements(typeof(ContextActionPrintHDRestrictionToCombatLog))]
-    public static ActionsBuilder AddContextActionPrintHDRestrictionToCombatLog(
+    public static ActionsBuilder ContextActionPrintHDRestrictionToCombatLog(
         this ActionsBuilder builder,
-        ContextValue HitDice)
+        ContextValue hitDice = null)
     {
-      builder.Validate(HitDice);
-      
+      builder.Validate(hitDice);
+    
       var element = ElementTool.Create<ContextActionPrintHDRestrictionToCombatLog>();
-      element.HitDice = HitDice;
+      element.HitDice = hitDice ?? ContextValues.Constant(0);
       return builder.Add(element);
     }
 
@@ -2148,14 +2142,12 @@ namespace BlueprintCore.Actions.Builder.ContextEx
     /// </summary>
     [Generated]
     [Implements(typeof(ContextActionReduceDebilitatingBuffsDuration))]
-    public static ActionsBuilder AddContextActionReduceDebilitatingBuffsDuration(
+    public static ActionsBuilder ContextActionReduceDebilitatingBuffsDuration(
         this ActionsBuilder builder,
-        StatsAdjustmentsType StatsAdjustmentsType)
+        StatsAdjustmentsType statsAdjustmentsType = default)
     {
-      builder.Validate(StatsAdjustmentsType);
-      
       var element = ElementTool.Create<ContextActionReduceDebilitatingBuffsDuration>();
-      element.StatsAdjustmentsType = StatsAdjustmentsType;
+      element.StatsAdjustmentsType = statsAdjustmentsType;
       return builder.Add(element);
     }
 
@@ -2163,22 +2155,22 @@ namespace BlueprintCore.Actions.Builder.ContextEx
     /// Adds <see cref="ContextActionRestoreAllSpellSlots"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_ExcludeSpellbooks"><see cref="BlueprintSpellbook"/></param>
+    /// <param name="excludeSpellbooks"><see cref="BlueprintSpellbook"/></param>
     [Generated]
     [Implements(typeof(ContextActionRestoreAllSpellSlots))]
-    public static ActionsBuilder AddContextActionRestoreAllSpellSlots(
+    public static ActionsBuilder ContextActionRestoreAllSpellSlots(
         this ActionsBuilder builder,
-        UnitEvaluator m_Target,
-        Int32 m_UpToSpellLevel,
-        string[] m_ExcludeSpellbooks)
+        UnitEvaluator target,
+        int upToSpellLevel = default,
+        string[] excludeSpellbooks = null)
     {
-      builder.Validate(m_Target);
-      builder.Validate(m_UpToSpellLevel);
-      
+      builder.Validate(target);
+    
       var element = ElementTool.Create<ContextActionRestoreAllSpellSlots>();
-      element.m_Target = m_Target;
-      element.m_UpToSpellLevel = m_UpToSpellLevel;
-      element.m_ExcludeSpellbooks = m_ExcludeSpellbooks.Select(bp => BlueprintTool.GetRef<BlueprintSpellbookReference>(bp)).ToList();
+      element.m_Target = target;
+      element.m_UpToSpellLevel = upToSpellLevel;
+      element.m_ExcludeSpellbooks = excludeSpellbooks.Select(name => BlueprintTool.GetRef<BlueprintSpellbookReference>(name)).ToList();
       return builder.Add(element);
-    }  }
+    }
+  }
 }

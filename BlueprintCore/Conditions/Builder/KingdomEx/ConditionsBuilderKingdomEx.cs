@@ -1,4 +1,3 @@
-using BlueprintCore.Blueprints;
 using BlueprintCore.Utils;
 using Kingmaker.Armies.Components;
 using Kingmaker.Blueprints;
@@ -9,7 +8,6 @@ using Kingmaker.Kingdom.Settlements;
 using Kingmaker.UnitLogic.Alignments;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
-using System;
 using System.Linq;
 namespace BlueprintCore.Conditions.Builder.KingdomEx
 {
@@ -21,18 +19,15 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
   {
     //----- Auto Generated -----//
 
-
-
     /// <summary>
     /// Adds <see cref="HasTacticalMorale"/> (Auto Generated)
     /// </summary>
     [Generated]
     [Implements(typeof(HasTacticalMorale))]
-    public static ConditionsBuilder AddHasTacticalMorale(
+    public static ConditionsBuilder HasTacticalMorale(
         this ConditionsBuilder builder,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<HasTacticalMorale>();
       element.Not = negate;
       return builder.Add(element);
@@ -43,21 +38,19 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(TacticalCombatSquadHitPointsCondition))]
-    public static ConditionsBuilder AddTacticalCombatSquadHitPointsCondition(
+    public static ConditionsBuilder TacticalCombatSquadHitPointsCondition(
         this ConditionsBuilder builder,
-        Boolean CheckInitiatorHP,
-        CompareOperation.Type Operation,
-        ContextValue ReferenceValue,
+        bool checkInitiatorHP = default,
+        CompareOperation.Type operation = default,
+        ContextValue referenceValue = null,
         bool negate = false)
     {
-      builder.Validate(CheckInitiatorHP);
-      builder.Validate(Operation);
-      builder.Validate(ReferenceValue);
-      
+      builder.Validate(referenceValue);
+    
       var element = ElementTool.Create<TacticalCombatSquadHitPointsCondition>();
-      element.CheckInitiatorHP = CheckInitiatorHP;
-      element.Operation = Operation;
-      element.ReferenceValue = ReferenceValue;
+      element.CheckInitiatorHP = checkInitiatorHP;
+      element.Operation = operation;
+      element.ReferenceValue = referenceValue ?? ContextValues.Constant(0);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -67,18 +60,15 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(TargetHasArmyTag))]
-    public static ConditionsBuilder AddTargetHasArmyTag(
+    public static ConditionsBuilder TargetHasArmyTag(
         this ConditionsBuilder builder,
-        ArmyProperties m_Tags,
-        Boolean m_NeedAllTags,
+        ArmyProperties tags = default,
+        bool needAllTags = default,
         bool negate = false)
     {
-      builder.Validate(m_Tags);
-      builder.Validate(m_NeedAllTags);
-      
       var element = ElementTool.Create<TargetHasArmyTag>();
-      element.m_Tags = m_Tags;
-      element.m_NeedAllTags = m_NeedAllTags;
+      element.m_Tags = tags;
+      element.m_NeedAllTags = needAllTags;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -87,17 +77,16 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="ContextConditionGarrisonClear"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_GlobalMapPoint"><see cref="BlueprintGlobalMapPoint"/></param>
+    /// <param name="globalMapPoint"><see cref="BlueprintGlobalMapPoint"/></param>
     [Generated]
     [Implements(typeof(ContextConditionGarrisonClear))]
-    public static ConditionsBuilder AddContextConditionGarrisonClear(
+    public static ConditionsBuilder ContextConditionGarrisonClear(
         this ConditionsBuilder builder,
-        string m_GlobalMapPoint,
+        string globalMapPoint = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<ContextConditionGarrisonClear>();
-      element.m_GlobalMapPoint = BlueprintTool.GetRef<BlueprintGlobalMapPointReference>(m_GlobalMapPoint);
+      element.m_GlobalMapPoint = BlueprintTool.GetRef<BlueprintGlobalMapPointReference>(globalMapPoint);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -107,11 +96,10 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(AnySettlementUnderSiege))]
-    public static ConditionsBuilder AddAnySettlementUnderSiege(
+    public static ConditionsBuilder AnySettlementUnderSiege(
         this ConditionsBuilder builder,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<AnySettlementUnderSiege>();
       element.Not = negate;
       return builder.Add(element);
@@ -121,20 +109,18 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomMoraleFlagCondition"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Flag"><see cref="BlueprintKingdomMoraleFlag"/></param>
+    /// <param name="flag"><see cref="BlueprintKingdomMoraleFlag"/></param>
     [Generated]
     [Implements(typeof(KingdomMoraleFlagCondition))]
-    public static ConditionsBuilder AddKingdomMoraleFlagCondition(
+    public static ConditionsBuilder KingdomMoraleFlagCondition(
         this ConditionsBuilder builder,
-        string m_Flag,
-        KingdomMoraleFlag.State m_State,
+        string flag = null,
+        KingdomMoraleFlag.State state = default,
         bool negate = false)
     {
-      builder.Validate(m_State);
-      
       var element = ElementTool.Create<KingdomMoraleFlagCondition>();
-      element.m_Flag = BlueprintTool.GetRef<BlueprintKingdomMoraleFlag.Reference>(m_Flag);
-      element.m_State = m_State;
+      element.m_Flag = BlueprintTool.GetRef<BlueprintKingdomMoraleFlag.Reference>(flag);
+      element.m_State = state;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -143,17 +129,16 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="ArmyInLocationDefeated"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Location"><see cref="BlueprintGlobalMapPoint"/></param>
+    /// <param name="location"><see cref="BlueprintGlobalMapPoint"/></param>
     [Generated]
     [Implements(typeof(ArmyInLocationDefeated))]
-    public static ConditionsBuilder AddArmyInLocationDefeated(
+    public static ConditionsBuilder ArmyInLocationDefeated(
         this ConditionsBuilder builder,
-        string m_Location,
+        string location = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<ArmyInLocationDefeated>();
-      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPointReference>(m_Location);
+      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPointReference>(location);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -163,11 +148,10 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(AutoKingdom))]
-    public static ConditionsBuilder AddAutoKingdom(
+    public static ConditionsBuilder AutoKingdom(
         this ConditionsBuilder builder,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<AutoKingdom>();
       element.Not = negate;
       return builder.Add(element);
@@ -177,20 +161,18 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="BuildingHasNeighbours"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_SpecificBuildings"><see cref="BlueprintSettlementBuilding"/></param>
+    /// <param name="specificBuildings"><see cref="BlueprintSettlementBuilding"/></param>
     [Generated]
     [Implements(typeof(BuildingHasNeighbours))]
-    public static ConditionsBuilder AddBuildingHasNeighbours(
+    public static ConditionsBuilder BuildingHasNeighbours(
         this ConditionsBuilder builder,
-        string[] m_SpecificBuildings,
-        Boolean AnywhereInTown,
+        string[] specificBuildings = null,
+        bool anywhereInTown = default,
         bool negate = false)
     {
-      builder.Validate(AnywhereInTown);
-      
       var element = ElementTool.Create<BuildingHasNeighbours>();
-      element.m_SpecificBuildings = m_SpecificBuildings.Select(bp => BlueprintTool.GetRef<BlueprintSettlementBuildingReference>(bp)).ToArray();
-      element.AnywhereInTown = AnywhereInTown;
+      element.m_SpecificBuildings = specificBuildings.Select(name => BlueprintTool.GetRef<BlueprintSettlementBuildingReference>(name)).ToArray();
+      element.AnywhereInTown = anywhereInTown;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -200,18 +182,15 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(DaysTillNextMonth))]
-    public static ConditionsBuilder AddDaysTillNextMonth(
+    public static ConditionsBuilder DaysTillNextMonth(
         this ConditionsBuilder builder,
-        Boolean AtMost,
-        Int32 Days,
+        bool atMost = default,
+        int days = default,
         bool negate = false)
     {
-      builder.Validate(AtMost);
-      builder.Validate(Days);
-      
       var element = ElementTool.Create<DaysTillNextMonth>();
-      element.AtMost = AtMost;
-      element.Days = Days;
+      element.AtMost = atMost;
+      element.Days = days;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -221,18 +200,15 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(EventLifetime))]
-    public static ConditionsBuilder AddEventLifetime(
+    public static ConditionsBuilder EventLifetime(
         this ConditionsBuilder builder,
-        Int32 LessThan,
-        Int32 MoreThan,
+        int lessThan = default,
+        int moreThan = default,
         bool negate = false)
     {
-      builder.Validate(LessThan);
-      builder.Validate(MoreThan);
-      
       var element = ElementTool.Create<EventLifetime>();
-      element.LessThan = LessThan;
-      element.MoreThan = MoreThan;
+      element.LessThan = lessThan;
+      element.MoreThan = moreThan;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -242,15 +218,13 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(KingdomAlignmentIs))]
-    public static ConditionsBuilder AddKingdomAlignmentIs(
+    public static ConditionsBuilder KingdomAlignmentIs(
         this ConditionsBuilder builder,
-        AlignmentMaskType Alignment,
+        AlignmentMaskType alignment = default,
         bool negate = false)
     {
-      builder.Validate(Alignment);
-      
       var element = ElementTool.Create<KingdomAlignmentIs>();
-      element.Alignment = Alignment;
+      element.Alignment = alignment;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -259,17 +233,16 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomAllArmiesInRegionDefeated"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Region"><see cref="BlueprintRegion"/></param>
+    /// <param name="region"><see cref="BlueprintRegion"/></param>
     [Generated]
     [Implements(typeof(KingdomAllArmiesInRegionDefeated))]
-    public static ConditionsBuilder AddKingdomAllArmiesInRegionDefeated(
+    public static ConditionsBuilder KingdomAllArmiesInRegionDefeated(
         this ConditionsBuilder builder,
-        string m_Region,
+        string region = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<KingdomAllArmiesInRegionDefeated>();
-      element.m_Region = BlueprintTool.GetRef<BlueprintRegionReference>(m_Region);
+      element.m_Region = BlueprintTool.GetRef<BlueprintRegionReference>(region);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -278,23 +251,20 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomArtisanState"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Artisan"><see cref="BlueprintKingdomArtisan"/></param>
+    /// <param name="artisan"><see cref="BlueprintKingdomArtisan"/></param>
     [Generated]
     [Implements(typeof(KingdomArtisanState))]
-    public static ConditionsBuilder AddKingdomArtisanState(
+    public static ConditionsBuilder KingdomArtisanState(
         this ConditionsBuilder builder,
-        string m_Artisan,
-        KingdomArtisanState.CheckType _Check,
-        Int32 Tier,
+        string artisan = null,
+        KingdomArtisanState.CheckType _Check = default,
+        int tier = default,
         bool negate = false)
     {
-      builder.Validate(_Check);
-      builder.Validate(Tier);
-      
       var element = ElementTool.Create<KingdomArtisanState>();
-      element.m_Artisan = BlueprintTool.GetRef<BlueprintKingdomArtisanReference>(m_Artisan);
+      element.m_Artisan = BlueprintTool.GetRef<BlueprintKingdomArtisanReference>(artisan);
       element._Check = _Check;
-      element.Tier = Tier;
+      element.Tier = tier;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -303,20 +273,19 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomBuffIsActive"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Blueprint"><see cref="BlueprintKingdomBuff"/></param>
-    /// <param name="m_Region"><see cref="BlueprintRegion"/></param>
+    /// <param name="blueprint"><see cref="BlueprintKingdomBuff"/></param>
+    /// <param name="region"><see cref="BlueprintRegion"/></param>
     [Generated]
     [Implements(typeof(KingdomBuffIsActive))]
-    public static ConditionsBuilder AddKingdomBuffIsActive(
+    public static ConditionsBuilder KingdomBuffIsActive(
         this ConditionsBuilder builder,
-        string m_Blueprint,
-        string m_Region,
+        string blueprint = null,
+        string region = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<KingdomBuffIsActive>();
-      element.m_Blueprint = BlueprintTool.GetRef<BlueprintKingdomBuffReference>(m_Blueprint);
-      element.m_Region = BlueprintTool.GetRef<BlueprintRegionReference>(m_Region);
+      element.m_Blueprint = BlueprintTool.GetRef<BlueprintKingdomBuffReference>(blueprint);
+      element.m_Region = BlueprintTool.GetRef<BlueprintRegionReference>(region);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -326,15 +295,13 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(KingdomChapterWeek))]
-    public static ConditionsBuilder AddKingdomChapterWeek(
+    public static ConditionsBuilder KingdomChapterWeek(
         this ConditionsBuilder builder,
-        Int32 Week,
+        int week = default,
         bool negate = false)
     {
-      builder.Validate(Week);
-      
       var element = ElementTool.Create<KingdomChapterWeek>();
-      element.Week = Week;
+      element.Week = week;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -344,18 +311,15 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(KingdomDay))]
-    public static ConditionsBuilder AddKingdomDay(
+    public static ConditionsBuilder KingdomDay(
         this ConditionsBuilder builder,
-        Boolean AtMost,
-        Int32 Day,
+        bool atMost = default,
+        int day = default,
         bool negate = false)
     {
-      builder.Validate(AtMost);
-      builder.Validate(Day);
-      
       var element = ElementTool.Create<KingdomDay>();
-      element.AtMost = AtMost;
-      element.Day = Day;
+      element.AtMost = atMost;
+      element.Day = day;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -364,20 +328,19 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomEventCanStart"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Event"><see cref="BlueprintKingdomEvent"/></param>
-    /// <param name="m_Region"><see cref="BlueprintRegion"/></param>
+    /// <param name="eventValue"><see cref="BlueprintKingdomEvent"/></param>
+    /// <param name="region"><see cref="BlueprintRegion"/></param>
     [Generated]
     [Implements(typeof(KingdomEventCanStart))]
-    public static ConditionsBuilder AddKingdomEventCanStart(
+    public static ConditionsBuilder KingdomEventCanStart(
         this ConditionsBuilder builder,
-        string m_Event,
-        string m_Region,
+        string eventValue = null,
+        string region = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<KingdomEventCanStart>();
-      element.m_Event = BlueprintTool.GetRef<BlueprintKingdomEventReference>(m_Event);
-      element.m_Region = BlueprintTool.GetRef<BlueprintRegionReference>(m_Region);
+      element.m_Event = BlueprintTool.GetRef<BlueprintKingdomEventReference>(eventValue);
+      element.m_Region = BlueprintTool.GetRef<BlueprintRegionReference>(region);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -386,17 +349,16 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomEventIsActive"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Event"><see cref="BlueprintKingdomEvent"/></param>
+    /// <param name="eventValue"><see cref="BlueprintKingdomEvent"/></param>
     [Generated]
     [Implements(typeof(KingdomEventIsActive))]
-    public static ConditionsBuilder AddKingdomEventIsActive(
+    public static ConditionsBuilder KingdomEventIsActive(
         this ConditionsBuilder builder,
-        string m_Event,
+        string eventValue = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<KingdomEventIsActive>();
-      element.m_Event = BlueprintTool.GetRef<BlueprintKingdomEventReference>(m_Event);
+      element.m_Event = BlueprintTool.GetRef<BlueprintKingdomEventReference>(eventValue);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -405,17 +367,16 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomEventIsBeingResolved"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Event"><see cref="BlueprintKingdomEventBase"/></param>
+    /// <param name="eventValue"><see cref="BlueprintKingdomEventBase"/></param>
     [Generated]
     [Implements(typeof(KingdomEventIsBeingResolved))]
-    public static ConditionsBuilder AddKingdomEventIsBeingResolved(
+    public static ConditionsBuilder KingdomEventIsBeingResolved(
         this ConditionsBuilder builder,
-        string m_Event,
+        string eventValue = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<KingdomEventIsBeingResolved>();
-      element.m_Event = BlueprintTool.GetRef<BlueprintKingdomEventBaseReference>(m_Event);
+      element.m_Event = BlueprintTool.GetRef<BlueprintKingdomEventBaseReference>(eventValue);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -425,11 +386,10 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(KingdomExists))]
-    public static ConditionsBuilder AddKingdomExists(
+    public static ConditionsBuilder KingdomExists(
         this ConditionsBuilder builder,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<KingdomExists>();
       element.Not = negate;
       return builder.Add(element);
@@ -440,11 +400,10 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(KingdomHasResolvableEvent))]
-    public static ConditionsBuilder AddKingdomHasResolvableEvent(
+    public static ConditionsBuilder KingdomHasResolvableEvent(
         this ConditionsBuilder builder,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<KingdomHasResolvableEvent>();
       element.Not = negate;
       return builder.Add(element);
@@ -454,20 +413,18 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomHasUpgradeableSettlement"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_SpecificSettlement"><see cref="BlueprintSettlement"/></param>
+    /// <param name="specificSettlement"><see cref="BlueprintSettlement"/></param>
     [Generated]
     [Implements(typeof(KingdomHasUpgradeableSettlement))]
-    public static ConditionsBuilder AddKingdomHasUpgradeableSettlement(
+    public static ConditionsBuilder KingdomHasUpgradeableSettlement(
         this ConditionsBuilder builder,
-        SettlementState.LevelType Level,
-        string m_SpecificSettlement,
+        SettlementState.LevelType level = default,
+        string specificSettlement = null,
         bool negate = false)
     {
-      builder.Validate(Level);
-      
       var element = ElementTool.Create<KingdomHasUpgradeableSettlement>();
-      element.Level = Level;
-      element.m_SpecificSettlement = BlueprintTool.GetRef<BlueprintSettlement.Reference>(m_SpecificSettlement);
+      element.Level = level;
+      element.m_SpecificSettlement = BlueprintTool.GetRef<BlueprintSettlement.Reference>(specificSettlement);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -477,11 +434,10 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(KingdomIsVisible))]
-    public static ConditionsBuilder AddKingdomIsVisible(
+    public static ConditionsBuilder KingdomIsVisible(
         this ConditionsBuilder builder,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<KingdomIsVisible>();
       element.Not = negate;
       return builder.Add(element);
@@ -491,23 +447,20 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomLeaderIs"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Unit"><see cref="BlueprintUnit"/></param>
+    /// <param name="unit"><see cref="BlueprintUnit"/></param>
     [Generated]
     [Implements(typeof(KingdomLeaderIs))]
-    public static ConditionsBuilder AddKingdomLeaderIs(
+    public static ConditionsBuilder KingdomLeaderIs(
         this ConditionsBuilder builder,
-        LeaderType Leader,
-        string m_Unit,
-        Boolean AllowCustomCompanions,
+        LeaderType leader = default,
+        string unit = null,
+        bool allowCustomCompanions = default,
         bool negate = false)
     {
-      builder.Validate(Leader);
-      builder.Validate(AllowCustomCompanions);
-      
       var element = ElementTool.Create<KingdomLeaderIs>();
-      element.Leader = Leader;
-      element.m_Unit = BlueprintTool.GetRef<BlueprintUnitReference>(m_Unit);
-      element.AllowCustomCompanions = AllowCustomCompanions;
+      element.Leader = leader;
+      element.m_Unit = BlueprintTool.GetRef<BlueprintUnitReference>(unit);
+      element.AllowCustomCompanions = allowCustomCompanions;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -516,26 +469,22 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomProjectIsAvailable"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Project"><see cref="BlueprintKingdomProject"/></param>
+    /// <param name="project"><see cref="BlueprintKingdomProject"/></param>
     [Generated]
     [Implements(typeof(KingdomProjectIsAvailable))]
-    public static ConditionsBuilder AddKingdomProjectIsAvailable(
+    public static ConditionsBuilder KingdomProjectIsAvailable(
         this ConditionsBuilder builder,
-        string m_Project,
-        Boolean CheckResources,
-        Boolean CheckLeader,
-        Boolean FinishableThisMonth,
+        string project = null,
+        bool checkResources = default,
+        bool checkLeader = default,
+        bool finishableThisMonth = default,
         bool negate = false)
     {
-      builder.Validate(CheckResources);
-      builder.Validate(CheckLeader);
-      builder.Validate(FinishableThisMonth);
-      
       var element = ElementTool.Create<KingdomProjectIsAvailable>();
-      element.m_Project = BlueprintTool.GetRef<BlueprintKingdomProjectReference>(m_Project);
-      element.CheckResources = CheckResources;
-      element.CheckLeader = CheckLeader;
-      element.FinishableThisMonth = FinishableThisMonth;
+      element.m_Project = BlueprintTool.GetRef<BlueprintKingdomProjectReference>(project);
+      element.CheckResources = checkResources;
+      element.CheckLeader = checkLeader;
+      element.FinishableThisMonth = finishableThisMonth;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -544,17 +493,16 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomProjectIsDone"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Project"><see cref="BlueprintKingdomProject"/></param>
+    /// <param name="project"><see cref="BlueprintKingdomProject"/></param>
     [Generated]
     [Implements(typeof(KingdomProjectIsDone))]
-    public static ConditionsBuilder AddKingdomProjectIsDone(
+    public static ConditionsBuilder KingdomProjectIsDone(
         this ConditionsBuilder builder,
-        string m_Project,
+        string project = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<KingdomProjectIsDone>();
-      element.m_Project = BlueprintTool.GetRef<BlueprintKingdomProjectReference>(m_Project);
+      element.m_Project = BlueprintTool.GetRef<BlueprintKingdomProjectReference>(project);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -564,18 +512,15 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(KingdomRankUpConditions))]
-    public static ConditionsBuilder AddKingdomRankUpConditions(
+    public static ConditionsBuilder KingdomRankUpConditions(
         this ConditionsBuilder builder,
-        KingdomStats.Type Stat,
-        Int32 NextRank,
+        KingdomStats.Type stat = default,
+        int nextRank = default,
         bool negate = false)
     {
-      builder.Validate(Stat);
-      builder.Validate(NextRank);
-      
       var element = ElementTool.Create<KingdomRankUpConditions>();
-      element.Stat = Stat;
-      element.NextRank = NextRank;
+      element.Stat = stat;
+      element.NextRank = nextRank;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -584,17 +529,16 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomRegionIsConquered"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Region"><see cref="BlueprintRegion"/></param>
+    /// <param name="region"><see cref="BlueprintRegion"/></param>
     [Generated]
     [Implements(typeof(KingdomRegionIsConquered))]
-    public static ConditionsBuilder AddKingdomRegionIsConquered(
+    public static ConditionsBuilder KingdomRegionIsConquered(
         this ConditionsBuilder builder,
-        string m_Region,
+        string region = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<KingdomRegionIsConquered>();
-      element.m_Region = BlueprintTool.GetRef<BlueprintRegionReference>(m_Region);
+      element.m_Region = BlueprintTool.GetRef<BlueprintRegionReference>(region);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -603,20 +547,19 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomRegionIsUpgraded"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Region"><see cref="BlueprintRegion"/></param>
-    /// <param name="m_Event"><see cref="BlueprintKingdomUpgrade"/></param>
+    /// <param name="region"><see cref="BlueprintRegion"/></param>
+    /// <param name="eventValue"><see cref="BlueprintKingdomUpgrade"/></param>
     [Generated]
     [Implements(typeof(KingdomRegionIsUpgraded))]
-    public static ConditionsBuilder AddKingdomRegionIsUpgraded(
+    public static ConditionsBuilder KingdomRegionIsUpgraded(
         this ConditionsBuilder builder,
-        string m_Region,
-        string m_Event,
+        string region = null,
+        string eventValue = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<KingdomRegionIsUpgraded>();
-      element.m_Region = BlueprintTool.GetRef<BlueprintRegionReference>(m_Region);
-      element.m_Event = BlueprintTool.GetRef<BlueprintKingdomUpgradeReference>(m_Event);
+      element.m_Region = BlueprintTool.GetRef<BlueprintRegionReference>(region);
+      element.m_Event = BlueprintTool.GetRef<BlueprintKingdomUpgradeReference>(eventValue);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -626,18 +569,15 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(KingdomSettlementCount))]
-    public static ConditionsBuilder AddKingdomSettlementCount(
+    public static ConditionsBuilder KingdomSettlementCount(
         this ConditionsBuilder builder,
-        SettlementState.LevelType MinLevel,
-        Int32 Count,
+        SettlementState.LevelType minLevel = default,
+        int count = default,
         bool negate = false)
     {
-      builder.Validate(MinLevel);
-      builder.Validate(Count);
-      
       var element = ElementTool.Create<KingdomSettlementCount>();
-      element.MinLevel = MinLevel;
-      element.Count = Count;
+      element.MinLevel = minLevel;
+      element.Count = count;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -646,20 +586,19 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// Adds <see cref="KingdomSettlementHasBuilding"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Settlement"><see cref="BlueprintSettlement"/></param>
-    /// <param name="m_Building"><see cref="BlueprintSettlementBuilding"/></param>
+    /// <param name="settlement"><see cref="BlueprintSettlement"/></param>
+    /// <param name="building"><see cref="BlueprintSettlementBuilding"/></param>
     [Generated]
     [Implements(typeof(KingdomSettlementHasBuilding))]
-    public static ConditionsBuilder AddKingdomSettlementHasBuilding(
+    public static ConditionsBuilder KingdomSettlementHasBuilding(
         this ConditionsBuilder builder,
-        string m_Settlement,
-        string m_Building,
+        string settlement = null,
+        string building = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<KingdomSettlementHasBuilding>();
-      element.m_Settlement = BlueprintTool.GetRef<BlueprintSettlement.Reference>(m_Settlement);
-      element.m_Building = BlueprintTool.GetRef<BlueprintSettlementBuildingReference>(m_Building);
+      element.m_Settlement = BlueprintTool.GetRef<BlueprintSettlement.Reference>(settlement);
+      element.m_Building = BlueprintTool.GetRef<BlueprintSettlementBuildingReference>(building);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -669,24 +608,19 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(KingdomStatCheck))]
-    public static ConditionsBuilder AddKingdomStatCheck(
+    public static ConditionsBuilder KingdomStatCheck(
         this ConditionsBuilder builder,
-        KingdomStats.Type StatType,
-        Int32 Value,
-        Boolean AtMost,
-        Boolean CheckRank,
+        KingdomStats.Type statType = default,
+        int value = default,
+        bool atMost = default,
+        bool checkRank = default,
         bool negate = false)
     {
-      builder.Validate(StatType);
-      builder.Validate(Value);
-      builder.Validate(AtMost);
-      builder.Validate(CheckRank);
-      
       var element = ElementTool.Create<KingdomStatCheck>();
-      element.StatType = StatType;
-      element.Value = Value;
-      element.AtMost = AtMost;
-      element.CheckRank = CheckRank;
+      element.StatType = statType;
+      element.Value = value;
+      element.AtMost = atMost;
+      element.CheckRank = checkRank;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -696,15 +630,13 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(KingdomStatIsMaximum))]
-    public static ConditionsBuilder AddKingdomStatIsMaximum(
+    public static ConditionsBuilder KingdomStatIsMaximum(
         this ConditionsBuilder builder,
-        KingdomStats.Type StatType,
+        KingdomStats.Type statType = default,
         bool negate = false)
     {
-      builder.Validate(StatType);
-      
       var element = ElementTool.Create<KingdomStatIsMaximum>();
-      element.StatType = StatType;
+      element.StatType = statType;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -714,18 +646,13 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(KingdomTaskResolvedBy))]
-    public static ConditionsBuilder AddKingdomTaskResolvedBy(
+    public static ConditionsBuilder KingdomTaskResolvedBy(
         this ConditionsBuilder builder,
-        LeaderType[] Leaders,
+        LeaderType[] leaders = null,
         bool negate = false)
     {
-      foreach (var item in Leaders)
-      {
-        builder.Validate(item);
-      }
-      
       var element = ElementTool.Create<KingdomTaskResolvedBy>();
-      element.Leaders = Leaders;
+      element.Leaders = leaders;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -735,18 +662,15 @@ namespace BlueprintCore.Conditions.Builder.KingdomEx
     /// </summary>
     [Generated]
     [Implements(typeof(KingdomUnrestCheck))]
-    public static ConditionsBuilder AddKingdomUnrestCheck(
+    public static ConditionsBuilder KingdomUnrestCheck(
         this ConditionsBuilder builder,
-        KingdomStatusType Value,
-        Boolean AtMost,
+        KingdomStatusType value = default,
+        bool atMost = default,
         bool negate = false)
     {
-      builder.Validate(Value);
-      builder.Validate(AtMost);
-      
       var element = ElementTool.Create<KingdomUnrestCheck>();
-      element.Value = Value;
-      element.AtMost = AtMost;
+      element.Value = value;
+      element.AtMost = atMost;
       element.Not = negate;
       return builder.Add(element);
     }

@@ -1,5 +1,3 @@
-using BlueprintCore.Actions.Builder;
-using BlueprintCore.Blueprints;
 using BlueprintCore.Utils;
 using Kingmaker.AreaLogic.Capital;
 using Kingmaker.Blueprints;
@@ -11,7 +9,6 @@ using Kingmaker.ElementsSystem;
 using Kingmaker.EntitySystem.Persistence;
 using Kingmaker.Globalmap.Blueprints;
 using Kingmaker.Localization;
-using System;
 using System.Linq;
 
 namespace BlueprintCore.Actions.Builder.AreaEx
@@ -144,25 +141,21 @@ namespace BlueprintCore.Actions.Builder.AreaEx
 
     //----- Auto Generated -----//
 
-
-
     /// <summary>
     /// Adds <see cref="CapitalExit"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Destination"><see cref="BlueprintAreaEnterPoint"/></param>
+    /// <param name="destination"><see cref="BlueprintAreaEnterPoint"/></param>
     [Generated]
     [Implements(typeof(CapitalExit))]
-    public static ActionsBuilder AddCapitalExit(
+    public static ActionsBuilder CapitalExit(
         this ActionsBuilder builder,
-        string m_Destination,
-        AutoSaveMode AutoSaveMode)
+        string destination = null,
+        AutoSaveMode autoSaveMode = default)
     {
-      builder.Validate(AutoSaveMode);
-      
       var element = ElementTool.Create<CapitalExit>();
-      element.m_Destination = BlueprintTool.GetRef<BlueprintAreaEnterPointReference>(m_Destination);
-      element.AutoSaveMode = AutoSaveMode;
+      element.m_Destination = BlueprintTool.GetRef<BlueprintAreaEnterPointReference>(destination);
+      element.AutoSaveMode = autoSaveMode;
       return builder.Add(element);
     }
 
@@ -171,7 +164,7 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(DecreaseCorruptionLevelAction))]
-    public static ActionsBuilder AddDecreaseCorruptionLevelAction(this ActionsBuilder builder)
+    public static ActionsBuilder DecreaseCorruptionLevelAction(this ActionsBuilder builder)
     {
       return builder.Add(ElementTool.Create<DecreaseCorruptionLevelAction>());
     }
@@ -180,28 +173,27 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="AskPlayerForLocationName"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Location"><see cref="BlueprintGlobalMapPoint"/></param>
+    /// <param name="location"><see cref="BlueprintGlobalMapPoint"/></param>
     [Generated]
     [Implements(typeof(AskPlayerForLocationName))]
-    public static ActionsBuilder AddAskPlayerForLocationName(
+    public static ActionsBuilder AskPlayerForLocationName(
         this ActionsBuilder builder,
-        string m_Location,
-        Boolean Obligatory,
-        LocalizedString Title,
-        LocalizedString Hint,
-        LocalizedString Default)
+        string location = null,
+        bool obligatory = default,
+        LocalizedString title = null,
+        LocalizedString hint = null,
+        LocalizedString defaultValue = null)
     {
-      builder.Validate(Obligatory);
-      builder.Validate(Title);
-      builder.Validate(Hint);
-      builder.Validate(Default);
-      
+      builder.Validate(title);
+      builder.Validate(hint);
+      builder.Validate(defaultValue);
+    
       var element = ElementTool.Create<AskPlayerForLocationName>();
-      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(m_Location);
-      element.Obligatory = Obligatory;
-      element.Title = Title;
-      element.Hint = Hint;
-      element.Default = Default;
+      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(location);
+      element.Obligatory = obligatory;
+      element.Title = title ?? Constants.Empty.String;
+      element.Hint = hint ?? Constants.Empty.String;
+      element.Default = defaultValue ?? Constants.Empty.String;
       return builder.Add(element);
     }
 
@@ -210,20 +202,19 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(GlobalMapTeleport))]
-    public static ActionsBuilder AddGlobalMapTeleport(
+    public static ActionsBuilder GlobalMapTeleport(
         this ActionsBuilder builder,
-        LocationEvaluator Destination,
-        FloatEvaluator SkipHours,
-        Boolean UpdateLocationVisitedTime)
+        LocationEvaluator destination,
+        FloatEvaluator skipHours,
+        bool updateLocationVisitedTime = default)
     {
-      builder.Validate(Destination);
-      builder.Validate(SkipHours);
-      builder.Validate(UpdateLocationVisitedTime);
-      
+      builder.Validate(destination);
+      builder.Validate(skipHours);
+    
       var element = ElementTool.Create<GlobalMapTeleport>();
-      element.Destination = Destination;
-      element.SkipHours = SkipHours;
-      element.UpdateLocationVisitedTime = UpdateLocationVisitedTime;
+      element.Destination = destination;
+      element.SkipHours = skipHours;
+      element.UpdateLocationVisitedTime = updateLocationVisitedTime;
       return builder.Add(element);
     }
 
@@ -232,17 +223,16 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(HideMapObject))]
-    public static ActionsBuilder AddHideMapObject(
+    public static ActionsBuilder HideMapObject(
         this ActionsBuilder builder,
-        MapObjectEvaluator MapObject,
-        Boolean Unhide)
+        MapObjectEvaluator mapObject,
+        bool unhide = default)
     {
-      builder.Validate(MapObject);
-      builder.Validate(Unhide);
-      
+      builder.Validate(mapObject);
+    
       var element = ElementTool.Create<HideMapObject>();
-      element.MapObject = MapObject;
-      element.Unhide = Unhide;
+      element.MapObject = mapObject;
+      element.Unhide = unhide;
       return builder.Add(element);
     }
 
@@ -251,7 +241,7 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(LocalMapSetDirty))]
-    public static ActionsBuilder AddLocalMapSetDirty(this ActionsBuilder builder)
+    public static ActionsBuilder LocalMapSetDirty(this ActionsBuilder builder)
     {
       return builder.Add(ElementTool.Create<LocalMapSetDirty>());
     }
@@ -261,14 +251,14 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(MakeServiceCaster))]
-    public static ActionsBuilder AddMakeServiceCaster(
+    public static ActionsBuilder MakeServiceCaster(
         this ActionsBuilder builder,
-        UnitEvaluator Unit)
+        UnitEvaluator unit)
     {
-      builder.Validate(Unit);
-      
+      builder.Validate(unit);
+    
       var element = ElementTool.Create<MakeServiceCaster>();
-      element.Unit = Unit;
+      element.Unit = unit;
       return builder.Add(element);
     }
 
@@ -276,19 +266,17 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="MarkLocationClosed"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Location"><see cref="BlueprintGlobalMapPoint"/></param>
+    /// <param name="location"><see cref="BlueprintGlobalMapPoint"/></param>
     [Generated]
     [Implements(typeof(MarkLocationClosed))]
-    public static ActionsBuilder AddMarkLocationClosed(
+    public static ActionsBuilder MarkLocationClosed(
         this ActionsBuilder builder,
-        string m_Location,
-        Boolean Closed)
+        string location = null,
+        bool closed = default)
     {
-      builder.Validate(Closed);
-      
       var element = ElementTool.Create<MarkLocationClosed>();
-      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(m_Location);
-      element.Closed = Closed;
+      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(location);
+      element.Closed = closed;
       return builder.Add(element);
     }
 
@@ -296,19 +284,17 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="MarkLocationExplored"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Location"><see cref="BlueprintGlobalMapPoint"/></param>
+    /// <param name="location"><see cref="BlueprintGlobalMapPoint"/></param>
     [Generated]
     [Implements(typeof(MarkLocationExplored))]
-    public static ActionsBuilder AddMarkLocationExplored(
+    public static ActionsBuilder MarkLocationExplored(
         this ActionsBuilder builder,
-        string m_Location,
-        Boolean Explored)
+        string location = null,
+        bool explored = default)
     {
-      builder.Validate(Explored);
-      
       var element = ElementTool.Create<MarkLocationExplored>();
-      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(m_Location);
-      element.Explored = Explored;
+      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(location);
+      element.Explored = explored;
       return builder.Add(element);
     }
 
@@ -317,17 +303,16 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(MarkOnLocalMap))]
-    public static ActionsBuilder AddMarkOnLocalMap(
+    public static ActionsBuilder MarkOnLocalMap(
         this ActionsBuilder builder,
-        MapObjectEvaluator MapObject,
-        Boolean Hidden)
+        MapObjectEvaluator mapObject,
+        bool hidden = default)
     {
-      builder.Validate(MapObject);
-      builder.Validate(Hidden);
-      
+      builder.Validate(mapObject);
+    
       var element = ElementTool.Create<MarkOnLocalMap>();
-      element.MapObject = MapObject;
-      element.Hidden = Hidden;
+      element.MapObject = mapObject;
+      element.Hidden = hidden;
       return builder.Add(element);
     }
 
@@ -336,14 +321,14 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(OpenLootContainer))]
-    public static ActionsBuilder AddOpenLootContainer(
+    public static ActionsBuilder OpenLootContainer(
         this ActionsBuilder builder,
-        MapObjectEvaluator MapObject)
+        MapObjectEvaluator mapObject)
     {
-      builder.Validate(MapObject);
-      
+      builder.Validate(mapObject);
+    
       var element = ElementTool.Create<OpenLootContainer>();
-      element.MapObject = MapObject;
+      element.MapObject = mapObject;
       return builder.Add(element);
     }
 
@@ -351,16 +336,15 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="RemoveAllAreasFromSave"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Except"><see cref="BlueprintArea"/></param>
+    /// <param name="except"><see cref="BlueprintArea"/></param>
     [Generated]
     [Implements(typeof(RemoveAllAreasFromSave))]
-    public static ActionsBuilder AddRemoveAllAreasFromSave(
+    public static ActionsBuilder RemoveAllAreasFromSave(
         this ActionsBuilder builder,
-        string[] m_Except)
+        string[] except = null)
     {
-      
       var element = ElementTool.Create<RemoveAllAreasFromSave>();
-      element.m_Except = m_Except.Select(bp => BlueprintTool.GetRef<BlueprintAreaReference>(bp)).ToArray();
+      element.m_Except = except.Select(name => BlueprintTool.GetRef<BlueprintAreaReference>(name)).ToArray();
       return builder.Add(element);
     }
 
@@ -369,17 +353,16 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(RemoveAmbush))]
-    public static ActionsBuilder AddRemoveAmbush(
+    public static ActionsBuilder RemoveAmbush(
         this ActionsBuilder builder,
-        UnitEvaluator m_Unit,
-        Boolean m_ExitStealth)
+        UnitEvaluator unit,
+        bool exitStealth = default)
     {
-      builder.Validate(m_Unit);
-      builder.Validate(m_ExitStealth);
-      
+      builder.Validate(unit);
+    
       var element = ElementTool.Create<RemoveAmbush>();
-      element.m_Unit = m_Unit;
-      element.m_ExitStealth = m_ExitStealth;
+      element.m_Unit = unit;
+      element.m_ExitStealth = exitStealth;
       return builder.Add(element);
     }
 
@@ -387,19 +370,18 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="RemoveAreaFromSave"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Area"><see cref="BlueprintArea"/></param>
-    /// <param name="SpecificMechanic"><see cref="BlueprintAreaMechanics"/></param>
+    /// <param name="area"><see cref="BlueprintArea"/></param>
+    /// <param name="specificMechanic"><see cref="BlueprintAreaMechanics"/></param>
     [Generated]
     [Implements(typeof(RemoveAreaFromSave))]
-    public static ActionsBuilder AddRemoveAreaFromSave(
+    public static ActionsBuilder RemoveAreaFromSave(
         this ActionsBuilder builder,
-        string m_Area,
-        string SpecificMechanic)
+        string area = null,
+        string specificMechanic = null)
     {
-      
       var element = ElementTool.Create<RemoveAreaFromSave>();
-      element.m_Area = BlueprintTool.GetRef<BlueprintAreaReference>(m_Area);
-      element.SpecificMechanic = BlueprintTool.GetRef<BlueprintAreaMechanicsReference>(SpecificMechanic);
+      element.m_Area = BlueprintTool.GetRef<BlueprintAreaReference>(area);
+      element.SpecificMechanic = BlueprintTool.GetRef<BlueprintAreaMechanicsReference>(specificMechanic);
       return builder.Add(element);
     }
 
@@ -407,16 +389,15 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="RemoveCampingEncounter"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Encounter"><see cref="BlueprintCampingEncounter"/></param>
+    /// <param name="encounter"><see cref="BlueprintCampingEncounter"/></param>
     [Generated]
     [Implements(typeof(RemoveCampingEncounter))]
-    public static ActionsBuilder AddRemoveCampingEncounter(
+    public static ActionsBuilder RemoveCampingEncounter(
         this ActionsBuilder builder,
-        string m_Encounter)
+        string encounter = null)
     {
-      
       var element = ElementTool.Create<RemoveCampingEncounter>();
-      element.m_Encounter = BlueprintTool.GetRef<BlueprintCampingEncounterReference>(m_Encounter);
+      element.m_Encounter = BlueprintTool.GetRef<BlueprintCampingEncounterReference>(encounter);
       return builder.Add(element);
     }
 
@@ -424,16 +405,15 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="ResetLocationPerceptionCheck"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Location"><see cref="BlueprintGlobalMapPoint"/></param>
+    /// <param name="location"><see cref="BlueprintGlobalMapPoint"/></param>
     [Generated]
     [Implements(typeof(ResetLocationPerceptionCheck))]
-    public static ActionsBuilder AddResetLocationPerceptionCheck(
+    public static ActionsBuilder ResetLocationPerceptionCheck(
         this ActionsBuilder builder,
-        string m_Location)
+        string location = null)
     {
-      
       var element = ElementTool.Create<ResetLocationPerceptionCheck>();
-      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(m_Location);
+      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(location);
       return builder.Add(element);
     }
 
@@ -441,19 +421,17 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="RevealGlobalMap"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="Points"><see cref="BlueprintGlobalMapPoint"/></param>
+    /// <param name="points"><see cref="BlueprintGlobalMapPoint"/></param>
     [Generated]
     [Implements(typeof(RevealGlobalMap))]
-    public static ActionsBuilder AddRevealGlobalMap(
+    public static ActionsBuilder RevealGlobalMap(
         this ActionsBuilder builder,
-        string[] Points,
-        Boolean RevealEdges)
+        string[] points = null,
+        bool revealEdges = default)
     {
-      builder.Validate(RevealEdges);
-      
       var element = ElementTool.Create<RevealGlobalMap>();
-      element.Points = Points.Select(bp => BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(bp)).ToArray();
-      element.RevealEdges = RevealEdges;
+      element.Points = points.Select(name => BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(name)).ToArray();
+      element.RevealEdges = revealEdges;
       return builder.Add(element);
     }
 
@@ -462,14 +440,14 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(ScriptZoneActivate))]
-    public static ActionsBuilder AddScriptZoneActivate(
+    public static ActionsBuilder ScriptZoneActivate(
         this ActionsBuilder builder,
-        EntityReference ScriptZone)
+        EntityReference scriptZone)
     {
-      builder.Validate(ScriptZone);
-      
+      builder.Validate(scriptZone);
+    
       var element = ElementTool.Create<ScriptZoneActivate>();
-      element.ScriptZone = ScriptZone;
+      element.ScriptZone = scriptZone;
       return builder.Add(element);
     }
 
@@ -478,14 +456,14 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(ScriptZoneDeactivate))]
-    public static ActionsBuilder AddScriptZoneDeactivate(
+    public static ActionsBuilder ScriptZoneDeactivate(
         this ActionsBuilder builder,
-        EntityReference ScriptZone)
+        EntityReference scriptZone)
     {
-      builder.Validate(ScriptZone);
-      
+      builder.Validate(scriptZone);
+    
       var element = ElementTool.Create<ScriptZoneDeactivate>();
-      element.ScriptZone = ScriptZone;
+      element.ScriptZone = scriptZone;
       return builder.Add(element);
     }
 
@@ -494,16 +472,16 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(ScripZoneUnits))]
-    public static ActionsBuilder AddScripZoneUnits(
+    public static ActionsBuilder ScripZoneUnits(
         this ActionsBuilder builder,
-        EntityReference ScriptZone,
-        ActionsBuilder Actions)
+        EntityReference scriptZone,
+        ActionsBuilder actions = null)
     {
-      builder.Validate(ScriptZone);
-      
+      builder.Validate(scriptZone);
+    
       var element = ElementTool.Create<ScripZoneUnits>();
-      element.ScriptZone = ScriptZone;
-      element.Actions = Actions.Build();
+      element.ScriptZone = scriptZone;
+      element.Actions = actions?.Build() ?? Constants.Empty.Actions;
       return builder.Add(element);
     }
 
@@ -512,17 +490,17 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(SetDeviceState))]
-    public static ActionsBuilder AddSetDeviceState(
+    public static ActionsBuilder SetDeviceState(
         this ActionsBuilder builder,
-        MapObjectEvaluator Device,
-        IntEvaluator State)
+        MapObjectEvaluator device,
+        IntEvaluator state)
     {
-      builder.Validate(Device);
-      builder.Validate(State);
-      
+      builder.Validate(device);
+      builder.Validate(state);
+    
       var element = ElementTool.Create<SetDeviceState>();
-      element.Device = Device;
-      element.State = State;
+      element.Device = device;
+      element.State = state;
       return builder.Add(element);
     }
 
@@ -531,20 +509,16 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(SetDeviceTrigger))]
-    public static ActionsBuilder AddSetDeviceTrigger(
+    public static ActionsBuilder SetDeviceTrigger(
         this ActionsBuilder builder,
-        MapObjectEvaluator Device,
-        String Trigger)
+        MapObjectEvaluator device,
+        string trigger)
     {
-      builder.Validate(Device);
-      foreach (var item in Trigger)
-      {
-        builder.Validate(item);
-      }
-      
+      builder.Validate(device);
+    
       var element = ElementTool.Create<SetDeviceTrigger>();
-      element.Device = Device;
-      element.Trigger = Trigger;
+      element.Device = device;
+      element.Trigger = trigger;
       return builder.Add(element);
     }
 
@@ -553,17 +527,16 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(SetDisableDevice))]
-    public static ActionsBuilder AddSetDisableDevice(
+    public static ActionsBuilder SetDisableDevice(
         this ActionsBuilder builder,
-        MapObjectEvaluator MapObject,
-        Int32 OverrideDC)
+        MapObjectEvaluator mapObject,
+        int overrideDC = default)
     {
-      builder.Validate(MapObject);
-      builder.Validate(OverrideDC);
-      
+      builder.Validate(mapObject);
+    
       var element = ElementTool.Create<SetDisableDevice>();
-      element.MapObject = MapObject;
-      element.OverrideDC = OverrideDC;
+      element.MapObject = mapObject;
+      element.OverrideDC = overrideDC;
       return builder.Add(element);
     }
 
@@ -571,16 +544,15 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="ShowMultiEntrance"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Map"><see cref="BlueprintMultiEntrance"/></param>
+    /// <param name="map"><see cref="BlueprintMultiEntrance"/></param>
     [Generated]
     [Implements(typeof(ShowMultiEntrance))]
-    public static ActionsBuilder AddShowMultiEntrance(
+    public static ActionsBuilder ShowMultiEntrance(
         this ActionsBuilder builder,
-        string m_Map)
+        string map = null)
     {
-      
       var element = ElementTool.Create<ShowMultiEntrance>();
-      element.m_Map = BlueprintTool.GetRef<BlueprintMultiEntranceReference>(m_Map);
+      element.m_Map = BlueprintTool.GetRef<BlueprintMultiEntranceReference>(map);
       return builder.Add(element);
     }
 
@@ -589,17 +561,17 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(SpotMapObject))]
-    public static ActionsBuilder AddSpotMapObject(
+    public static ActionsBuilder SpotMapObject(
         this ActionsBuilder builder,
-        MapObjectEvaluator Target,
-        UnitEvaluator Spotter)
+        MapObjectEvaluator target,
+        UnitEvaluator spotter)
     {
-      builder.Validate(Target);
-      builder.Validate(Spotter);
-      
+      builder.Validate(target);
+      builder.Validate(spotter);
+    
       var element = ElementTool.Create<SpotMapObject>();
-      element.Target = Target;
-      element.Spotter = Spotter;
+      element.Target = target;
+      element.Spotter = spotter;
       return builder.Add(element);
     }
 
@@ -608,17 +580,17 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(SpotUnit))]
-    public static ActionsBuilder AddSpotUnit(
+    public static ActionsBuilder SpotUnit(
         this ActionsBuilder builder,
-        UnitEvaluator Target,
-        UnitEvaluator Spotter)
+        UnitEvaluator target,
+        UnitEvaluator spotter)
     {
-      builder.Validate(Target);
-      builder.Validate(Spotter);
-      
+      builder.Validate(target);
+      builder.Validate(spotter);
+    
       var element = ElementTool.Create<SpotUnit>();
-      element.Target = Target;
-      element.Spotter = Spotter;
+      element.Target = target;
+      element.Spotter = spotter;
       return builder.Add(element);
     }
 
@@ -626,24 +598,21 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="TeleportParty"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_exitPositon"><see cref="BlueprintAreaEnterPoint"/></param>
+    /// <param name="exitPositon"><see cref="BlueprintAreaEnterPoint"/></param>
     [Generated]
     [Implements(typeof(TeleportParty))]
-    public static ActionsBuilder AddTeleportParty(
+    public static ActionsBuilder TeleportParty(
         this ActionsBuilder builder,
-        string m_exitPositon,
-        AutoSaveMode AutoSaveMode,
-        Boolean ForcePauseAfterTeleport,
-        ActionsBuilder AfterTeleport)
+        string exitPositon = null,
+        AutoSaveMode autoSaveMode = default,
+        bool forcePauseAfterTeleport = default,
+        ActionsBuilder afterTeleport = null)
     {
-      builder.Validate(AutoSaveMode);
-      builder.Validate(ForcePauseAfterTeleport);
-      
       var element = ElementTool.Create<TeleportParty>();
-      element.m_exitPositon = BlueprintTool.GetRef<BlueprintAreaEnterPointReference>(m_exitPositon);
-      element.AutoSaveMode = AutoSaveMode;
-      element.ForcePauseAfterTeleport = ForcePauseAfterTeleport;
-      element.AfterTeleport = AfterTeleport.Build();
+      element.m_exitPositon = BlueprintTool.GetRef<BlueprintAreaEnterPointReference>(exitPositon);
+      element.AutoSaveMode = autoSaveMode;
+      element.ForcePauseAfterTeleport = forcePauseAfterTeleport;
+      element.AfterTeleport = afterTeleport?.Build() ?? Constants.Empty.Actions;
       return builder.Add(element);
     }
 
@@ -652,20 +621,18 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(TranslocatePlayer))]
-    public static ActionsBuilder AddTranslocatePlayer(
+    public static ActionsBuilder TranslocatePlayer(
         this ActionsBuilder builder,
         EntityReference transolcatePosition,
-        Boolean ByFormationAndWithPets,
-        Boolean ScrollCameraToPlayer)
+        bool byFormationAndWithPets = default,
+        bool scrollCameraToPlayer = default)
     {
       builder.Validate(transolcatePosition);
-      builder.Validate(ByFormationAndWithPets);
-      builder.Validate(ScrollCameraToPlayer);
-      
+    
       var element = ElementTool.Create<TranslocatePlayer>();
       element.transolcatePosition = transolcatePosition;
-      element.ByFormationAndWithPets = ByFormationAndWithPets;
-      element.ScrollCameraToPlayer = ScrollCameraToPlayer;
+      element.ByFormationAndWithPets = byFormationAndWithPets;
+      element.ScrollCameraToPlayer = scrollCameraToPlayer;
       return builder.Add(element);
     }
 
@@ -674,25 +641,24 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(TranslocateUnit))]
-    public static ActionsBuilder AddTranslocateUnit(
+    public static ActionsBuilder TranslocateUnit(
         this ActionsBuilder builder,
-        UnitEvaluator Unit,
+        UnitEvaluator unit,
         EntityReference translocatePosition,
         PositionEvaluator translocatePositionEvaluator,
-        Boolean m_CopyRotation,
-        FloatEvaluator translocateOrientationEvaluator)
+        FloatEvaluator translocateOrientationEvaluator,
+        bool copyRotation = default)
     {
-      builder.Validate(Unit);
+      builder.Validate(unit);
       builder.Validate(translocatePosition);
       builder.Validate(translocatePositionEvaluator);
-      builder.Validate(m_CopyRotation);
       builder.Validate(translocateOrientationEvaluator);
-      
+    
       var element = ElementTool.Create<TranslocateUnit>();
-      element.Unit = Unit;
+      element.Unit = unit;
       element.translocatePosition = translocatePosition;
       element.translocatePositionEvaluator = translocatePositionEvaluator;
-      element.m_CopyRotation = m_CopyRotation;
+      element.m_CopyRotation = copyRotation;
       element.translocateOrientationEvaluator = translocateOrientationEvaluator;
       return builder.Add(element);
     }
@@ -701,43 +667,38 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="TrapCastSpell"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Spell"><see cref="BlueprintAbility"/></param>
+    /// <param name="spell"><see cref="BlueprintAbility"/></param>
     [Generated]
     [Implements(typeof(TrapCastSpell))]
-    public static ActionsBuilder AddTrapCastSpell(
+    public static ActionsBuilder TrapCastSpell(
         this ActionsBuilder builder,
-        string m_Spell,
-        MapObjectEvaluator TrapObject,
-        UnitEvaluator TriggeringUnit,
-        PositionEvaluator TargetPoint,
-        PositionEvaluator ActorPosition,
-        Boolean DisableBattleLog,
-        Boolean OverrideDC,
-        Int32 DC,
-        Boolean OverrideSpellLevel,
-        Int32 SpellLevel)
+        MapObjectEvaluator trapObject,
+        UnitEvaluator triggeringUnit,
+        PositionEvaluator targetPoint,
+        PositionEvaluator actorPosition,
+        string spell = null,
+        bool disableBattleLog = default,
+        bool overrideDC = default,
+        int dC = default,
+        bool overrideSpellLevel = default,
+        int spellLevel = default)
     {
-      builder.Validate(TrapObject);
-      builder.Validate(TriggeringUnit);
-      builder.Validate(TargetPoint);
-      builder.Validate(ActorPosition);
-      builder.Validate(DisableBattleLog);
-      builder.Validate(OverrideDC);
-      builder.Validate(DC);
-      builder.Validate(OverrideSpellLevel);
-      builder.Validate(SpellLevel);
-      
+      builder.Validate(trapObject);
+      builder.Validate(triggeringUnit);
+      builder.Validate(targetPoint);
+      builder.Validate(actorPosition);
+    
       var element = ElementTool.Create<TrapCastSpell>();
-      element.m_Spell = BlueprintTool.GetRef<BlueprintAbilityReference>(m_Spell);
-      element.TrapObject = TrapObject;
-      element.TriggeringUnit = TriggeringUnit;
-      element.TargetPoint = TargetPoint;
-      element.ActorPosition = ActorPosition;
-      element.DisableBattleLog = DisableBattleLog;
-      element.OverrideDC = OverrideDC;
-      element.DC = DC;
-      element.OverrideSpellLevel = OverrideSpellLevel;
-      element.SpellLevel = SpellLevel;
+      element.m_Spell = BlueprintTool.GetRef<BlueprintAbilityReference>(spell);
+      element.TrapObject = trapObject;
+      element.TriggeringUnit = triggeringUnit;
+      element.TargetPoint = targetPoint;
+      element.ActorPosition = actorPosition;
+      element.DisableBattleLog = disableBattleLog;
+      element.OverrideDC = overrideDC;
+      element.DC = dC;
+      element.OverrideSpellLevel = overrideSpellLevel;
+      element.SpellLevel = spellLevel;
       return builder.Add(element);
     }
 
@@ -745,16 +706,15 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="UnlockCookingRecipe"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Recipe"><see cref="BlueprintCookingRecipe"/></param>
+    /// <param name="recipe"><see cref="BlueprintCookingRecipe"/></param>
     [Generated]
     [Implements(typeof(UnlockCookingRecipe))]
-    public static ActionsBuilder AddUnlockCookingRecipe(
+    public static ActionsBuilder UnlockCookingRecipe(
         this ActionsBuilder builder,
-        string m_Recipe)
+        string recipe = null)
     {
-      
       var element = ElementTool.Create<UnlockCookingRecipe>();
-      element.m_Recipe = BlueprintTool.GetRef<BlueprintCookingRecipeReference>(m_Recipe);
+      element.m_Recipe = BlueprintTool.GetRef<BlueprintCookingRecipeReference>(recipe);
       return builder.Add(element);
     }
 
@@ -762,22 +722,19 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="UnlockLocation"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Location"><see cref="BlueprintGlobalMapPoint"/></param>
+    /// <param name="location"><see cref="BlueprintGlobalMapPoint"/></param>
     [Generated]
     [Implements(typeof(UnlockLocation))]
-    public static ActionsBuilder AddUnlockLocation(
+    public static ActionsBuilder UnlockLocation(
         this ActionsBuilder builder,
-        string m_Location,
-        Boolean FakeDescription,
-        Boolean HideInstead)
+        string location = null,
+        bool fakeDescription = default,
+        bool hideInstead = default)
     {
-      builder.Validate(FakeDescription);
-      builder.Validate(HideInstead);
-      
       var element = ElementTool.Create<UnlockLocation>();
-      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(m_Location);
-      element.FakeDescription = FakeDescription;
-      element.HideInstead = HideInstead;
+      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(location);
+      element.FakeDescription = fakeDescription;
+      element.HideInstead = hideInstead;
       return builder.Add(element);
     }
 
@@ -785,19 +742,17 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// Adds <see cref="UnlockMapEdge"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Edge"><see cref="BlueprintGlobalMapEdge"/></param>
+    /// <param name="edge"><see cref="BlueprintGlobalMapEdge"/></param>
     [Generated]
     [Implements(typeof(UnlockMapEdge))]
-    public static ActionsBuilder AddUnlockMapEdge(
+    public static ActionsBuilder UnlockMapEdge(
         this ActionsBuilder builder,
-        string m_Edge,
-        Boolean OpenEdges)
+        string edge = null,
+        bool openEdges = default)
     {
-      builder.Validate(OpenEdges);
-      
       var element = ElementTool.Create<UnlockMapEdge>();
-      element.m_Edge = BlueprintTool.GetRef<BlueprintGlobalMapEdge.Reference>(m_Edge);
-      element.OpenEdges = OpenEdges;
+      element.m_Edge = BlueprintTool.GetRef<BlueprintGlobalMapEdge.Reference>(edge);
+      element.OpenEdges = openEdges;
       return builder.Add(element);
     }
 
@@ -806,17 +761,16 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(GameActionSetIsleLock))]
-    public static ActionsBuilder AddGameActionSetIsleLock(
+    public static ActionsBuilder GameActionSetIsleLock(
         this ActionsBuilder builder,
-        IsleEvaluator m_Isle,
-        Boolean m_IsLock)
+        IsleEvaluator isle,
+        bool isLock = default)
     {
-      builder.Validate(m_Isle);
-      builder.Validate(m_IsLock);
-      
+      builder.Validate(isle);
+    
       var element = ElementTool.Create<GameActionSetIsleLock>();
-      element.m_Isle = m_Isle;
-      element.m_IsLock = m_IsLock;
+      element.m_Isle = isle;
+      element.m_IsLock = isLock;
       return builder.Add(element);
     }
 
@@ -825,20 +779,16 @@ namespace BlueprintCore.Actions.Builder.AreaEx
     /// </summary>
     [Generated]
     [Implements(typeof(GameActionSetIsleState))]
-    public static ActionsBuilder AddGameActionSetIsleState(
+    public static ActionsBuilder GameActionSetIsleState(
         this ActionsBuilder builder,
-        IsleEvaluator m_Isle,
-        String m_StateName)
+        IsleEvaluator isle,
+        string stateName)
     {
-      builder.Validate(m_Isle);
-      foreach (var item in m_StateName)
-      {
-        builder.Validate(item);
-      }
-      
+      builder.Validate(isle);
+    
       var element = ElementTool.Create<GameActionSetIsleState>();
-      element.m_Isle = m_Isle;
-      element.m_StateName = m_StateName;
+      element.m_Isle = isle;
+      element.m_StateName = stateName;
       return builder.Add(element);
     }
   }

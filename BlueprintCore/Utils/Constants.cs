@@ -2,6 +2,7 @@ using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.ElementsSystem;
 using Kingmaker.Enums;
 using Kingmaker.Localization;
+using Kingmaker.ResourceLinks;
 using Kingmaker.RuleSystem;
 using Kingmaker.UnitLogic.Mechanics;
 
@@ -29,6 +30,7 @@ namespace BlueprintCore.Utils
       };
       public static readonly LocalizedString String = new();
       public static readonly WeaponCategory[] WeaponCategories = new WeaponCategory[0];
+      public static readonly PrefabLink PrefabLink = new();
     }
   }
 }

@@ -1,4 +1,3 @@
-using BlueprintCore.Blueprints;
 using BlueprintCore.Utils;
 using Kingmaker.AreaLogic;
 using Kingmaker.AreaLogic.QuestSystem;
@@ -12,7 +11,7 @@ using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Alignments;
 using System;
 using System.Collections.Generic;
-namespace BlueprintCore.Conditions.Builder.MiscEx
+namespace BlueprintCore.Conditions.Builder.StoryEx
 {
   /// <summary>
   /// Extension to <see cref="ConditionsBuilder"/> for conditions related to the story such as companion stories, quests,
@@ -23,25 +22,23 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
   {
     //----- Auto Generated -----//
 
-
-
     /// <summary>
     /// Adds <see cref="CheckUnitSeeUnit"/> (Auto Generated)
     /// </summary>
     [Generated]
     [Implements(typeof(CheckUnitSeeUnit))]
-    public static ConditionsBuilder AddCheckUnitSeeUnit(
+    public static ConditionsBuilder CheckUnitSeeUnit(
         this ConditionsBuilder builder,
-        UnitEvaluator Unit,
-        UnitEvaluator Target,
+        UnitEvaluator unit,
+        UnitEvaluator target,
         bool negate = false)
     {
-      builder.Validate(Unit);
-      builder.Validate(Target);
-      
+      builder.Validate(unit);
+      builder.Validate(target);
+    
       var element = ElementTool.Create<CheckUnitSeeUnit>();
-      element.Unit = Unit;
-      element.Target = Target;
+      element.Unit = unit;
+      element.Target = target;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -50,17 +47,16 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="BarkBanterPlayed"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Banter"><see cref="BlueprintBarkBanter"/></param>
+    /// <param name="banter"><see cref="BlueprintBarkBanter"/></param>
     [Generated]
     [Implements(typeof(BarkBanterPlayed))]
-    public static ConditionsBuilder AddBarkBanterPlayed(
+    public static ConditionsBuilder BarkBanterPlayed(
         this ConditionsBuilder builder,
-        string m_Banter,
+        string banter = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<BarkBanterPlayed>();
-      element.m_Banter = BlueprintTool.GetRef<BlueprintBarkBanterReference>(m_Banter);
+      element.m_Banter = BlueprintTool.GetRef<BlueprintBarkBanterReference>(banter);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -69,17 +65,16 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="DialogSeen"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Dialog"><see cref="BlueprintDialog"/></param>
+    /// <param name="dialog"><see cref="BlueprintDialog"/></param>
     [Generated]
     [Implements(typeof(DialogSeen))]
-    public static ConditionsBuilder AddDialogSeen(
+    public static ConditionsBuilder DialogSeen(
         this ConditionsBuilder builder,
-        string m_Dialog,
+        string dialog = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<DialogSeen>();
-      element.m_Dialog = BlueprintTool.GetRef<BlueprintDialogReference>(m_Dialog);
+      element.m_Dialog = BlueprintTool.GetRef<BlueprintDialogReference>(dialog);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -89,15 +84,13 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// </summary>
     [Generated]
     [Implements(typeof(AlignmentCheck))]
-    public static ConditionsBuilder AddAlignmentCheck(
+    public static ConditionsBuilder AlignmentCheck(
         this ConditionsBuilder builder,
-        AlignmentComponent Alignment,
+        AlignmentComponent alignment = default,
         bool negate = false)
     {
-      builder.Validate(Alignment);
-      
       var element = ElementTool.Create<AlignmentCheck>();
-      element.Alignment = Alignment;
+      element.Alignment = alignment;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -106,17 +99,16 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="AnotherEtudeOfGroupIsPlaying"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Group"><see cref="BlueprintEtudeConflictingGroup"/></param>
+    /// <param name="group"><see cref="BlueprintEtudeConflictingGroup"/></param>
     [Generated]
     [Implements(typeof(AnotherEtudeOfGroupIsPlaying))]
-    public static ConditionsBuilder AddAnotherEtudeOfGroupIsPlaying(
+    public static ConditionsBuilder AnotherEtudeOfGroupIsPlaying(
         this ConditionsBuilder builder,
-        string m_Group,
+        string group = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<AnotherEtudeOfGroupIsPlaying>();
-      element.m_Group = BlueprintTool.GetRef<BlueprintEtudeConflictingGroupReference>(m_Group);
+      element.m_Group = BlueprintTool.GetRef<BlueprintEtudeConflictingGroupReference>(group);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -125,20 +117,18 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="AnswerListShown"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_AnswersList"><see cref="BlueprintAnswersList"/></param>
+    /// <param name="answersList"><see cref="BlueprintAnswersList"/></param>
     [Generated]
     [Implements(typeof(AnswerListShown))]
-    public static ConditionsBuilder AddAnswerListShown(
+    public static ConditionsBuilder AnswerListShown(
         this ConditionsBuilder builder,
-        string m_AnswersList,
-        Boolean CurrentDialog,
+        string answersList = null,
+        bool currentDialog = default,
         bool negate = false)
     {
-      builder.Validate(CurrentDialog);
-      
       var element = ElementTool.Create<AnswerListShown>();
-      element.m_AnswersList = BlueprintTool.GetRef<BlueprintAnswersListReference>(m_AnswersList);
-      element.CurrentDialog = CurrentDialog;
+      element.m_AnswersList = BlueprintTool.GetRef<BlueprintAnswersListReference>(answersList);
+      element.CurrentDialog = currentDialog;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -147,20 +137,18 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="AnswerSelected"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Answer"><see cref="BlueprintAnswer"/></param>
+    /// <param name="answer"><see cref="BlueprintAnswer"/></param>
     [Generated]
     [Implements(typeof(AnswerSelected))]
-    public static ConditionsBuilder AddAnswerSelected(
+    public static ConditionsBuilder AnswerSelected(
         this ConditionsBuilder builder,
-        string m_Answer,
-        Boolean CurrentDialog,
+        string answer = null,
+        bool currentDialog = default,
         bool negate = false)
     {
-      builder.Validate(CurrentDialog);
-      
       var element = ElementTool.Create<AnswerSelected>();
-      element.m_Answer = BlueprintTool.GetRef<BlueprintAnswerReference>(m_Answer);
-      element.CurrentDialog = CurrentDialog;
+      element.m_Answer = BlueprintTool.GetRef<BlueprintAnswerReference>(answer);
+      element.CurrentDialog = currentDialog;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -170,15 +158,15 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// </summary>
     [Generated]
     [Implements(typeof(ChangeableDynamicIsLoaded))]
-    public static ConditionsBuilder AddChangeableDynamicIsLoaded(
+    public static ConditionsBuilder ChangeableDynamicIsLoaded(
         this ConditionsBuilder builder,
-        SceneReference Scene,
+        SceneReference scene,
         bool negate = false)
     {
-      builder.Validate(Scene);
-      
+      builder.Validate(scene);
+    
       var element = ElementTool.Create<ChangeableDynamicIsLoaded>();
-      element.Scene = Scene;
+      element.Scene = scene;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -187,17 +175,16 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="CheckFailed"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Check"><see cref="BlueprintCheck"/></param>
+    /// <param name="check"><see cref="BlueprintCheck"/></param>
     [Generated]
     [Implements(typeof(CheckFailed))]
-    public static ConditionsBuilder AddCheckFailed(
+    public static ConditionsBuilder CheckFailed(
         this ConditionsBuilder builder,
-        string m_Check,
+        string check = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<CheckFailed>();
-      element.m_Check = BlueprintTool.GetRef<BlueprintCheckReference>(m_Check);
+      element.m_Check = BlueprintTool.GetRef<BlueprintCheckReference>(check);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -206,17 +193,16 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="CheckPassed"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Check"><see cref="BlueprintCheck"/></param>
+    /// <param name="check"><see cref="BlueprintCheck"/></param>
     [Generated]
     [Implements(typeof(CheckPassed))]
-    public static ConditionsBuilder AddCheckPassed(
+    public static ConditionsBuilder CheckPassed(
         this ConditionsBuilder builder,
-        string m_Check,
+        string check = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<CheckPassed>();
-      element.m_Check = BlueprintTool.GetRef<BlueprintCheckReference>(m_Check);
+      element.m_Check = BlueprintTool.GetRef<BlueprintCheckReference>(check);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -225,17 +211,16 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="CompanionStoryUnlocked"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_CompanionStory"><see cref="BlueprintCompanionStory"/></param>
+    /// <param name="companionStory"><see cref="BlueprintCompanionStory"/></param>
     [Generated]
     [Implements(typeof(CompanionStoryUnlocked))]
-    public static ConditionsBuilder AddCompanionStoryUnlocked(
+    public static ConditionsBuilder CompanionStoryUnlocked(
         this ConditionsBuilder builder,
-        string m_CompanionStory,
+        string companionStory = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<CompanionStoryUnlocked>();
-      element.m_CompanionStory = BlueprintTool.GetRef<BlueprintCompanionStoryReference>(m_CompanionStory);
+      element.m_CompanionStory = BlueprintTool.GetRef<BlueprintCompanionStoryReference>(companionStory);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -244,20 +229,18 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="CueSeen"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Cue"><see cref="BlueprintCueBase"/></param>
+    /// <param name="cue"><see cref="BlueprintCueBase"/></param>
     [Generated]
     [Implements(typeof(CueSeen))]
-    public static ConditionsBuilder AddCueSeen(
+    public static ConditionsBuilder CueSeen(
         this ConditionsBuilder builder,
-        string m_Cue,
-        Boolean CurrentDialog,
+        string cue = null,
+        bool currentDialog = default,
         bool negate = false)
     {
-      builder.Validate(CurrentDialog);
-      
       var element = ElementTool.Create<CueSeen>();
-      element.m_Cue = BlueprintTool.GetRef<BlueprintCueBaseReference>(m_Cue);
-      element.CurrentDialog = CurrentDialog;
+      element.m_Cue = BlueprintTool.GetRef<BlueprintCueBaseReference>(cue);
+      element.CurrentDialog = currentDialog;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -267,15 +250,13 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// </summary>
     [Generated]
     [Implements(typeof(CurrentChapter))]
-    public static ConditionsBuilder AddCurrentChapter(
+    public static ConditionsBuilder CurrentChapter(
         this ConditionsBuilder builder,
-        Int32 Chapter,
+        int chapter = default,
         bool negate = false)
     {
-      builder.Validate(Chapter);
-      
       var element = ElementTool.Create<CurrentChapter>();
-      element.Chapter = Chapter;
+      element.Chapter = chapter;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -285,18 +266,15 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// </summary>
     [Generated]
     [Implements(typeof(CutsceneQueueState))]
-    public static ConditionsBuilder AddCutsceneQueueState(
+    public static ConditionsBuilder CutsceneQueueState(
         this ConditionsBuilder builder,
-        Boolean First,
-        Boolean Last,
+        bool first = default,
+        bool last = default,
         bool negate = false)
     {
-      builder.Validate(First);
-      builder.Validate(Last);
-      
       var element = ElementTool.Create<CutsceneQueueState>();
-      element.First = First;
-      element.Last = Last;
+      element.First = first;
+      element.Last = last;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -306,15 +284,13 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// </summary>
     [Generated]
     [Implements(typeof(DayOfTheMonth))]
-    public static ConditionsBuilder AddDayOfTheMonth(
+    public static ConditionsBuilder DayOfTheMonth(
         this ConditionsBuilder builder,
-        Int32 Day,
+        int day = default,
         bool negate = false)
     {
-      builder.Validate(Day);
-      
       var element = ElementTool.Create<DayOfTheMonth>();
-      element.Day = Day;
+      element.Day = day;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -324,15 +300,13 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// </summary>
     [Generated]
     [Implements(typeof(DayOfTheWeek))]
-    public static ConditionsBuilder AddDayOfTheWeek(
+    public static ConditionsBuilder DayOfTheWeek(
         this ConditionsBuilder builder,
-        DayOfWeek Day,
+        DayOfWeek day = default,
         bool negate = false)
     {
-      builder.Validate(Day);
-      
       var element = ElementTool.Create<DayOfTheWeek>();
-      element.Day = Day;
+      element.Day = day;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -342,15 +316,13 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// </summary>
     [Generated]
     [Implements(typeof(DayTime))]
-    public static ConditionsBuilder AddDayTime(
+    public static ConditionsBuilder DayTime(
         this ConditionsBuilder builder,
-        TimeOfDay Time,
+        TimeOfDay time = default,
         bool negate = false)
     {
-      builder.Validate(Time);
-      
       var element = ElementTool.Create<DayTime>();
-      element.Time = Time;
+      element.Time = time;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -359,32 +331,26 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="EtudeStatus"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Etude"><see cref="BlueprintEtude"/></param>
+    /// <param name="etude"><see cref="BlueprintEtude"/></param>
     [Generated]
     [Implements(typeof(EtudeStatus))]
-    public static ConditionsBuilder AddEtudeStatus(
+    public static ConditionsBuilder EtudeStatus(
         this ConditionsBuilder builder,
-        string m_Etude,
-        Boolean NotStarted,
-        Boolean Started,
-        Boolean Playing,
-        Boolean CompletionInProgress,
-        Boolean Completed,
+        string etude = null,
+        bool notStarted = default,
+        bool started = default,
+        bool playing = default,
+        bool completionInProgress = default,
+        bool completed = default,
         bool negate = false)
     {
-      builder.Validate(NotStarted);
-      builder.Validate(Started);
-      builder.Validate(Playing);
-      builder.Validate(CompletionInProgress);
-      builder.Validate(Completed);
-      
       var element = ElementTool.Create<EtudeStatus>();
-      element.m_Etude = BlueprintTool.GetRef<BlueprintEtudeReference>(m_Etude);
-      element.NotStarted = NotStarted;
-      element.Started = Started;
-      element.Playing = Playing;
-      element.CompletionInProgress = CompletionInProgress;
-      element.Completed = Completed;
+      element.m_Etude = BlueprintTool.GetRef<BlueprintEtudeReference>(etude);
+      element.NotStarted = notStarted;
+      element.Started = started;
+      element.Playing = playing;
+      element.CompletionInProgress = completionInProgress;
+      element.Completed = completed;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -393,23 +359,20 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="FlagInRange"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Flag"><see cref="BlueprintUnlockableFlag"/></param>
+    /// <param name="flag"><see cref="BlueprintUnlockableFlag"/></param>
     [Generated]
     [Implements(typeof(FlagInRange))]
-    public static ConditionsBuilder AddFlagInRange(
+    public static ConditionsBuilder FlagInRange(
         this ConditionsBuilder builder,
-        string m_Flag,
-        Int32 MinValue,
-        Int32 MaxValue,
+        string flag = null,
+        int minValue = default,
+        int maxValue = default,
         bool negate = false)
     {
-      builder.Validate(MinValue);
-      builder.Validate(MaxValue);
-      
       var element = ElementTool.Create<FlagInRange>();
-      element.m_Flag = BlueprintTool.GetRef<BlueprintUnlockableFlagReference>(m_Flag);
-      element.MinValue = MinValue;
-      element.MaxValue = MaxValue;
+      element.m_Flag = BlueprintTool.GetRef<BlueprintUnlockableFlagReference>(flag);
+      element.MinValue = minValue;
+      element.MaxValue = maxValue;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -418,26 +381,20 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="FlagUnlocked"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_ConditionFlag"><see cref="BlueprintUnlockableFlag"/></param>
+    /// <param name="conditionFlag"><see cref="BlueprintUnlockableFlag"/></param>
     [Generated]
     [Implements(typeof(FlagUnlocked))]
-    public static ConditionsBuilder AddFlagUnlocked(
+    public static ConditionsBuilder FlagUnlocked(
         this ConditionsBuilder builder,
-        string m_ConditionFlag,
-        Boolean ExceptSpecifiedValues,
-        List<Int32> SpecifiedValues,
+        string conditionFlag = null,
+        bool exceptSpecifiedValues = default,
+        List<int> specifiedValues = null,
         bool negate = false)
     {
-      builder.Validate(ExceptSpecifiedValues);
-      foreach (var item in SpecifiedValues)
-      {
-        builder.Validate(item);
-      }
-      
       var element = ElementTool.Create<FlagUnlocked>();
-      element.m_ConditionFlag = BlueprintTool.GetRef<BlueprintUnlockableFlagReference>(m_ConditionFlag);
-      element.ExceptSpecifiedValues = ExceptSpecifiedValues;
-      element.SpecifiedValues = SpecifiedValues;
+      element.m_ConditionFlag = BlueprintTool.GetRef<BlueprintUnlockableFlagReference>(conditionFlag);
+      element.ExceptSpecifiedValues = exceptSpecifiedValues;
+      element.SpecifiedValues = specifiedValues;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -447,11 +404,10 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// </summary>
     [Generated]
     [Implements(typeof(IsLegendPathSelected))]
-    public static ConditionsBuilder AddIsLegendPathSelected(
+    public static ConditionsBuilder IsLegendPathSelected(
         this ConditionsBuilder builder,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<IsLegendPathSelected>();
       element.Not = negate;
       return builder.Add(element);
@@ -462,18 +418,13 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// </summary>
     [Generated]
     [Implements(typeof(MonthFromList))]
-    public static ConditionsBuilder AddMonthFromList(
+    public static ConditionsBuilder MonthFromList(
         this ConditionsBuilder builder,
-        Int32[] Months,
+        int[] months = null,
         bool negate = false)
     {
-      foreach (var item in Months)
-      {
-        builder.Validate(item);
-      }
-      
       var element = ElementTool.Create<MonthFromList>();
-      element.Months = Months;
+      element.Months = months;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -482,20 +433,18 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="ObjectiveStatus"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_QuestObjective"><see cref="BlueprintQuestObjective"/></param>
+    /// <param name="questObjective"><see cref="BlueprintQuestObjective"/></param>
     [Generated]
     [Implements(typeof(ObjectiveStatus))]
-    public static ConditionsBuilder AddObjectiveStatus(
+    public static ConditionsBuilder ObjectiveStatus(
         this ConditionsBuilder builder,
-        string m_QuestObjective,
-        QuestObjectiveState State,
+        string questObjective = null,
+        QuestObjectiveState state = default,
         bool negate = false)
     {
-      builder.Validate(State);
-      
       var element = ElementTool.Create<ObjectiveStatus>();
-      element.m_QuestObjective = BlueprintTool.GetRef<BlueprintQuestObjectiveReference>(m_QuestObjective);
-      element.State = State;
+      element.m_QuestObjective = BlueprintTool.GetRef<BlueprintQuestObjectiveReference>(questObjective);
+      element.State = state;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -505,15 +454,13 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// </summary>
     [Generated]
     [Implements(typeof(PlayerAlignmentIs))]
-    public static ConditionsBuilder AddPlayerAlignmentIs(
+    public static ConditionsBuilder PlayerAlignmentIs(
         this ConditionsBuilder builder,
-        AlignmentMaskType Alignment,
+        AlignmentMaskType alignment = default,
         bool negate = false)
     {
-      builder.Validate(Alignment);
-      
       var element = ElementTool.Create<PlayerAlignmentIs>();
-      element.Alignment = Alignment;
+      element.Alignment = alignment;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -523,11 +470,10 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// </summary>
     [Generated]
     [Implements(typeof(PlayerHasNoCharactersOnRoster))]
-    public static ConditionsBuilder AddPlayerHasNoCharactersOnRoster(
+    public static ConditionsBuilder PlayerHasNoCharactersOnRoster(
         this ConditionsBuilder builder,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<PlayerHasNoCharactersOnRoster>();
       element.Not = negate;
       return builder.Add(element);
@@ -538,11 +484,10 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// </summary>
     [Generated]
     [Implements(typeof(PlayerHasRecruitsOnRoster))]
-    public static ConditionsBuilder AddPlayerHasRecruitsOnRoster(
+    public static ConditionsBuilder PlayerHasRecruitsOnRoster(
         this ConditionsBuilder builder,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<PlayerHasRecruitsOnRoster>();
       element.Not = negate;
       return builder.Add(element);
@@ -552,23 +497,21 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="PlayerSignificantClassIs"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_CharacterClass"><see cref="BlueprintCharacterClass"/></param>
-    /// <param name="m_CharacterClassGroup"><see cref="BlueprintCharacterClassGroup"/></param>
+    /// <param name="characterClass"><see cref="BlueprintCharacterClass"/></param>
+    /// <param name="characterClassGroup"><see cref="BlueprintCharacterClassGroup"/></param>
     [Generated]
     [Implements(typeof(PlayerSignificantClassIs))]
-    public static ConditionsBuilder AddPlayerSignificantClassIs(
+    public static ConditionsBuilder PlayerSignificantClassIs(
         this ConditionsBuilder builder,
-        Boolean CheckGroup,
-        string m_CharacterClass,
-        string m_CharacterClassGroup,
+        bool checkGroup = default,
+        string characterClass = null,
+        string characterClassGroup = null,
         bool negate = false)
     {
-      builder.Validate(CheckGroup);
-      
       var element = ElementTool.Create<PlayerSignificantClassIs>();
-      element.CheckGroup = CheckGroup;
-      element.m_CharacterClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(m_CharacterClass);
-      element.m_CharacterClassGroup = BlueprintTool.GetRef<BlueprintCharacterClassGroupReference>(m_CharacterClassGroup);
+      element.CheckGroup = checkGroup;
+      element.m_CharacterClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(characterClass);
+      element.m_CharacterClassGroup = BlueprintTool.GetRef<BlueprintCharacterClassGroupReference>(characterClassGroup);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -577,23 +520,21 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="PlayerTopClassIs"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_CharacterClass"><see cref="BlueprintCharacterClass"/></param>
-    /// <param name="m_CharacterClassGroup"><see cref="BlueprintCharacterClassGroup"/></param>
+    /// <param name="characterClass"><see cref="BlueprintCharacterClass"/></param>
+    /// <param name="characterClassGroup"><see cref="BlueprintCharacterClassGroup"/></param>
     [Generated]
     [Implements(typeof(PlayerTopClassIs))]
-    public static ConditionsBuilder AddPlayerTopClassIs(
+    public static ConditionsBuilder PlayerTopClassIs(
         this ConditionsBuilder builder,
-        Boolean CheckGroup,
-        string m_CharacterClass,
-        string m_CharacterClassGroup,
+        bool checkGroup = default,
+        string characterClass = null,
+        string characterClassGroup = null,
         bool negate = false)
     {
-      builder.Validate(CheckGroup);
-      
       var element = ElementTool.Create<PlayerTopClassIs>();
-      element.CheckGroup = CheckGroup;
-      element.m_CharacterClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(m_CharacterClass);
-      element.m_CharacterClassGroup = BlueprintTool.GetRef<BlueprintCharacterClassGroupReference>(m_CharacterClassGroup);
+      element.CheckGroup = checkGroup;
+      element.m_CharacterClass = BlueprintTool.GetRef<BlueprintCharacterClassReference>(characterClass);
+      element.m_CharacterClassGroup = BlueprintTool.GetRef<BlueprintCharacterClassGroupReference>(characterClassGroup);
       element.Not = negate;
       return builder.Add(element);
     }
@@ -602,20 +543,18 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="QuestStatus"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Quest"><see cref="BlueprintQuest"/></param>
+    /// <param name="quest"><see cref="BlueprintQuest"/></param>
     [Generated]
     [Implements(typeof(QuestStatus))]
-    public static ConditionsBuilder AddQuestStatus(
+    public static ConditionsBuilder QuestStatus(
         this ConditionsBuilder builder,
-        string m_Quest,
-        QuestState State,
+        string quest = null,
+        QuestState state = default,
         bool negate = false)
     {
-      builder.Validate(State);
-      
       var element = ElementTool.Create<QuestStatus>();
-      element.m_Quest = BlueprintTool.GetRef<BlueprintQuestReference>(m_Quest);
-      element.State = State;
+      element.m_Quest = BlueprintTool.GetRef<BlueprintQuestReference>(quest);
+      element.State = state;
       element.Not = negate;
       return builder.Add(element);
     }
@@ -624,17 +563,16 @@ namespace BlueprintCore.Conditions.Builder.MiscEx
     /// Adds <see cref="RomanceLocked"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Romance"><see cref="BlueprintRomanceCounter"/></param>
+    /// <param name="romance"><see cref="BlueprintRomanceCounter"/></param>
     [Generated]
     [Implements(typeof(RomanceLocked))]
-    public static ConditionsBuilder AddRomanceLocked(
+    public static ConditionsBuilder RomanceLocked(
         this ConditionsBuilder builder,
-        string m_Romance,
+        string romance = null,
         bool negate = false)
     {
-      
       var element = ElementTool.Create<RomanceLocked>();
-      element.m_Romance = BlueprintTool.GetRef<BlueprintRomanceCounterReference>(m_Romance);
+      element.m_Romance = BlueprintTool.GetRef<BlueprintRomanceCounterReference>(romance);
       element.Not = negate;
       return builder.Add(element);
     }

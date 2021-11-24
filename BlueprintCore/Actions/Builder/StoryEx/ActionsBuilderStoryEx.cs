@@ -1,5 +1,3 @@
-using BlueprintCore.Actions.Builder;
-using BlueprintCore.Blueprints;
 using BlueprintCore.Utils;
 using Kingmaker.AreaLogic;
 using Kingmaker.AreaLogic.Etudes;
@@ -13,7 +11,6 @@ using Kingmaker.Globalmap.Blueprints;
 using Kingmaker.Localization;
 using Kingmaker.UI;
 using Kingmaker.UnitLogic.Alignments;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -98,54 +95,39 @@ namespace BlueprintCore.Actions.Builder.StoryEx
 
     //----- Auto Generated -----//
 
-
-
     /// <summary>
     /// Adds <see cref="AlignmentSelector"/> (Auto Generated)
     /// </summary>
     [Generated]
     [Implements(typeof(AlignmentSelector))]
-    public static ActionsBuilder AddAlignmentSelector(
+    public static ActionsBuilder AlignmentSelector(
         this ActionsBuilder builder,
-        Boolean SelectClosest,
-        AlignmentSelector.ActionAndCondition LawfulGood,
-        AlignmentSelector.ActionAndCondition NeutralGood,
-        AlignmentSelector.ActionAndCondition ChaoticGood,
-        AlignmentSelector.ActionAndCondition LawfulNeutral,
-        AlignmentSelector.ActionAndCondition TrueNeutral,
-        AlignmentSelector.ActionAndCondition ChaoticNeutral,
-        AlignmentSelector.ActionAndCondition LawfulEvil,
-        AlignmentSelector.ActionAndCondition NeutralEvil,
-        AlignmentSelector.ActionAndCondition ChaoticEvil,
-        Dictionary<Alignment,AlignmentSelector.ActionAndCondition> m_ActionsByAlignment)
+        AlignmentSelector.ActionAndCondition lawfulGood,
+        AlignmentSelector.ActionAndCondition neutralGood,
+        AlignmentSelector.ActionAndCondition chaoticGood,
+        AlignmentSelector.ActionAndCondition lawfulNeutral,
+        AlignmentSelector.ActionAndCondition trueNeutral,
+        AlignmentSelector.ActionAndCondition chaoticNeutral,
+        AlignmentSelector.ActionAndCondition lawfulEvil,
+        AlignmentSelector.ActionAndCondition neutralEvil,
+        AlignmentSelector.ActionAndCondition chaoticEvil,
+        Dictionary<Alignment,AlignmentSelector.ActionAndCondition> actionsByAlignment,
+        bool selectClosest = default)
     {
-      builder.Validate(SelectClosest);
-      builder.Validate(LawfulGood);
-      builder.Validate(NeutralGood);
-      builder.Validate(ChaoticGood);
-      builder.Validate(LawfulNeutral);
-      builder.Validate(TrueNeutral);
-      builder.Validate(ChaoticNeutral);
-      builder.Validate(LawfulEvil);
-      builder.Validate(NeutralEvil);
-      builder.Validate(ChaoticEvil);
-      foreach (var item in m_ActionsByAlignment)
-      {
-        builder.Validate(item);
-      }
-      
+      builder.Validate(actionsByAlignment);
+    
       var element = ElementTool.Create<AlignmentSelector>();
-      element.SelectClosest = SelectClosest;
-      element.LawfulGood = LawfulGood;
-      element.NeutralGood = NeutralGood;
-      element.ChaoticGood = ChaoticGood;
-      element.LawfulNeutral = LawfulNeutral;
-      element.TrueNeutral = TrueNeutral;
-      element.ChaoticNeutral = ChaoticNeutral;
-      element.LawfulEvil = LawfulEvil;
-      element.NeutralEvil = NeutralEvil;
-      element.ChaoticEvil = ChaoticEvil;
-      element.m_ActionsByAlignment = m_ActionsByAlignment;
+      element.SelectClosest = selectClosest;
+      element.LawfulGood = lawfulGood;
+      element.NeutralGood = neutralGood;
+      element.ChaoticGood = chaoticGood;
+      element.LawfulNeutral = lawfulNeutral;
+      element.TrueNeutral = trueNeutral;
+      element.ChaoticNeutral = chaoticNeutral;
+      element.LawfulEvil = lawfulEvil;
+      element.NeutralEvil = neutralEvil;
+      element.ChaoticEvil = chaoticEvil;
+      element.m_ActionsByAlignment = actionsByAlignment;
       return builder.Add(element);
     }
 
@@ -154,7 +136,7 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(DismissAllCompanions))]
-    public static ActionsBuilder AddDismissAllCompanions(this ActionsBuilder builder)
+    public static ActionsBuilder DismissAllCompanions(this ActionsBuilder builder)
     {
       return builder.Add(ElementTool.Create<DismissAllCompanions>());
     }
@@ -163,16 +145,15 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="GiveObjective"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Objective"><see cref="BlueprintQuestObjective"/></param>
+    /// <param name="objective"><see cref="BlueprintQuestObjective"/></param>
     [Generated]
     [Implements(typeof(GiveObjective))]
-    public static ActionsBuilder AddGiveObjective(
+    public static ActionsBuilder GiveObjective(
         this ActionsBuilder builder,
-        string m_Objective)
+        string objective = null)
     {
-      
       var element = ElementTool.Create<GiveObjective>();
-      element.m_Objective = BlueprintTool.GetRef<BlueprintQuestObjectiveReference>(m_Objective);
+      element.m_Objective = BlueprintTool.GetRef<BlueprintQuestObjectiveReference>(objective);
       return builder.Add(element);
     }
 
@@ -181,20 +162,18 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(HideUnit))]
-    public static ActionsBuilder AddHideUnit(
+    public static ActionsBuilder HideUnit(
         this ActionsBuilder builder,
-        UnitEvaluator Target,
-        Boolean Unhide,
-        Boolean Fade)
+        UnitEvaluator target,
+        bool unhide = default,
+        bool fade = default)
     {
-      builder.Validate(Target);
-      builder.Validate(Unhide);
-      builder.Validate(Fade);
-      
+      builder.Validate(target);
+    
       var element = ElementTool.Create<HideUnit>();
-      element.Target = Target;
-      element.Unhide = Unhide;
-      element.Fade = Fade;
+      element.Target = target;
+      element.Unhide = unhide;
+      element.Fade = fade;
       return builder.Add(element);
     }
 
@@ -203,17 +182,16 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(HideWeapons))]
-    public static ActionsBuilder AddHideWeapons(
+    public static ActionsBuilder HideWeapons(
         this ActionsBuilder builder,
-        UnitEvaluator Target,
-        Boolean Hide)
+        UnitEvaluator target,
+        bool hide = default)
     {
-      builder.Validate(Target);
-      builder.Validate(Hide);
-      
+      builder.Validate(target);
+    
       var element = ElementTool.Create<HideWeapons>();
-      element.Target = Target;
-      element.Hide = Hide;
+      element.Target = target;
+      element.Hide = hide;
       return builder.Add(element);
     }
 
@@ -221,22 +199,21 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="IncrementFlagValue"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Flag"><see cref="BlueprintUnlockableFlag"/></param>
+    /// <param name="flag"><see cref="BlueprintUnlockableFlag"/></param>
     [Generated]
     [Implements(typeof(IncrementFlagValue))]
-    public static ActionsBuilder AddIncrementFlagValue(
+    public static ActionsBuilder IncrementFlagValue(
         this ActionsBuilder builder,
-        string m_Flag,
-        IntEvaluator Value,
-        Boolean UnlockIfNot)
+        IntEvaluator value,
+        string flag = null,
+        bool unlockIfNot = default)
     {
-      builder.Validate(Value);
-      builder.Validate(UnlockIfNot);
-      
+      builder.Validate(value);
+    
       var element = ElementTool.Create<IncrementFlagValue>();
-      element.m_Flag = BlueprintTool.GetRef<BlueprintUnlockableFlagReference>(m_Flag);
-      element.Value = Value;
-      element.UnlockIfNot = UnlockIfNot;
+      element.m_Flag = BlueprintTool.GetRef<BlueprintUnlockableFlagReference>(flag);
+      element.Value = value;
+      element.UnlockIfNot = unlockIfNot;
       return builder.Add(element);
     }
 
@@ -245,14 +222,14 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(InterruptAllActions))]
-    public static ActionsBuilder AddInterruptAllActions(
+    public static ActionsBuilder InterruptAllActions(
         this ActionsBuilder builder,
-        UnitEvaluator m_Unit)
+        UnitEvaluator unit)
     {
-      builder.Validate(m_Unit);
-      
+      builder.Validate(unit);
+    
       var element = ElementTool.Create<InterruptAllActions>();
-      element.m_Unit = m_Unit;
+      element.m_Unit = unit;
       return builder.Add(element);
     }
 
@@ -261,20 +238,18 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(LockAlignment))]
-    public static ActionsBuilder AddLockAlignment(
+    public static ActionsBuilder LockAlignment(
         this ActionsBuilder builder,
-        UnitEvaluator Unit,
-        AlignmentMaskType AlignmentMask,
-        Alignment TargetAlignment)
+        UnitEvaluator unit,
+        AlignmentMaskType alignmentMask = default,
+        Alignment targetAlignment = default)
     {
-      builder.Validate(Unit);
-      builder.Validate(AlignmentMask);
-      builder.Validate(TargetAlignment);
-      
+      builder.Validate(unit);
+    
       var element = ElementTool.Create<LockAlignment>();
-      element.Unit = Unit;
-      element.AlignmentMask = AlignmentMask;
-      element.TargetAlignment = TargetAlignment;
+      element.Unit = unit;
+      element.AlignmentMask = alignmentMask;
+      element.TargetAlignment = targetAlignment;
       return builder.Add(element);
     }
 
@@ -282,16 +257,15 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="LockFlag"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Flag"><see cref="BlueprintUnlockableFlag"/></param>
+    /// <param name="flag"><see cref="BlueprintUnlockableFlag"/></param>
     [Generated]
     [Implements(typeof(LockFlag))]
-    public static ActionsBuilder AddLockFlag(
+    public static ActionsBuilder LockFlag(
         this ActionsBuilder builder,
-        string m_Flag)
+        string flag = null)
     {
-      
       var element = ElementTool.Create<LockFlag>();
-      element.m_Flag = BlueprintTool.GetRef<BlueprintUnlockableFlagReference>(m_Flag);
+      element.m_Flag = BlueprintTool.GetRef<BlueprintUnlockableFlagReference>(flag);
       return builder.Add(element);
     }
 
@@ -299,16 +273,15 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="LockRomance"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Romance"><see cref="BlueprintRomanceCounter"/></param>
+    /// <param name="romance"><see cref="BlueprintRomanceCounter"/></param>
     [Generated]
     [Implements(typeof(LockRomance))]
-    public static ActionsBuilder AddLockRomance(
+    public static ActionsBuilder LockRomance(
         this ActionsBuilder builder,
-        string m_Romance)
+        string romance = null)
     {
-      
       var element = ElementTool.Create<LockRomance>();
-      element.m_Romance = BlueprintTool.GetRef<BlueprintRomanceCounterReference>(m_Romance);
+      element.m_Romance = BlueprintTool.GetRef<BlueprintRomanceCounterReference>(romance);
       return builder.Add(element);
     }
 
@@ -316,16 +289,15 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="MarkAnswersSelected"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Answers"><see cref="BlueprintAnswer"/></param>
+    /// <param name="answers"><see cref="BlueprintAnswer"/></param>
     [Generated]
     [Implements(typeof(MarkAnswersSelected))]
-    public static ActionsBuilder AddMarkAnswersSelected(
+    public static ActionsBuilder MarkAnswersSelected(
         this ActionsBuilder builder,
-        string[] m_Answers)
+        string[] answers = null)
     {
-      
       var element = ElementTool.Create<MarkAnswersSelected>();
-      element.m_Answers = m_Answers.Select(bp => BlueprintTool.GetRef<BlueprintAnswerReference>(bp)).ToArray();
+      element.m_Answers = answers.Select(name => BlueprintTool.GetRef<BlueprintAnswerReference>(name)).ToArray();
       return builder.Add(element);
     }
 
@@ -333,16 +305,15 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="MarkCuesSeen"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Cues"><see cref="BlueprintCueBase"/></param>
+    /// <param name="cues"><see cref="BlueprintCueBase"/></param>
     [Generated]
     [Implements(typeof(MarkCuesSeen))]
-    public static ActionsBuilder AddMarkCuesSeen(
+    public static ActionsBuilder MarkCuesSeen(
         this ActionsBuilder builder,
-        string[] m_Cues)
+        string[] cues = null)
     {
-      
       var element = ElementTool.Create<MarkCuesSeen>();
-      element.m_Cues = m_Cues.Select(bp => BlueprintTool.GetRef<BlueprintCueBaseReference>(bp)).ToArray();
+      element.m_Cues = cues.Select(name => BlueprintTool.GetRef<BlueprintCueBaseReference>(name)).ToArray();
       return builder.Add(element);
     }
 
@@ -350,19 +321,18 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="MoveAzataIslandToLocation"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_GlobalMap"><see cref="BlueprintGlobalMap"/></param>
-    /// <param name="m_Location"><see cref="BlueprintGlobalMapPoint"/></param>
+    /// <param name="globalMap"><see cref="BlueprintGlobalMap"/></param>
+    /// <param name="location"><see cref="BlueprintGlobalMapPoint"/></param>
     [Generated]
     [Implements(typeof(MoveAzataIslandToLocation))]
-    public static ActionsBuilder AddMoveAzataIslandToLocation(
+    public static ActionsBuilder MoveAzataIslandToLocation(
         this ActionsBuilder builder,
-        string m_GlobalMap,
-        string m_Location)
+        string globalMap = null,
+        string location = null)
     {
-      
       var element = ElementTool.Create<MoveAzataIslandToLocation>();
-      element.m_GlobalMap = BlueprintTool.GetRef<BlueprintGlobalMap.Reference>(m_GlobalMap);
-      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(m_Location);
+      element.m_GlobalMap = BlueprintTool.GetRef<BlueprintGlobalMap.Reference>(globalMap);
+      element.m_Location = BlueprintTool.GetRef<BlueprintGlobalMapPoint.Reference>(location);
       return builder.Add(element);
     }
 
@@ -370,16 +340,15 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="MoveAzataIslandToNearestCrossroad"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_GlobalMap"><see cref="BlueprintGlobalMap"/></param>
+    /// <param name="globalMap"><see cref="BlueprintGlobalMap"/></param>
     [Generated]
     [Implements(typeof(MoveAzataIslandToNearestCrossroad))]
-    public static ActionsBuilder AddMoveAzataIslandToNearestCrossroad(
+    public static ActionsBuilder MoveAzataIslandToNearestCrossroad(
         this ActionsBuilder builder,
-        string m_GlobalMap)
+        string globalMap = null)
     {
-      
       var element = ElementTool.Create<MoveAzataIslandToNearestCrossroad>();
-      element.m_GlobalMap = BlueprintTool.GetRef<BlueprintGlobalMap.Reference>(m_GlobalMap);
+      element.m_GlobalMap = BlueprintTool.GetRef<BlueprintGlobalMap.Reference>(globalMap);
       return builder.Add(element);
     }
 
@@ -388,20 +357,20 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(OverrideUnitReturnPosition))]
-    public static ActionsBuilder AddOverrideUnitReturnPosition(
+    public static ActionsBuilder OverrideUnitReturnPosition(
         this ActionsBuilder builder,
-        UnitEvaluator Unit,
-        PositionEvaluator Position,
-        FloatEvaluator Orientation)
+        UnitEvaluator unit,
+        PositionEvaluator position,
+        FloatEvaluator orientation)
     {
-      builder.Validate(Unit);
-      builder.Validate(Position);
-      builder.Validate(Orientation);
-      
+      builder.Validate(unit);
+      builder.Validate(position);
+      builder.Validate(orientation);
+    
       var element = ElementTool.Create<OverrideUnitReturnPosition>();
-      element.Unit = Unit;
-      element.Position = Position;
-      element.Orientation = Orientation;
+      element.Unit = unit;
+      element.Position = position;
+      element.Orientation = orientation;
       return builder.Add(element);
     }
 
@@ -410,7 +379,7 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(PartyMembersAttach))]
-    public static ActionsBuilder AddPartyMembersAttach(this ActionsBuilder builder)
+    public static ActionsBuilder PartyMembersAttach(this ActionsBuilder builder)
     {
       return builder.Add(ElementTool.Create<PartyMembersAttach>());
     }
@@ -419,24 +388,21 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="PartyMembersDetach"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_DetachAllExcept"><see cref="BlueprintUnit"/></param>
+    /// <param name="detachAllExcept"><see cref="BlueprintUnit"/></param>
     [Generated]
     [Implements(typeof(PartyMembersDetach))]
-    public static ActionsBuilder AddPartyMembersDetach(
+    public static ActionsBuilder PartyMembersDetach(
         this ActionsBuilder builder,
-        string[] m_DetachAllExcept,
-        Boolean m_RestrictPartySize,
-        Int32 m_PartySize,
-        ActionsBuilder AfterDetach)
+        string[] detachAllExcept = null,
+        bool restrictPartySize = default,
+        int partySize = default,
+        ActionsBuilder afterDetach = null)
     {
-      builder.Validate(m_RestrictPartySize);
-      builder.Validate(m_PartySize);
-      
       var element = ElementTool.Create<PartyMembersDetach>();
-      element.m_DetachAllExcept = m_DetachAllExcept.Select(bp => BlueprintTool.GetRef<BlueprintUnitReference>(bp)).ToArray();
-      element.m_RestrictPartySize = m_RestrictPartySize;
-      element.m_PartySize = m_PartySize;
-      element.AfterDetach = AfterDetach.Build();
+      element.m_DetachAllExcept = detachAllExcept.Select(name => BlueprintTool.GetRef<BlueprintUnitReference>(name)).ToArray();
+      element.m_RestrictPartySize = restrictPartySize;
+      element.m_PartySize = partySize;
+      element.AfterDetach = afterDetach?.Build() ?? Constants.Empty.Actions;
       return builder.Add(element);
     }
 
@@ -445,25 +411,20 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(PartyMembersDetachEvaluated))]
-    public static ActionsBuilder AddPartyMembersDetachEvaluated(
+    public static ActionsBuilder PartyMembersDetachEvaluated(
         this ActionsBuilder builder,
-        UnitEvaluator[] DetachThese,
-        ActionsBuilder AfterDetach,
-        Boolean m_RestrictPartySize,
-        Int32 m_PartySize)
+        UnitEvaluator[] detachThese = null,
+        ActionsBuilder afterDetach = null,
+        bool restrictPartySize = default,
+        int partySize = default)
     {
-      foreach (var item in DetachThese)
-      {
-        builder.Validate(item);
-      }
-      builder.Validate(m_RestrictPartySize);
-      builder.Validate(m_PartySize);
-      
+      builder.Validate(detachThese);
+    
       var element = ElementTool.Create<PartyMembersDetachEvaluated>();
-      element.DetachThese = DetachThese;
-      element.AfterDetach = AfterDetach.Build();
-      element.m_RestrictPartySize = m_RestrictPartySize;
-      element.m_PartySize = m_PartySize;
+      element.DetachThese = detachThese;
+      element.AfterDetach = afterDetach?.Build() ?? Constants.Empty.Actions;
+      element.m_RestrictPartySize = restrictPartySize;
+      element.m_PartySize = partySize;
       return builder.Add(element);
     }
 
@@ -472,7 +433,7 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(PartyMembersSwapAttachedAndDetached))]
-    public static ActionsBuilder AddPartyMembersSwapAttachedAndDetached(this ActionsBuilder builder)
+    public static ActionsBuilder PartyMembersSwapAttachedAndDetached(this ActionsBuilder builder)
     {
       return builder.Add(ElementTool.Create<PartyMembersSwapAttachedAndDetached>());
     }
@@ -482,27 +443,22 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(Recruit))]
-    public static ActionsBuilder AddRecruit(
+    public static ActionsBuilder Recruit(
         this ActionsBuilder builder,
-        Recruit.RecruitData[] Recruited,
-        Boolean AddToParty,
-        Boolean MatchPlayerXpExactly,
-        ActionsBuilder OnRecruit,
-        ActionsBuilder OnRecruitImmediate)
+        Recruit.RecruitData[] recruited = null,
+        bool addToParty = default,
+        bool matchPlayerXpExactly = default,
+        ActionsBuilder onRecruit = null,
+        ActionsBuilder onRecruitImmediate = null)
     {
-      foreach (var item in Recruited)
-      {
-        builder.Validate(item);
-      }
-      builder.Validate(AddToParty);
-      builder.Validate(MatchPlayerXpExactly);
-      
+      builder.Validate(recruited);
+    
       var element = ElementTool.Create<Recruit>();
-      element.Recruited = Recruited;
-      element.AddToParty = AddToParty;
-      element.MatchPlayerXpExactly = MatchPlayerXpExactly;
-      element.OnRecruit = OnRecruit.Build();
-      element.OnRecruitImmediate = OnRecruitImmediate.Build();
+      element.Recruited = recruited;
+      element.AddToParty = addToParty;
+      element.MatchPlayerXpExactly = matchPlayerXpExactly;
+      element.OnRecruit = onRecruit?.Build() ?? Constants.Empty.Actions;
+      element.OnRecruitImmediate = onRecruitImmediate?.Build() ?? Constants.Empty.Actions;
       return builder.Add(element);
     }
 
@@ -510,18 +466,17 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="RecruitInactive"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_CompanionBlueprint"><see cref="BlueprintUnit"/></param>
+    /// <param name="companionBlueprint"><see cref="BlueprintUnit"/></param>
     [Generated]
     [Implements(typeof(RecruitInactive))]
-    public static ActionsBuilder AddRecruitInactive(
+    public static ActionsBuilder RecruitInactive(
         this ActionsBuilder builder,
-        string m_CompanionBlueprint,
-        ActionsBuilder OnRecruit)
+        string companionBlueprint = null,
+        ActionsBuilder onRecruit = null)
     {
-      
       var element = ElementTool.Create<RecruitInactive>();
-      element.m_CompanionBlueprint = BlueprintTool.GetRef<BlueprintUnitReference>(m_CompanionBlueprint);
-      element.OnRecruit = OnRecruit.Build();
+      element.m_CompanionBlueprint = BlueprintTool.GetRef<BlueprintUnitReference>(companionBlueprint);
+      element.OnRecruit = onRecruit?.Build() ?? Constants.Empty.Actions;
       return builder.Add(element);
     }
 
@@ -530,14 +485,14 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(RelockInteraction))]
-    public static ActionsBuilder AddRelockInteraction(
+    public static ActionsBuilder RelockInteraction(
         this ActionsBuilder builder,
-        MapObjectEvaluator MapObject)
+        MapObjectEvaluator mapObject)
     {
-      builder.Validate(MapObject);
-      
+      builder.Validate(mapObject);
+    
       var element = ElementTool.Create<RelockInteraction>();
-      element.MapObject = MapObject;
+      element.MapObject = mapObject;
       return builder.Add(element);
     }
 
@@ -546,14 +501,12 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(RemoveMythicLevels))]
-    public static ActionsBuilder AddRemoveMythicLevels(
+    public static ActionsBuilder RemoveMythicLevels(
         this ActionsBuilder builder,
-        Int32 Levels)
+        int levels = default)
     {
-      builder.Validate(Levels);
-      
       var element = ElementTool.Create<RemoveMythicLevels>();
-      element.Levels = Levels;
+      element.Levels = levels;
       return builder.Add(element);
     }
 
@@ -562,7 +515,7 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(ReplaceAllMythicLevelsWithMythicHeroLevels))]
-    public static ActionsBuilder AddReplaceAllMythicLevelsWithMythicHeroLevels(this ActionsBuilder builder)
+    public static ActionsBuilder ReplaceAllMythicLevelsWithMythicHeroLevels(this ActionsBuilder builder)
     {
       return builder.Add(ElementTool.Create<ReplaceAllMythicLevelsWithMythicHeroLevels>());
     }
@@ -571,22 +524,22 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="ReplaceFeatureInProgression"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Remove"><see cref="BlueprintFeature"/></param>
-    /// <param name="m_Add"><see cref="BlueprintFeature"/></param>
+    /// <param name="remove"><see cref="BlueprintFeature"/></param>
+    /// <param name="add"><see cref="BlueprintFeature"/></param>
     [Generated]
     [Implements(typeof(ReplaceFeatureInProgression))]
-    public static ActionsBuilder AddReplaceFeatureInProgression(
+    public static ActionsBuilder ReplaceFeatureInProgression(
         this ActionsBuilder builder,
-        UnitEvaluator Unit,
-        string m_Remove,
-        string m_Add)
+        UnitEvaluator unit,
+        string remove = null,
+        string add = null)
     {
-      builder.Validate(Unit);
-      
+      builder.Validate(unit);
+    
       var element = ElementTool.Create<ReplaceFeatureInProgression>();
-      element.Unit = Unit;
-      element.m_Remove = BlueprintTool.GetRef<BlueprintFeatureReference>(m_Remove);
-      element.m_Add = BlueprintTool.GetRef<BlueprintFeatureReference>(m_Add);
+      element.Unit = unit;
+      element.m_Remove = BlueprintTool.GetRef<BlueprintFeatureReference>(remove);
+      element.m_Add = BlueprintTool.GetRef<BlueprintFeatureReference>(add);
       return builder.Add(element);
     }
 
@@ -594,22 +547,21 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="ResetQuest"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Quest"><see cref="BlueprintQuest"/></param>
-    /// <param name="m_ObjectiveToStart"><see cref="BlueprintQuestObjective"/></param>
-    /// <param name="m_ObjectivesToReset"><see cref="BlueprintQuestObjective"/></param>
+    /// <param name="quest"><see cref="BlueprintQuest"/></param>
+    /// <param name="objectiveToStart"><see cref="BlueprintQuestObjective"/></param>
+    /// <param name="objectivesToReset"><see cref="BlueprintQuestObjective"/></param>
     [Generated]
     [Implements(typeof(ResetQuest))]
-    public static ActionsBuilder AddResetQuest(
+    public static ActionsBuilder ResetQuest(
         this ActionsBuilder builder,
-        string m_Quest,
-        string m_ObjectiveToStart,
-        string[] m_ObjectivesToReset)
+        string quest = null,
+        string objectiveToStart = null,
+        string[] objectivesToReset = null)
     {
-      
       var element = ElementTool.Create<ResetQuest>();
-      element.m_Quest = BlueprintTool.GetRef<BlueprintQuestReference>(m_Quest);
-      element.m_ObjectiveToStart = BlueprintTool.GetRef<BlueprintQuestObjectiveReference>(m_ObjectiveToStart);
-      element.m_ObjectivesToReset = m_ObjectivesToReset.Select(bp => BlueprintTool.GetRef<BlueprintQuestObjectiveReference>(bp)).ToArray();
+      element.m_Quest = BlueprintTool.GetRef<BlueprintQuestReference>(quest);
+      element.m_ObjectiveToStart = BlueprintTool.GetRef<BlueprintQuestObjectiveReference>(objectiveToStart);
+      element.m_ObjectivesToReset = objectivesToReset.Select(name => BlueprintTool.GetRef<BlueprintQuestObjectiveReference>(name)).ToArray();
       return builder.Add(element);
     }
 
@@ -617,16 +569,15 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="ResetQuestObjective"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Objective"><see cref="BlueprintQuestObjective"/></param>
+    /// <param name="objective"><see cref="BlueprintQuestObjective"/></param>
     [Generated]
     [Implements(typeof(ResetQuestObjective))]
-    public static ActionsBuilder AddResetQuestObjective(
+    public static ActionsBuilder ResetQuestObjective(
         this ActionsBuilder builder,
-        string m_Objective)
+        string objective = null)
     {
-      
       var element = ElementTool.Create<ResetQuestObjective>();
-      element.m_Objective = BlueprintTool.GetRef<BlueprintQuestObjectiveReference>(m_Objective);
+      element.m_Objective = BlueprintTool.GetRef<BlueprintQuestObjectiveReference>(objective);
       return builder.Add(element);
     }
 
@@ -635,17 +586,14 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(RespecCompanion))]
-    public static ActionsBuilder AddRespecCompanion(
+    public static ActionsBuilder RespecCompanion(
         this ActionsBuilder builder,
-        Boolean ForFree,
-        Boolean MatchPlayerXpExactly)
+        bool forFree = default,
+        bool matchPlayerXpExactly = default)
     {
-      builder.Validate(ForFree);
-      builder.Validate(MatchPlayerXpExactly);
-      
       var element = ElementTool.Create<RespecCompanion>();
-      element.ForFree = ForFree;
-      element.MatchPlayerXpExactly = MatchPlayerXpExactly;
+      element.ForFree = forFree;
+      element.MatchPlayerXpExactly = matchPlayerXpExactly;
       return builder.Add(element);
     }
 
@@ -653,19 +601,19 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="RomanceSetMaximum"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Romance"><see cref="BlueprintRomanceCounter"/></param>
+    /// <param name="romance"><see cref="BlueprintRomanceCounter"/></param>
     [Generated]
     [Implements(typeof(RomanceSetMaximum))]
-    public static ActionsBuilder AddRomanceSetMaximum(
+    public static ActionsBuilder RomanceSetMaximum(
         this ActionsBuilder builder,
-        string m_Romance,
-        IntEvaluator ValueEvaluator)
+        IntEvaluator valueEvaluator,
+        string romance = null)
     {
-      builder.Validate(ValueEvaluator);
-      
+      builder.Validate(valueEvaluator);
+    
       var element = ElementTool.Create<RomanceSetMaximum>();
-      element.m_Romance = BlueprintTool.GetRef<BlueprintRomanceCounterReference>(m_Romance);
-      element.ValueEvaluator = ValueEvaluator;
+      element.m_Romance = BlueprintTool.GetRef<BlueprintRomanceCounterReference>(romance);
+      element.ValueEvaluator = valueEvaluator;
       return builder.Add(element);
     }
 
@@ -673,19 +621,19 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="RomanceSetMinimum"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Romance"><see cref="BlueprintRomanceCounter"/></param>
+    /// <param name="romance"><see cref="BlueprintRomanceCounter"/></param>
     [Generated]
     [Implements(typeof(RomanceSetMinimum))]
-    public static ActionsBuilder AddRomanceSetMinimum(
+    public static ActionsBuilder RomanceSetMinimum(
         this ActionsBuilder builder,
-        string m_Romance,
-        IntEvaluator ValueEvaluator)
+        IntEvaluator valueEvaluator,
+        string romance = null)
     {
-      builder.Validate(ValueEvaluator);
-      
+      builder.Validate(valueEvaluator);
+    
       var element = ElementTool.Create<RomanceSetMinimum>();
-      element.m_Romance = BlueprintTool.GetRef<BlueprintRomanceCounterReference>(m_Romance);
-      element.ValueEvaluator = ValueEvaluator;
+      element.m_Romance = BlueprintTool.GetRef<BlueprintRomanceCounterReference>(romance);
+      element.ValueEvaluator = valueEvaluator;
       return builder.Add(element);
     }
 
@@ -694,14 +642,14 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(SetDialogPosition))]
-    public static ActionsBuilder AddSetDialogPosition(
+    public static ActionsBuilder SetDialogPosition(
         this ActionsBuilder builder,
-        PositionEvaluator Position)
+        PositionEvaluator position)
     {
-      builder.Validate(Position);
-      
+      builder.Validate(position);
+    
       var element = ElementTool.Create<SetDialogPosition>();
-      element.Position = Position;
+      element.Position = position;
       return builder.Add(element);
     }
 
@@ -710,14 +658,12 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(SetMythicLevelForMainCharacter))]
-    public static ActionsBuilder AddSetMythicLevelForMainCharacter(
+    public static ActionsBuilder SetMythicLevelForMainCharacter(
         this ActionsBuilder builder,
-        Int32 DesireLevel)
+        int desireLevel = default)
     {
-      builder.Validate(DesireLevel);
-      
       var element = ElementTool.Create<SetMythicLevelForMainCharacter>();
-      element.DesireLevel = DesireLevel;
+      element.DesireLevel = desireLevel;
       return builder.Add(element);
     }
 
@@ -725,22 +671,19 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="SetObjectiveStatus"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Objective"><see cref="BlueprintQuestObjective"/></param>
+    /// <param name="objective"><see cref="BlueprintQuestObjective"/></param>
     [Generated]
     [Implements(typeof(SetObjectiveStatus))]
-    public static ActionsBuilder AddSetObjectiveStatus(
+    public static ActionsBuilder SetObjectiveStatus(
         this ActionsBuilder builder,
-        SummonPoolCountTrigger.ObjectiveStatus Status,
-        string m_Objective,
-        Boolean StartObjectiveIfNone)
+        SummonPoolCountTrigger.ObjectiveStatus status = default,
+        string objective = null,
+        bool startObjectiveIfNone = default)
     {
-      builder.Validate(Status);
-      builder.Validate(StartObjectiveIfNone);
-      
       var element = ElementTool.Create<SetObjectiveStatus>();
-      element.Status = Status;
-      element.m_Objective = BlueprintTool.GetRef<BlueprintQuestObjectiveReference>(m_Objective);
-      element.StartObjectiveIfNone = StartObjectiveIfNone;
+      element.Status = status;
+      element.m_Objective = BlueprintTool.GetRef<BlueprintQuestObjectiveReference>(objective);
+      element.StartObjectiveIfNone = startObjectiveIfNone;
       return builder.Add(element);
     }
 
@@ -748,19 +691,19 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="SetPortrait"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Portrait"><see cref="BlueprintPortrait"/></param>
+    /// <param name="portrait"><see cref="BlueprintPortrait"/></param>
     [Generated]
     [Implements(typeof(SetPortrait))]
-    public static ActionsBuilder AddSetPortrait(
+    public static ActionsBuilder SetPortrait(
         this ActionsBuilder builder,
-        UnitEvaluator Unit,
-        string m_Portrait)
+        UnitEvaluator unit,
+        string portrait = null)
     {
-      builder.Validate(Unit);
-      
+      builder.Validate(unit);
+    
       var element = ElementTool.Create<SetPortrait>();
-      element.Unit = Unit;
-      element.m_Portrait = BlueprintTool.GetRef<BlueprintPortraitReference>(m_Portrait);
+      element.Unit = unit;
+      element.m_Portrait = BlueprintTool.GetRef<BlueprintPortraitReference>(portrait);
       return builder.Add(element);
     }
 
@@ -769,20 +712,19 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(ShiftAlignment))]
-    public static ActionsBuilder AddShiftAlignment(
+    public static ActionsBuilder ShiftAlignment(
         this ActionsBuilder builder,
-        UnitEvaluator Unit,
-        AlignmentShiftDirection Alignment,
-        IntEvaluator Amount)
+        UnitEvaluator unit,
+        IntEvaluator amount,
+        AlignmentShiftDirection alignment = default)
     {
-      builder.Validate(Unit);
-      builder.Validate(Alignment);
-      builder.Validate(Amount);
-      
+      builder.Validate(unit);
+      builder.Validate(amount);
+    
       var element = ElementTool.Create<ShiftAlignment>();
-      element.Unit = Unit;
-      element.Alignment = Alignment;
-      element.Amount = Amount;
+      element.Unit = unit;
+      element.Alignment = alignment;
+      element.Amount = amount;
       return builder.Add(element);
     }
 
@@ -791,21 +733,21 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(ShowDialogBox))]
-    public static ActionsBuilder AddShowDialogBox(
+    public static ActionsBuilder ShowDialogBox(
         this ActionsBuilder builder,
-        LocalizedString Text,
-        ParametrizedContextSetter Parameters,
-        ActionsBuilder OnAccept,
-        ActionsBuilder OnCancel)
+        ParametrizedContextSetter parameters,
+        LocalizedString text = null,
+        ActionsBuilder onAccept = null,
+        ActionsBuilder onCancel = null)
     {
-      builder.Validate(Text);
-      builder.Validate(Parameters);
-      
+      builder.Validate(text);
+      builder.Validate(parameters);
+    
       var element = ElementTool.Create<ShowDialogBox>();
-      element.Text = Text;
-      element.Parameters = Parameters;
-      element.OnAccept = OnAccept.Build();
-      element.OnCancel = OnCancel.Build();
+      element.Text = text ?? Constants.Empty.String;
+      element.Parameters = parameters;
+      element.OnAccept = onAccept?.Build() ?? Constants.Empty.Actions;
+      element.OnCancel = onCancel?.Build() ?? Constants.Empty.Actions;
       return builder.Add(element);
     }
 
@@ -814,19 +756,18 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(ShowMessageBox))]
-    public static ActionsBuilder AddShowMessageBox(
+    public static ActionsBuilder ShowMessageBox(
         this ActionsBuilder builder,
-        LocalizedString Text,
-        ActionsBuilder OnClose,
-        Int32 WaitTime)
+        LocalizedString text = null,
+        ActionsBuilder onClose = null,
+        int waitTime = default)
     {
-      builder.Validate(Text);
-      builder.Validate(WaitTime);
-      
+      builder.Validate(text);
+    
       var element = ElementTool.Create<ShowMessageBox>();
-      element.Text = Text;
-      element.OnClose = OnClose.Build();
-      element.WaitTime = WaitTime;
+      element.Text = text ?? Constants.Empty.String;
+      element.OnClose = onClose?.Build() ?? Constants.Empty.Actions;
+      element.WaitTime = waitTime;
       return builder.Add(element);
     }
 
@@ -835,17 +776,16 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(ShowUIWarning))]
-    public static ActionsBuilder AddShowUIWarning(
+    public static ActionsBuilder ShowUIWarning(
         this ActionsBuilder builder,
-        WarningNotificationType Type,
-        LocalizedString String)
+        WarningNotificationType type = default,
+        LocalizedString stringValue = null)
     {
-      builder.Validate(Type);
-      builder.Validate(String);
-      
+      builder.Validate(stringValue);
+    
       var element = ElementTool.Create<ShowUIWarning>();
-      element.Type = Type;
-      element.String = String;
+      element.Type = type;
+      element.String = stringValue ?? Constants.Empty.String;
       return builder.Add(element);
     }
 
@@ -854,14 +794,14 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(SplitUnitGroup))]
-    public static ActionsBuilder AddSplitUnitGroup(
+    public static ActionsBuilder SplitUnitGroup(
         this ActionsBuilder builder,
-        UnitEvaluator Target)
+        UnitEvaluator target)
     {
-      builder.Validate(Target);
-      
+      builder.Validate(target);
+    
       var element = ElementTool.Create<SplitUnitGroup>();
-      element.Target = Target;
+      element.Target = target;
       return builder.Add(element);
     }
 
@@ -870,17 +810,17 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(StartCombat))]
-    public static ActionsBuilder AddStartCombat(
+    public static ActionsBuilder StartCombat(
         this ActionsBuilder builder,
-        UnitEvaluator Unit1,
-        UnitEvaluator Unit2)
+        UnitEvaluator unit1,
+        UnitEvaluator unit2)
     {
-      builder.Validate(Unit1);
-      builder.Validate(Unit2);
-      
+      builder.Validate(unit1);
+      builder.Validate(unit2);
+    
       var element = ElementTool.Create<StartCombat>();
-      element.Unit1 = Unit1;
-      element.Unit2 = Unit2;
+      element.Unit1 = unit1;
+      element.Unit2 = unit2;
       return builder.Add(element);
     }
 
@@ -888,25 +828,25 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="StartDialog"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Dialogue"><see cref="BlueprintDialog"/></param>
+    /// <param name="dialogue"><see cref="BlueprintDialog"/></param>
     [Generated]
     [Implements(typeof(StartDialog))]
-    public static ActionsBuilder AddStartDialog(
+    public static ActionsBuilder StartDialog(
         this ActionsBuilder builder,
-        UnitEvaluator DialogueOwner,
-        string m_Dialogue,
-        BlueprintEvaluator DialogEvaluator,
-        LocalizedString SpeakerName)
+        UnitEvaluator dialogueOwner,
+        BlueprintEvaluator dialogEvaluator,
+        string dialogue = null,
+        LocalizedString speakerName = null)
     {
-      builder.Validate(DialogueOwner);
-      builder.Validate(DialogEvaluator);
-      builder.Validate(SpeakerName);
-      
+      builder.Validate(dialogueOwner);
+      builder.Validate(dialogEvaluator);
+      builder.Validate(speakerName);
+    
       var element = ElementTool.Create<StartDialog>();
-      element.DialogueOwner = DialogueOwner;
-      element.m_Dialogue = BlueprintTool.GetRef<BlueprintDialogReference>(m_Dialogue);
-      element.DialogEvaluator = DialogEvaluator;
-      element.SpeakerName = SpeakerName;
+      element.DialogueOwner = dialogueOwner;
+      element.m_Dialogue = BlueprintTool.GetRef<BlueprintDialogReference>(dialogue);
+      element.DialogEvaluator = dialogEvaluator;
+      element.SpeakerName = speakerName ?? Constants.Empty.String;
       return builder.Add(element);
     }
 
@@ -914,16 +854,15 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="StartEncounter"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Encounter"><see cref="BlueprintRandomEncounter"/></param>
+    /// <param name="encounter"><see cref="BlueprintRandomEncounter"/></param>
     [Generated]
     [Implements(typeof(StartEncounter))]
-    public static ActionsBuilder AddStartEncounter(
+    public static ActionsBuilder StartEncounter(
         this ActionsBuilder builder,
-        string m_Encounter)
+        string encounter = null)
     {
-      
       var element = ElementTool.Create<StartEncounter>();
-      element.m_Encounter = BlueprintTool.GetRef<BlueprintRandomEncounterReference>(m_Encounter);
+      element.m_Encounter = BlueprintTool.GetRef<BlueprintRandomEncounterReference>(encounter);
       return builder.Add(element);
     }
 
@@ -931,22 +870,21 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="StartEtude"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="Etude"><see cref="BlueprintEtude"/></param>
+    /// <param name="etude"><see cref="BlueprintEtude"/></param>
     [Generated]
     [Implements(typeof(StartEtude))]
-    public static ActionsBuilder AddStartEtude(
+    public static ActionsBuilder StartEtude(
         this ActionsBuilder builder,
-        string Etude,
-        BlueprintEvaluator EtudeEvaluator,
-        Boolean Evaluate)
+        BlueprintEvaluator etudeEvaluator,
+        string etude = null,
+        bool evaluate = default)
     {
-      builder.Validate(EtudeEvaluator);
-      builder.Validate(Evaluate);
-      
+      builder.Validate(etudeEvaluator);
+    
       var element = ElementTool.Create<StartEtude>();
-      element.Etude = BlueprintTool.GetRef<BlueprintEtudeReference>(Etude);
-      element.EtudeEvaluator = EtudeEvaluator;
-      element.Evaluate = Evaluate;
+      element.Etude = BlueprintTool.GetRef<BlueprintEtudeReference>(etude);
+      element.EtudeEvaluator = etudeEvaluator;
+      element.Evaluate = evaluate;
       return builder.Add(element);
     }
 
@@ -954,19 +892,17 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="SwitchAzataIsland"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_GlobalMap"><see cref="BlueprintGlobalMap"/></param>
+    /// <param name="globalMap"><see cref="BlueprintGlobalMap"/></param>
     [Generated]
     [Implements(typeof(SwitchAzataIsland))]
-    public static ActionsBuilder AddSwitchAzataIsland(
+    public static ActionsBuilder SwitchAzataIsland(
         this ActionsBuilder builder,
-        string m_GlobalMap,
-        Boolean IsOn)
+        string globalMap = null,
+        bool isOn = default)
     {
-      builder.Validate(IsOn);
-      
       var element = ElementTool.Create<SwitchAzataIsland>();
-      element.m_GlobalMap = BlueprintTool.GetRef<BlueprintGlobalMap.Reference>(m_GlobalMap);
-      element.IsOn = IsOn;
+      element.m_GlobalMap = BlueprintTool.GetRef<BlueprintGlobalMap.Reference>(globalMap);
+      element.IsOn = isOn;
       return builder.Add(element);
     }
 
@@ -975,14 +911,12 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(SwitchChapter))]
-    public static ActionsBuilder AddSwitchChapter(
+    public static ActionsBuilder SwitchChapter(
         this ActionsBuilder builder,
-        Int32 Chapter)
+        int chapter = default)
     {
-      builder.Validate(Chapter);
-      
       var element = ElementTool.Create<SwitchChapter>();
-      element.Chapter = Chapter;
+      element.Chapter = chapter;
       return builder.Add(element);
     }
 
@@ -991,39 +925,20 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(SwitchDoor))]
-    public static ActionsBuilder AddSwitchDoor(
+    public static ActionsBuilder SwitchDoor(
         this ActionsBuilder builder,
-        MapObjectEvaluator Door,
-        Boolean UnlockIfLocked,
-        Boolean CloseIfAlreadyOpen,
-        Boolean OpenIfAlreadyClosed)
+        MapObjectEvaluator door,
+        bool unlockIfLocked = default,
+        bool closeIfAlreadyOpen = default,
+        bool openIfAlreadyClosed = default)
     {
-      builder.Validate(Door);
-      builder.Validate(UnlockIfLocked);
-      builder.Validate(CloseIfAlreadyOpen);
-      builder.Validate(OpenIfAlreadyClosed);
-      
+      builder.Validate(door);
+    
       var element = ElementTool.Create<SwitchDoor>();
-      element.Door = Door;
-      element.UnlockIfLocked = UnlockIfLocked;
-      element.CloseIfAlreadyOpen = CloseIfAlreadyOpen;
-      element.OpenIfAlreadyClosed = OpenIfAlreadyClosed;
-      return builder.Add(element);
-    }
-
-    /// <summary>
-    /// Adds <see cref="SwitchDualCompanion"/> (Auto Generated)
-    /// </summary>
-    [Generated]
-    [Implements(typeof(SwitchDualCompanion))]
-    public static ActionsBuilder AddSwitchDualCompanion(
-        this ActionsBuilder builder,
-        UnitEvaluator Unit)
-    {
-      builder.Validate(Unit);
-      
-      var element = ElementTool.Create<SwitchDualCompanion>();
-      element.Unit = Unit;
+      element.Door = door;
+      element.UnlockIfLocked = unlockIfLocked;
+      element.CloseIfAlreadyOpen = closeIfAlreadyOpen;
+      element.OpenIfAlreadyClosed = openIfAlreadyClosed;
       return builder.Add(element);
     }
 
@@ -1031,25 +946,23 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="SwitchFaction"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Faction"><see cref="BlueprintFaction"/></param>
+    /// <param name="faction"><see cref="BlueprintFaction"/></param>
     [Generated]
     [Implements(typeof(SwitchFaction))]
-    public static ActionsBuilder AddSwitchFaction(
+    public static ActionsBuilder SwitchFaction(
         this ActionsBuilder builder,
-        UnitEvaluator Target,
-        string m_Faction,
-        Boolean IncludeGroup,
-        Boolean ResetAllRelations)
+        UnitEvaluator target,
+        string faction = null,
+        bool includeGroup = default,
+        bool resetAllRelations = default)
     {
-      builder.Validate(Target);
-      builder.Validate(IncludeGroup);
-      builder.Validate(ResetAllRelations);
-      
+      builder.Validate(target);
+    
       var element = ElementTool.Create<SwitchFaction>();
-      element.Target = Target;
-      element.m_Faction = BlueprintTool.GetRef<BlueprintFactionReference>(m_Faction);
-      element.IncludeGroup = IncludeGroup;
-      element.ResetAllRelations = ResetAllRelations;
+      element.Target = target;
+      element.m_Faction = BlueprintTool.GetRef<BlueprintFactionReference>(faction);
+      element.IncludeGroup = includeGroup;
+      element.ResetAllRelations = resetAllRelations;
       return builder.Add(element);
     }
 
@@ -1058,20 +971,18 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(SwitchInteraction))]
-    public static ActionsBuilder AddSwitchInteraction(
+    public static ActionsBuilder SwitchInteraction(
         this ActionsBuilder builder,
-        MapObjectEvaluator MapObject,
-        Boolean EnableIfAlreadyDisabled,
-        Boolean DisableIfAlreadyEnabled)
+        MapObjectEvaluator mapObject,
+        bool enableIfAlreadyDisabled = default,
+        bool disableIfAlreadyEnabled = default)
     {
-      builder.Validate(MapObject);
-      builder.Validate(EnableIfAlreadyDisabled);
-      builder.Validate(DisableIfAlreadyEnabled);
-      
+      builder.Validate(mapObject);
+    
       var element = ElementTool.Create<SwitchInteraction>();
-      element.MapObject = MapObject;
-      element.EnableIfAlreadyDisabled = EnableIfAlreadyDisabled;
-      element.DisableIfAlreadyEnabled = DisableIfAlreadyEnabled;
+      element.MapObject = mapObject;
+      element.EnableIfAlreadyDisabled = enableIfAlreadyDisabled;
+      element.DisableIfAlreadyEnabled = disableIfAlreadyEnabled;
       return builder.Add(element);
     }
 
@@ -1080,17 +991,16 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(SwitchRoaming))]
-    public static ActionsBuilder AddSwitchRoaming(
+    public static ActionsBuilder SwitchRoaming(
         this ActionsBuilder builder,
-        UnitEvaluator Unit,
-        Boolean Disable)
+        UnitEvaluator unit,
+        bool disable = default)
     {
-      builder.Validate(Unit);
-      builder.Validate(Disable);
-      
+      builder.Validate(unit);
+    
       var element = ElementTool.Create<SwitchRoaming>();
-      element.Unit = Unit;
-      element.Disable = Disable;
+      element.Unit = unit;
+      element.Disable = disable;
       return builder.Add(element);
     }
 
@@ -1098,19 +1008,19 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="SwitchToEnemy"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_FactionToAttack"><see cref="BlueprintFaction"/></param>
+    /// <param name="factionToAttack"><see cref="BlueprintFaction"/></param>
     [Generated]
     [Implements(typeof(SwitchToEnemy))]
-    public static ActionsBuilder AddSwitchToEnemy(
+    public static ActionsBuilder SwitchToEnemy(
         this ActionsBuilder builder,
-        UnitEvaluator Target,
-        string m_FactionToAttack)
+        UnitEvaluator target,
+        string factionToAttack = null)
     {
-      builder.Validate(Target);
-      
+      builder.Validate(target);
+    
       var element = ElementTool.Create<SwitchToEnemy>();
-      element.Target = Target;
-      element.m_FactionToAttack = BlueprintTool.GetRef<BlueprintFactionReference>(m_FactionToAttack);
+      element.Target = target;
+      element.m_FactionToAttack = BlueprintTool.GetRef<BlueprintFactionReference>(factionToAttack);
       return builder.Add(element);
     }
 
@@ -1118,22 +1028,21 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="SwitchToNeutral"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="Faction"><see cref="BlueprintFaction"/></param>
+    /// <param name="faction"><see cref="BlueprintFaction"/></param>
     [Generated]
     [Implements(typeof(SwitchToNeutral))]
-    public static ActionsBuilder AddSwitchToNeutral(
+    public static ActionsBuilder SwitchToNeutral(
         this ActionsBuilder builder,
-        UnitEvaluator Target,
-        string Faction,
-        Boolean IncludeGroup)
+        UnitEvaluator target,
+        string faction = null,
+        bool includeGroup = default)
     {
-      builder.Validate(Target);
-      builder.Validate(IncludeGroup);
-      
+      builder.Validate(target);
+    
       var element = ElementTool.Create<SwitchToNeutral>();
-      element.Target = Target;
-      element.Faction = BlueprintTool.GetRef<BlueprintFactionReference>(Faction);
-      element.IncludeGroup = IncludeGroup;
+      element.Target = target;
+      element.Faction = BlueprintTool.GetRef<BlueprintFactionReference>(faction);
+      element.IncludeGroup = includeGroup;
       return builder.Add(element);
     }
 
@@ -1142,26 +1051,22 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(TimeSkip))]
-    public static ActionsBuilder AddTimeSkip(
+    public static ActionsBuilder TimeSkip(
         this ActionsBuilder builder,
-        TimeSkip.SkipType m_Type,
-        IntEvaluator MinutesToSkip,
-        TimeOfDay TimeOfDay,
-        Boolean NoFatigue,
-        Boolean MatchTimeOfDay)
+        IntEvaluator minutesToSkip,
+        TimeSkip.SkipType type = default,
+        TimeOfDay timeOfDay = default,
+        bool noFatigue = default,
+        bool matchTimeOfDay = default)
     {
-      builder.Validate(m_Type);
-      builder.Validate(MinutesToSkip);
-      builder.Validate(TimeOfDay);
-      builder.Validate(NoFatigue);
-      builder.Validate(MatchTimeOfDay);
-      
+      builder.Validate(minutesToSkip);
+    
       var element = ElementTool.Create<TimeSkip>();
-      element.m_Type = m_Type;
-      element.MinutesToSkip = MinutesToSkip;
-      element.TimeOfDay = TimeOfDay;
-      element.NoFatigue = NoFatigue;
-      element.MatchTimeOfDay = MatchTimeOfDay;
+      element.m_Type = type;
+      element.MinutesToSkip = minutesToSkip;
+      element.TimeOfDay = timeOfDay;
+      element.NoFatigue = noFatigue;
+      element.MatchTimeOfDay = matchTimeOfDay;
       return builder.Add(element);
     }
 
@@ -1170,17 +1075,17 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(UnitLookAt))]
-    public static ActionsBuilder AddUnitLookAt(
+    public static ActionsBuilder UnitLookAt(
         this ActionsBuilder builder,
-        UnitEvaluator Unit,
-        PositionEvaluator Position)
+        UnitEvaluator unit,
+        PositionEvaluator position)
     {
-      builder.Validate(Unit);
-      builder.Validate(Position);
-      
+      builder.Validate(unit);
+      builder.Validate(position);
+    
       var element = ElementTool.Create<UnitLookAt>();
-      element.Unit = Unit;
-      element.Position = Position;
+      element.Unit = unit;
+      element.Position = position;
       return builder.Add(element);
     }
 
@@ -1189,17 +1094,17 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(UnlinkDualCompanions))]
-    public static ActionsBuilder AddUnlinkDualCompanions(
+    public static ActionsBuilder UnlinkDualCompanions(
         this ActionsBuilder builder,
-        UnitEvaluator First,
-        UnitEvaluator Second)
+        UnitEvaluator first,
+        UnitEvaluator second)
     {
-      builder.Validate(First);
-      builder.Validate(Second);
-      
+      builder.Validate(first);
+      builder.Validate(second);
+    
       var element = ElementTool.Create<UnlinkDualCompanions>();
-      element.First = First;
-      element.Second = Second;
+      element.First = first;
+      element.Second = second;
       return builder.Add(element);
     }
 
@@ -1207,16 +1112,15 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="UnlockCompanionStory"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Story"><see cref="BlueprintCompanionStory"/></param>
+    /// <param name="story"><see cref="BlueprintCompanionStory"/></param>
     [Generated]
     [Implements(typeof(UnlockCompanionStory))]
-    public static ActionsBuilder AddUnlockCompanionStory(
+    public static ActionsBuilder UnlockCompanionStory(
         this ActionsBuilder builder,
-        string m_Story)
+        string story = null)
     {
-      
       var element = ElementTool.Create<UnlockCompanionStory>();
-      element.m_Story = BlueprintTool.GetRef<BlueprintCompanionStoryReference>(m_Story);
+      element.m_Story = BlueprintTool.GetRef<BlueprintCompanionStoryReference>(story);
       return builder.Add(element);
     }
 
@@ -1224,18 +1128,16 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="UnlockFlag"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_flag"><see cref="BlueprintUnlockableFlag"/></param>
+    /// <param name="flag"><see cref="BlueprintUnlockableFlag"/></param>
     [Generated]
     [Implements(typeof(UnlockFlag))]
-    public static ActionsBuilder AddUnlockFlag(
+    public static ActionsBuilder UnlockFlag(
         this ActionsBuilder builder,
-        string m_flag,
-        Int32 flagValue)
+        string flag = null,
+        int flagValue = default)
     {
-      builder.Validate(flagValue);
-      
       var element = ElementTool.Create<UnlockFlag>();
-      element.m_flag = BlueprintTool.GetRef<BlueprintUnlockableFlagReference>(m_flag);
+      element.m_flag = BlueprintTool.GetRef<BlueprintUnlockableFlagReference>(flag);
       element.flagValue = flagValue;
       return builder.Add(element);
     }
@@ -1244,16 +1146,15 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="UnmarkAnswersSelected"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_Answers"><see cref="BlueprintAnswer"/></param>
+    /// <param name="answers"><see cref="BlueprintAnswer"/></param>
     [Generated]
     [Implements(typeof(UnmarkAnswersSelected))]
-    public static ActionsBuilder AddUnmarkAnswersSelected(
+    public static ActionsBuilder UnmarkAnswersSelected(
         this ActionsBuilder builder,
-        string[] m_Answers)
+        string[] answers = null)
     {
-      
       var element = ElementTool.Create<UnmarkAnswersSelected>();
-      element.m_Answers = m_Answers.Select(bp => BlueprintTool.GetRef<BlueprintAnswerReference>(bp)).ToArray();
+      element.m_Answers = answers.Select(name => BlueprintTool.GetRef<BlueprintAnswerReference>(name)).ToArray();
       return builder.Add(element);
     }
 
@@ -1261,18 +1162,17 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="Unrecruit"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="m_CompanionBlueprint"><see cref="BlueprintUnit"/></param>
+    /// <param name="companionBlueprint"><see cref="BlueprintUnit"/></param>
     [Generated]
     [Implements(typeof(Unrecruit))]
-    public static ActionsBuilder AddUnrecruit(
+    public static ActionsBuilder Unrecruit(
         this ActionsBuilder builder,
-        string m_CompanionBlueprint,
-        ActionsBuilder OnUnrecruit)
+        string companionBlueprint = null,
+        ActionsBuilder onUnrecruit = null)
     {
-      
       var element = ElementTool.Create<Unrecruit>();
-      element.m_CompanionBlueprint = BlueprintTool.GetRef<BlueprintUnitReference>(m_CompanionBlueprint);
-      element.OnUnrecruit = OnUnrecruit.Build();
+      element.m_CompanionBlueprint = BlueprintTool.GetRef<BlueprintUnitReference>(companionBlueprint);
+      element.OnUnrecruit = onUnrecruit?.Build() ?? Constants.Empty.Actions;
       return builder.Add(element);
     }
 
@@ -1280,19 +1180,19 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// Adds <see cref="UpdateEtudeProgressBar"/> (Auto Generated)
     /// </summary>
     ///
-    /// <param name="Etude"><see cref="BlueprintEtude"/></param>
+    /// <param name="etude"><see cref="BlueprintEtude"/></param>
     [Generated]
     [Implements(typeof(UpdateEtudeProgressBar))]
-    public static ActionsBuilder AddUpdateEtudeProgressBar(
+    public static ActionsBuilder UpdateEtudeProgressBar(
         this ActionsBuilder builder,
-        IntEvaluator Progress,
-        string Etude)
+        IntEvaluator progress,
+        string etude = null)
     {
-      builder.Validate(Progress);
-      
+      builder.Validate(progress);
+    
       var element = ElementTool.Create<UpdateEtudeProgressBar>();
-      element.Progress = Progress;
-      element.Etude = BlueprintTool.GetRef<BlueprintEtudeReference>(Etude);
+      element.Progress = progress;
+      element.Etude = BlueprintTool.GetRef<BlueprintEtudeReference>(etude);
       return builder.Add(element);
     }
 
@@ -1301,7 +1201,7 @@ namespace BlueprintCore.Actions.Builder.StoryEx
     /// </summary>
     [Generated]
     [Implements(typeof(UpdateEtudes))]
-    public static ActionsBuilder AddUpdateEtudes(this ActionsBuilder builder)
+    public static ActionsBuilder UpdateEtudes(this ActionsBuilder builder)
     {
       return builder.Add(ElementTool.Create<UpdateEtudes>());
     }

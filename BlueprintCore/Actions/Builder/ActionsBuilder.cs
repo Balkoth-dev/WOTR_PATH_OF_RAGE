@@ -29,7 +29,7 @@ namespace BlueprintCore.Actions.Builder
   /// <para>
   /// If a method calls for a string to represent any type of blueprint, you can pass the blueprint's
   /// <see cref="Kingmaker.Blueprints.SimpleBlueprint.AssetGuid">AssetGuid</see> as a string or as a name you already
-  /// provided using <see cref="Blueprints.BlueprintTool.AddGuidsByName">AddGuidsByName()</see>.
+  /// provided using <see cref="Utils.BlueprintTool.AddGuidsByName">AddGuidsByName()</see>.
   /// </para>
   /// 
   /// <list type="table">
@@ -145,6 +145,18 @@ namespace BlueprintCore.Actions.Builder
       return this;
     }
 
+    /// <summary>Adds a <see cref="GameAction"/> of the specified type to the list.</summary>
+    /// 
+    /// <remarks>It is recommended to only call this when adding an action type not supported by the builder.</remarks>
+    /// 
+    /// <param name="init">Optional initialization <see cref="Action"/> run on the action.</param>
+    public ActionsBuilder Add<A>(Action<A> init) where A : GameAction, new()
+    {
+      var action = ElementTool.Create<A>();
+      init?.Invoke(action);
+      return Add(action);
+    }
+
     /// <summary>
     /// Adds <see cref="Kingmaker.Designers.EventConditionActionSystem.Actions.Conditional">Conditional</see>
     /// </summary>
@@ -177,6 +189,12 @@ namespace BlueprintCore.Actions.Builder
     internal void Validate(object obj)
     {
       Validator.Check(obj).ForEach(str => ValidationWarnings.AppendLine(str));
+    }
+
+    internal void Validate<T>(IEnumerable<T> objects)
+    {
+      if (objects is null) { return; }
+      foreach (var obj in objects) { Validate(obj); }
     }
   }
 }

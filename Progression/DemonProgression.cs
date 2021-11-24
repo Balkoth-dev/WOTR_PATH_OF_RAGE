@@ -1,7 +1,6 @@
 ﻿using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.UnitLogic.ActivatableAbilities;
-using BlueprintCore.Blueprints.Abilities;
 using BlueprintCore;
 using BlueprintCore.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
@@ -19,6 +18,7 @@ using Kingmaker.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BlueprintCore.Utils;
 
 namespace WOTR_PATH_OF_RAGE.DemonProgression
 {

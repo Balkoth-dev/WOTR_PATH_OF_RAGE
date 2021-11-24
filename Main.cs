@@ -35,7 +35,6 @@ namespace WOTR_PATH_OF_RAGE
         }
         public static UnityModManager.ModEntry modInfo = null;
         public static Settings settings; 
-        private static int selectedTab;
         private static bool enabled;
 
         static bool Load(UnityModManager.ModEntry modEntry)
