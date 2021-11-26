@@ -25,7 +25,8 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 * Blood Haze now gives a +2 profane bonus to attack.
 * At Mythic Rank 4 you gain an ability to use Demonic Charge that isn't a teleport. This is for instances where you can't use Demonic Charge
 ```
-
+## Current New Abilities
+![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
 11/25/2021
