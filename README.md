@@ -26,6 +26,13 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 * At Mythic Rank 4 you gain an ability to use Demonic Charge that isn't a teleport. This is for instances where you can't use Demonic Charge
 ```
 
+## Change Log
+```
+11/25/2021
+Fixed Demon Rage so that it no longer stays if triggered in a cutscene
+Updated Unleashed Demon so that you may polymorph into a Sin Guzzler at Rank 9 at will for 24 hours.
+```
+
 ## Special Thanks
 Thanks to @Vek17#1898, @bubbles#0538, @kadyn#6364, @WittleWolfie#8477, and everyone else on the [Discord](https://discord.com/invite/wotr). Without their assistance this project would not have been possible.
 
