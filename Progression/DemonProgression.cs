@@ -50,6 +50,10 @@ namespace WOTR_PATH_OF_RAGE.DemonProgression
 
                 demonProgression.LevelEntries[0].m_Features.Add(demonSpecialSelection.ToReference<BlueprintFeatureBaseReference>());
 
+                var demonHungerPolymorphFeature = BlueprintTool.Get<BlueprintFeature>("6c8f47ae288f44d5bfa621d2c91b7594");
+
+                demonProgression.LevelEntries[6].m_Features.Add(demonHungerPolymorphFeature.ToReference<BlueprintFeatureBaseReference>());
+
                 Main.Log("Demonic Specials Added To Mythic");
             }
             public static void PatchDemonLordAspects()

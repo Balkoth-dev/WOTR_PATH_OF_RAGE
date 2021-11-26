@@ -180,7 +180,9 @@ namespace WOTR_PATH_OF_RAGE
         }
         public static void Log(string msg)
         {
+#if DEBUG
             modInfo.Logger.Log(msg);
+#endif
         }
 
         public bool GetSettingValue(string b)

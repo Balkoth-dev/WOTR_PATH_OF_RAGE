@@ -28,8 +28,6 @@ namespace WOTR_PATH_OF_RAGE.MechanicsChanges
         {
             foreach (var brb in m_Buffs)
             {
-                Main.Log("Looping buffs");
-
                 foreach (Buff buff in base.Context.MaybeCaster.Buffs)
                 {
                     if (buff.MaybeContext != null && (buff.Blueprint == brb))
