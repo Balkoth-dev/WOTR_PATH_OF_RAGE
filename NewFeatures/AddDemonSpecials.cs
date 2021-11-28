@@ -35,7 +35,7 @@ using WOTR_PATH_OF_RAGE.MechanicsChanges;
 using WOTR_PATH_OF_RAGE.NewFeatures;
 using BlueprintCore.Utils;
 
-namespace TabletopTweaks.NewContent.MythicAbilities
+namespace WOTR_PATH_OF_RAGE.NewFeatures
 {
     class DemonSpecials
     {
