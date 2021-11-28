@@ -165,7 +165,7 @@ namespace WOTR_PATH_OF_RAGE
                 UI.Toggle("Demon Blast Addition".bold(), ref settings.AddDemonBlast);
                 if (settings.AddDemonBlast)
                 {
-                    UI.Label("At Mythic Rank 4 you gain an ability to use Demonic Charge that isn't a teleport. This is for instances where you can't use Demonic Charge".green().size(10));
+                    UI.Label("At Mythic Rank 3 you gain an ability to use Demonic Charge that isn't a teleport. This is for instances where you can't use Demonic Charge".green().size(10));
                 }
                 else
                 {
