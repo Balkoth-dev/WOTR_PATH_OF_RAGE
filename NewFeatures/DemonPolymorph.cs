@@ -45,11 +45,6 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
     {
         public static void AddDemonPolymorph()
         {
-            if (Main.settings.AddDemonBlast == false)
-            {
-                return;
-            }
-
             BlueprintAbilityResourceReference demonRageResource = BlueprintTool.Get<BlueprintAbilityResource>("f3bf174f0f86b4f45a823e9ed6ccc7a5").ToReference<BlueprintAbilityResourceReference>();
 
             var demonicFormISchirBuff = BlueprintTool.Get<BlueprintBuff>("cfb58f71515d6fd49893a10de7984a43");
@@ -212,10 +207,12 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.HideInCharacterSheetAndLevelUp = true;
                 c.m_DescriptionShort = new LocalizedString();
                 c.Groups = new FeatureGroup[] { };
+                c.IsPrerequisiteFor = new List<BlueprintFeatureReference>();
+                c.IsPrerequisiteFor.Add(demonSinGuzzlerPolymorphFeature.ToReference<BlueprintFeatureReference>());
             });
             demonPolymorphFeature.m_DisplayName = Helpers.CreateString(demonPolymorphFeature + ".Name", "Unleashed Demon");
-            var demonPolymorphDescription = "You learn you unleash the demons within you.\n" +
-                                            "While polymorphed into a demonic form, for each attack that hits you deal an extra 1d6 + Mythic Rank extra Unholy damage and have a 15% chance to restore a round of Demon Rage.\n" +
+            var demonPolymorphDescription = "You learn to unleash the demons within you.\n" +
+                                            "While polymorphed into a demonic form for each attack that hits, you deal an extra 1d6 + Mythic Rank extra Unholy damage and have a 15% chance to restore a round of Demon Rage.\n" +
                                             "You also gain the ability to transform yourself into a Balor as Demon Form IV for 1 minute. You may do this an addtional time at 6th and 9th mythic rank.\n" +
                                             "At 9th mythic rank, you gain the ability to tranform into a Sin Guzzler, a powerful version of a Glabrezu, at will.";
             demonPolymorphFeature.m_Description = Helpers.CreateString(demonPolymorphFeature + ".Description", demonPolymorphDescription);
@@ -316,11 +313,26 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.Action.Actions = new GameAction[] { conditionalAttack };
             });
 
-
             demonPolymorphFeature.AddComponent<AddFacts>(c =>
             {
                 c.m_Facts = new BlueprintUnitFactReference[]{
                         demonBalorForm.ToReference<BlueprintUnitFactReference>()
+                    };
+            });
+
+            demonSinGuzzlerPolymorphFeature.AddComponent<PrerequisiteFeature>(c =>
+            {
+                c.m_Feature = demonPolymorphFeature.ToReference<BlueprintFeatureReference>();
+            });
+
+            demonSinGuzzlerForm.AddComponent<PrerequisiteFeature>(c =>
+            {
+                c.m_Feature = demonPolymorphFeature.ToReference<BlueprintFeatureReference>();
+            });
+
+            demonSinGuzzlerForm.AddComponent<AbilityCasterHasFacts>(c => {
+                c.m_Facts = new BlueprintUnitFactReference[]{
+                        demonPolymorphFeature.ToReference<BlueprintUnitFactReference>()
                     };
             });
 
