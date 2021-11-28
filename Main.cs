@@ -90,7 +90,7 @@ namespace WOTR_PATH_OF_RAGE
                 {
                     UI.Label("Brimorak Aspect is unchanged from vanilla".red().size(10));
                 }
-                UI.Toggle("Succubus Aspect Fix".bold(), ref settings.PatchBrimorakAspect);
+                UI.Toggle("Succubus Aspect Fix".bold(), ref settings.PatchSuccubusAspect);
                 if (settings.PatchSuccubusAspect)
                 {
                     UI.Label("Succubus Aspect now properly gives a malus to Attack Bonus instead of AC".green().size(10));
