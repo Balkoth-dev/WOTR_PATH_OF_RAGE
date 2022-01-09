@@ -29,12 +29,13 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
-11/25/2021
-* Fixed Demon Rage so that it no longer stays if triggered in a cutscene
-* Updated Unleashed Demon so that you may polymorph into a Sin Guzzler at Rank 9 at will for 24 hours.
 01/09/2022
 * Fixed text on Demon Rage to correctly state that it starts at 12 rounds instead of 18
 * Demon Blast correctly is now given at rank 4 instead of rank 3
+11/25/2021
+* Fixed Demon Rage so that it no longer stays if triggered in a cutscene
+* Updated Unleashed Demon so that you may polymorph into a Sin Guzzler at Rank 9 at will for 24 hours.
+
 ```
 
 ## Special Thanks
