@@ -100,7 +100,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             }
             var demonProgression = BlueprintTool.Get<BlueprintProgression>("285fe49f7df8587468f676aa49362213");
 
-            demonProgression.LevelEntries[0].m_Features.Add(demonBlastFeature.ToReference<BlueprintFeatureBaseReference>());
+            demonProgression.LevelEntries[1].m_Features.Add(demonBlastFeature.ToReference<BlueprintFeatureBaseReference>());
 
             Main.Log("Demon Blast Added To Mythic");
 

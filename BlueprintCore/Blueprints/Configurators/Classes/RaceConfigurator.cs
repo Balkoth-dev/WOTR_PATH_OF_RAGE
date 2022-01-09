@@ -198,7 +198,7 @@ namespace BlueprintCore.Blueprints.Configurators.Classes
       return OnConfigureInternal(
           bp =>
           {
-            bp.LinkHairAndSkinColors = linkHairAndSkinColors;
+            //bp.LinkHairAndSkinColors = linkHairAndSkinColors;
           });
     }
 

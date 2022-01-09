@@ -55,7 +55,7 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                     "{g|Encyclopedia:Caster_Level}caster level{/g} {g|Encyclopedia:Check}checks{/g} and Reflex saving throws.\nThe {g|Encyclopedia:DC}DC{/g} for all " +
                     "{g|Encyclopedia:Saving_Throw}saving throws{/g} against Demon's {g|Encyclopedia:Spell}spells{/g} and abilities are increased by 2.\n" +
                     "These benefits increase by 1 at 6th and 9th mythic ranks.\n" +
-                    "You may enact your rage this way for 18 rounds with an additional 3 rounds per mythic rank.";
+                    "You may enact your rage this way for 12 rounds with an additional 3 rounds per mythic rank.";
                 demonicRageActivatableAbility.m_Description = Helpers.CreateString(demonicRageActivatableAbility + ".Description", demonRageDescription);
 
                 var demonRageFeature = BlueprintTool.Get<BlueprintFeature>("6a8af3f208a0fa747a465b70b7043019");

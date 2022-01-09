@@ -848,7 +848,7 @@ namespace BlueprintCore.Actions.Builder.ContextEx
       dispel.m_CheckType = checkType;
       dispel.m_MaxSpellLevel = maxSpellLevel;
       dispel.OnlyTargetEnemyBuffs = onlyDispelEnemyBuffs;
-      dispel.m_StopAfterFirstRemoved = removeOnlyOne;
+      //dispel.m_StopAfterFirstRemoved = removeOnlyOne;
       dispel.CheckBonus = bonus;
       dispel.ContextBonus = contextBonus ?? 0;
       dispel.OnSuccess = onSuccess?.Build() ?? Constants.Empty.Actions;
