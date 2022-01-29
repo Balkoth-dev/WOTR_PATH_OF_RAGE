@@ -2,6 +2,7 @@ using Kingmaker.Blueprints;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using WOTR_PATH_OF_RAGE;
 
 namespace BlueprintCore.Utils
 {
@@ -10,7 +11,6 @@ namespace BlueprintCore.Utils
   /// </summary>
   public static class BlueprintTool
   {
-    private static readonly LogWrapper Logger = LogWrapper.GetInternal("BlueprintTool");
     private static readonly Dictionary<string, Guid> GuidsByName = new();
 
     /// <summary>Adds the provided mapping from Name (key) to Guid (value).</summary>
@@ -72,7 +72,7 @@ namespace BlueprintCore.Utils
                   }
                 }
 
-                Logger.Verbose($"Adding GuidByName: {entry.name} - {entry.guid}");
+                Main.Log($"Adding GuidByName: {entry.name} - {entry.guid}");
                 guid = Guid.Parse(entry.guid);
                 GuidsByName.Add(entry.name, guid);
               });
@@ -173,13 +173,6 @@ namespace BlueprintCore.Utils
         if (current.GetType() == component.GetType()) { return current; }
       }
       return null;
-    }
-
-    /// <summary> Adds all provided components to the blueprint. </summary>
-    public static void AddComponents( this BlueprintScriptableObject obj, params BlueprintComponent[] components)
-    {
-      if (components == null) { return; }
-      obj.SetComponents(CommonTool.Append(components, obj.Components));
     }
 
     /// <summary>Sets the blueprint's components to the provided list.</summary>

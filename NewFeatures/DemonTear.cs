@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Blueprints;
+﻿
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using System;
 using WOTR_PATH_OF_RAGE.Utilities;
@@ -162,7 +162,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
 
             var demonTearFeatureGuid = new BlueprintGuid(new Guid("b044212d-111b-4e26-8653-44982084e5c7"));
             var demonTearDescription = "They are rage, brutal, without mercy. But you. You will be worse. Rend Asunder, until it is done.\n" +
-                                       "Your claws deal 1d4 bleeding damage and you gain the Rend ability so long as you only have claws equipped, dealing 2d8 * Mythic Rank Unholy damage when both claw attacks hit. " +
+                                       "Your claws deal 1d4 bleeding damage and you gain the Rend ability so long as you only have claws equipped, dealing 2d8 per Mythic Rank Unholy damage when both claw attacks hit. " +
                                        "Whenever you successfully Rend, you have a 50% chance of gaining a round of Demon Rage.\n" +
                                        "In addition you gain the ability to frenzy, gaining additional attacks that stack with Haste as long as you wield only claws.\n" +
                                        "This bonus does not apply when polymorphed.";

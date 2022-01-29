@@ -1,10 +1,6 @@
-﻿using BlueprintCore.Blueprints;
-using HarmonyLib;
-using Kingmaker.Blueprints;
+﻿using HarmonyLib;
 using System;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using UnityModManagerNet;
 using WOTR_PATH_OF_RAGE.Utilities;
 using ModKit;
@@ -27,6 +23,8 @@ namespace WOTR_PATH_OF_RAGE
             public bool PatchBloodHaze = true;
             public bool AddDemonBlast = true;
             public bool PatchDemonLordAspects = true;
+            public bool AddLilithuAspect = true;
+            public bool AddQuasitAspect = true;
 
             public override void Save(UnityModManager.ModEntry modEntry)
             {
@@ -170,6 +168,24 @@ namespace WOTR_PATH_OF_RAGE
                 else
                 {
                     UI.Label("Demonic Blast is not added".red().size(10));
+                }
+                UI.Toggle("Lilithu Aspect Addition".bold(), ref settings.AddLilithuAspect);
+                if (settings.AddLilithuAspect)
+                {
+                    UI.Label("As a Major demonic aspect you can select Lilithu, gaining a bonus to your Charisma as well as allowing all your spells and spell-like abilites to be considered using Selective Metamagic.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Lilithu Aspect is not added".red().size(10));
+                }
+                UI.Toggle("Quasit Aspect Addition".bold(), ref settings.AddQuasitAspect);
+                if (settings.AddQuasitAspect)
+                {
+                    UI.Label("As a Major demonic aspect you can select Quasit, gaining a bonus to your Dexterity and allowing all attacks to be rolled twice and take the highest result.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Quasit Aspect is not added".red().size(10));
                 }
             }
         }

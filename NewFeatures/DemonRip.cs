@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Blueprints;
+﻿
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using System;
 using WOTR_PATH_OF_RAGE.Utilities;
@@ -71,7 +71,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_DisplayName = Helpers.CreateString(c + ".Name", "Carnage Blast");
                 c.LocalizedSavingThrow = new LocalizedString();
                 c.LocalizedDuration = new LocalizedString();
-                c.m_Description = Helpers.CreateString(c + ".Description", "Deals 2d6 + Mythic Rank damage in a 5 foot area.");
+                c.m_Description = Helpers.CreateString(c + ".Description", "Deals 2d6 plus Mythic Rank damage in a 5 foot area.");
             });
 
             demonRipBlast.AddComponent<AbilityTargetsAround>(c =>
@@ -163,7 +163,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRip.png");
                 c.m_DisplayName = Helpers.CreateString(c + ".Name", "Victim of Carnage");
                 c.m_Description = Helpers.CreateString(c + ".Description", "Target becomes vulnerable to Unholy damage.\nIn addition, the target " +
-                                                            "takes 1d6 Unholy damage per round.\nWhen they die they deal 2d6 + Mythic Rank of damage to enemies in a 5 foot radius");
+                                                            "takes 1d6 Unholy damage per round.\nWhen they die they deal 2d6 plus Mythic Rank of damage to enemies in a 5 foot radius");
             });
 
             var dismemberContext = Helpers.Create<ContextActionMarkForceDismemberOwner>(c =>
@@ -299,7 +299,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
 
             var demonRipDescription = "You let loose a 30ft aura of carnage that causes enemies to die more often in explosive fashion.\n" +
                                       "Enemies take 1d6 Unholy damage per round, become vulnerable to Unholy damage, and each time an enemy dies while affected by this aura you " +
-                                      "restore a round of rage and they deal 2d6 Unholy damage + Mythic Rank to all enemies within 5 feet.\n" +
+                                      "restore a round of rage and they deal 2d6 Unholy damage plus Mythic Rank to all enemies within 5 feet.\n" +
                                       "You may use this ability for a number of rounds equal to your mythic rank.";
             demonRip.m_Description = Helpers.CreateString(demonRip + ".Description", demonRipDescription);
 

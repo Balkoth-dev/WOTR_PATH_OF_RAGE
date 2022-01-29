@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Blueprints;
+﻿
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using System;
 using WOTR_PATH_OF_RAGE.Utilities;
@@ -58,6 +58,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonSoulBuff = Helpers.CreateCopy(eldritchFontEldritchSurgeDCBuff, bp =>
             {
                 bp.AssetGuid = demonSoulBuffGuid;
+                bp.name = "Consumed Soul Buff" + bp.AssetGuid;
                 bp.m_DisplayName = Helpers.CreateString(bp + ".Name", "Consumed Soul");
                 bp.m_Description = Helpers.CreateString(bp + ".Description", "You have consumed a number of souls, you gain a stacking DC bonus to all Demon spells per soul consumed.");
                 bp.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonSoulBuff.png");
@@ -130,14 +131,14 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 EffectOnEnemy = AbilityEffectOnUnit.Harmful,
                 EffectOnAlly = AbilityEffectOnUnit.Harmful,
                 LocalizedDuration = new LocalizedString(),
-                name = "Consume Soul"
+                name = "Consume Souls Ability"+ demonSoulGuid
             };
             demonSoul.m_DisplayName = Helpers.CreateString(demonSoul + ".Name", "Consume Souls");
             demonSoul.LocalizedSavingThrow = new LocalizedString();
             demonSoul.m_Description = new LocalizedString();
             var demonSoulDescription = "You consume nearby souls of the recently dead, destroying their bodies and boosting your own abilities.\nWhen you do so, " +
-                "all special Demon spells DCs increase by 1 for each soul consumed, max 30. This bonus lasts two minutes with an additional minute every two mythic ranks. " +
-                "You restore an round of Demon Rage and a random spell-slot in your (non-merged) Demon spellbook per soul consumed.\nYou may use this ability once per day with an addtional use at 6th and 9th mythic rank.";
+                "all special Demon spells DCs increase by 1 for each soul consumed, max 30. This bonus lasts twenty minutes with an additional ten minutes every two mythic ranks. " +
+                "You restore an round of Demon Rage and have a chance to restore a random spell-slot in your (non-merged) Demon spellbook per soul consumed.\nYou may use this ability once per day with an addtional use at 6th and 9th mythic rank.";
             demonSoul.m_Description = Helpers.CreateString(demonSoul + ".Description", demonSoulDescription);
 
             demonSoul.AddComponent<AbilityTargetsAround>(c =>
@@ -172,7 +173,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 DurationValue = new ContextDurationValue()
                 {
                     m_IsExtendable = true,
-                    Rate = DurationRate.Minutes,
+                    Rate = DurationRate.TenMinutes,
                     BonusValue = new ContextValue() { ValueType = ContextValueType.Rank, ValueRank = AbilityRankType.StatBonus },
                     DiceType = DiceType.Zero,
                     DiceCountValue = 0
@@ -218,7 +219,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonSoulFeature = Helpers.Create<BlueprintFeature>(c =>
             {
                 c.AssetGuid = demonSoulFeatureGuid;
-                c.name = "DemonSoul" + c.AssetGuid;
+                c.name = "Consume Souls Feature" + c.AssetGuid;
                 c.m_DisplayName = demonSoul.m_DisplayName;
                 c.m_Description = demonSoul.m_Description;
                 c.m_Icon = demonSoul.m_Icon;

@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Blueprints;
+﻿
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using System;
 using WOTR_PATH_OF_RAGE.Utilities;
@@ -63,7 +63,6 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 "For each target affected you regain one round of Demon Rage. \n" +
                 "You may do this 2 times a day with an additional time every other mythic rank.";
             demonSmash.m_Description = Helpers.CreateString(demonSmash + ".Description", demonSmashDescription);
-
 
             demonSmash.Range = AbilityRange.Weapon;
             demonSmash.Animation = CastAnimationStyle.CoupDeGrace;

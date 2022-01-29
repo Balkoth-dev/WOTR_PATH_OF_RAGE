@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Blueprints;
+﻿
 using Kingmaker.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components.Base;

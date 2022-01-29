@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Blueprints;
+﻿
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using System;
 using WOTR_PATH_OF_RAGE.Utilities;

@@ -37,6 +37,9 @@ namespace WOTR_PATH_OF_RAGE.Utilities
     {
         private static Dictionary<string, LocalizedString> textToLocalizedString = new Dictionary<string, LocalizedString>();
         public static readonly Dictionary<BlueprintGuid, SimpleBlueprint> ModBlueprints = new Dictionary<BlueprintGuid, SimpleBlueprint>();
+
+        private static readonly Dictionary<string, Guid> GuidsByName = new();
+
         public static T CreateCopy<T>(T original, Action<T> init = null)
         {
             var result = (T)ObjectDeepCopier.Clone(original);
@@ -80,12 +83,14 @@ namespace WOTR_PATH_OF_RAGE.Utilities
             {
                 return localized;
             }
-            var strings = LocalizationManager.CurrentPack?.Strings;
-            if (strings!.TryGetValue(key, out string oldValue) && value != oldValue)
+            var strings = LocalizationManager.CurrentPack?.m_Strings;
+            if (strings!.TryGetValue(key, out var oldValue) && value != oldValue.Text)
             {
                 Main.Log($"Info: duplicate localized string `{key}`, different text.");
             }
-            strings[key] = value;
+            var sE = new Kingmaker.Localization.LocalizationPack.StringEntry();
+            sE.Text = value;
+            strings[key] = sE;
             localized = new LocalizedString
             {
                 m_Key = key
@@ -113,6 +118,18 @@ namespace WOTR_PATH_OF_RAGE.Utilities
             }
             selection.m_AllFeatures = selection.m_AllFeatures.OrderBy(feature => feature.Get().Name).ToArray();
             selection.m_Features = selection.m_Features.OrderBy(feature => feature.Get().Name).ToArray();
+        }
+        public static T Get<T>(string nameOrGuid) where T : SimpleBlueprint
+        {
+            if (!GuidsByName.TryGetValue(nameOrGuid, out Guid assetId)) { assetId = Guid.Parse(nameOrGuid); }
+
+            SimpleBlueprint asset = ResourcesLibrary.TryGetBlueprint(new BlueprintGuid(assetId));
+            if (asset is T result) { return result; }
+            else
+            {
+                throw new InvalidOperationException(
+                    $"Failed to fetch blueprint: {nameOrGuid} - {assetId}.\nIs the type correct? {typeof(T)}");
+            }
         }
     }
 }

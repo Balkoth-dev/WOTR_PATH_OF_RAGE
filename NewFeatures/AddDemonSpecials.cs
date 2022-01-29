@@ -1,38 +1,8 @@
-﻿using BlueprintCore.Blueprints;
-using Kingmaker.UnitLogic.Abilities.Blueprints;
-using System;
-using WOTR_PATH_OF_RAGE.Utilities;
-using Kingmaker.Blueprints;
-using Kingmaker.UnitLogic.Abilities.Components.Base;
-using WOTR_PATH_OF_RAGE;
+﻿using WOTR_PATH_OF_RAGE.Utilities;
 using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.UnitLogic.FactLogic;
-using Kingmaker.Localization;
-using UnityEngine;
-using static Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell;
-using Kingmaker.UnitLogic.Abilities.Components;
-using Kingmaker.UnitLogic.Mechanics.Components;
-using Kingmaker.UnitLogic.Mechanics.Actions;
-using Kingmaker.RuleSystem.Rules.Damage;
-using Kingmaker.Enums.Damage;
-using Kingmaker.UnitLogic.Mechanics;
-using Kingmaker.RuleSystem;
-using Kingmaker.Enums;
-using Kingmaker.ElementsSystem;
-using Kingmaker.Designers.EventConditionActionSystem.Actions;
-using Kingmaker.UnitLogic.Mechanics.Conditions;
-using WOTR_PATH_OF_RAGE.New_Rules;
 using Kingmaker.Blueprints.Classes.Selection;
-using Kingmaker.Blueprints.Items.Weapons;
-using Kingmaker.Designers.EventConditionActionSystem.Evaluators;
-using Kingmaker.Designers.Mechanics.Facts;
-using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
-using Kingmaker.Blueprints.Classes.Spells;
-using Kingmaker.UnitLogic.Buffs.Blueprints;
-using WOTR_PATH_OF_RAGE.MechanicsChanges;
-using WOTR_PATH_OF_RAGE.NewFeatures;
 using BlueprintCore.Utils;
 
 namespace WOTR_PATH_OF_RAGE.NewFeatures
@@ -60,11 +30,17 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 DemonPolymorph.AddDemonPolymorph();
                 DemonRip.AddDemonRip();
                 DemonTear.AddDemonTear();
+                AspectOfLilithu.AddLilithuAspect();
+                AspectOfQuasit.AddQuasitAspect();
                 AddDemonSpecialsToSelection();
             }
            
             public static void AddDemonSpecialsToSelection()
             {
+                if (Main.settings.AddDemonSpecialSelectionToMythic == false)
+                {
+                    return;
+                }
                 var demonSpecialSelection = BlueprintTool.Get<BlueprintFeatureSelection>("1df9edd3e5f4485793e57a40e1d567f2");
 
                 var demonSmashFeature = BlueprintTool.Get<BlueprintFeature>("23d7996386d64d67a83e79f5bc5fedaf");

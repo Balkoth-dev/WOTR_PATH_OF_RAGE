@@ -2,7 +2,7 @@
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using BlueprintCore;
-using BlueprintCore.Blueprints;
+
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 using Kingmaker.UnitLogic.Buffs.Blueprints;

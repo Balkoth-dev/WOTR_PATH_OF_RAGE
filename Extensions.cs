@@ -1,12 +1,7 @@
-﻿using BlueprintCore.Blueprints;
-using BlueprintCore.Utils;
-using JetBrains.Annotations;
+﻿using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
-using Kingmaker.ElementsSystem;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using WOTR_PATH_OF_RAGE.Utilities;
 
 namespace WOTR_PATH_OF_RAGE
 {
