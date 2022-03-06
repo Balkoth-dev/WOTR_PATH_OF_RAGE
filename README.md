@@ -26,6 +26,7 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 * At Mythic Rank 4 you gain an ability to use Demonic Charge that isn't a teleport. This is for instances where you can't use Demonic Charge
 * As a Major demonic aspect you can select Lilithu, gaining a bonus to your Charisma as well as allowing all your spells and spell-like abilites to be considered using Selective Metamagic.
 * As a Major demonic aspect you can select Quasit, gaining a bonus to your Dexterity and allowing all attacks to be rolled twice and take the highest result.
+* Fixes Demonic Aura so that it will only apply its damage when an enemy starts a new round instead of every time you activate Bloodrage.
 ```
 ## Current New Abilities
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)

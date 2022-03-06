@@ -112,6 +112,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BloodlineChanges\PatchBloodlines.cs" />
     <Compile Include="BlueprintCore\Utils\BlueprintTool.cs" />
     <Compile Include="DemonicAspects\DemonicAspects.cs" />
     <Compile Include="Components\AbilityEffectToggleBuff.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="NewFeatures\DemonSoul.cs" />
     <Compile Include="NewFeatures\AddDemonSpecials.cs" />
     <Compile Include="NewFeatures\DemonTear.cs" />
+    <Compile Include="BloodlineChanges\DemonicAura.cs" />
     <Compile Include="NewFeatures\SpecialFeatures.cs" />
     <Compile Include="NewFeatures\SpecialResources.cs" />
     <Compile Include="NewRules\IncreaseRageRounds.cs" />

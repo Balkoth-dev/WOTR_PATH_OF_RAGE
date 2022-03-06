@@ -25,6 +25,7 @@ namespace WOTR_PATH_OF_RAGE
             public bool PatchDemonLordAspects = true;
             public bool AddLilithuAspect = true;
             public bool AddQuasitAspect = true;
+            public bool PatchDemonicAura = true;
 
             public override void Save(UnityModManager.ModEntry modEntry)
             {
@@ -186,6 +187,15 @@ namespace WOTR_PATH_OF_RAGE
                 else
                 {
                     UI.Label("Quasit Aspect is not added".red().size(10));
+                }
+                UI.Toggle("Demonic Aura Fix".bold(), ref settings.PatchDemonicAura);
+                if (settings.PatchDemonicAura)
+                {
+                    UI.Label("Fixes Demonic Aura so that it will only apply its damage when an enemy starts a new round instead of every time you activate Bloodrage.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Demonic Aura is not fixed.".red().size(10));
                 }
             }
         }

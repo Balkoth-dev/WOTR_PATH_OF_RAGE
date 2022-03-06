@@ -12,6 +12,13 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.UnitLogic.ActivatableAbilities.Restrictions;
 using WOTR_PATH_OF_RAGE.Utilities;
 using BlueprintCore.Utils;
+using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
+using Kingmaker.UnitLogic.Mechanics.Components;
+using Kingmaker.ElementsSystem;
+using Kingmaker.UnitLogic.Mechanics.Conditions;
+using Kingmaker.UnitLogic.Mechanics.Actions;
+using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.UnitLogic.Mechanics;
 
 namespace WOTR_PATH_OF_RAGE.DemonRage
 {
@@ -86,9 +93,11 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
         {
             var standartRageActivateableAbility = BlueprintTool.Get<BlueprintActivatableAbility>("df6a2cce8e3a9bd4592fb1968b83f730");
             standartRageActivateableAbility.RemoveComponents<RestrictionHasFact>();
+            standartRageActivateableAbility.DeactivateImmediately = true;
 
             var bloodragerStandartRageActivateableAbility = BlueprintTool.Get<BlueprintActivatableAbility>("e3a0056eedac7754ca9a50603ba05177");
             bloodragerStandartRageActivateableAbility.RemoveComponents<RestrictionHasFact>();
+            bloodragerStandartRageActivateableAbility.DeactivateImmediately = true;
 
             Main.Log("Patching Barbarian and Bloodrager Rages Complete");
         }
