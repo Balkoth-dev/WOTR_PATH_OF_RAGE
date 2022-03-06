@@ -32,6 +32,9 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+03/05/2022
+* Bloodrage and Barbarian rage now will immediately end when you turn them off.
+* Bloodrager''s Demonic Aura will now only affect targets when they start their turn in the aura.
 01/29/2022
 * Consume Souls: Buff uptime has been increased from two minutes to twenty minutes, with an additional ten minutes every other level. This is because Enduring Spells no longer works on abilities.
 * Aspect of Lilithu has been added. This gives you a Charisma bonus as well as allowing all your spells and spell-like abilites to be considered using Selective Metamagic.
