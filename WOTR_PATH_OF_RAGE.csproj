@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Output\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -120,6 +120,7 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MechanicsChanges\AbilityCasterSecondaryWeaponCheck.cs" />
+    <Compile Include="MechanicsChanges\BlueprintAbilityPatch.cs" />
     <Compile Include="MechanicsChanges\BrimorakAspectDamage.cs" />
     <Compile Include="MechanicsChanges\BuffExtraAttackDemon.cs" />
     <Compile Include="MechanicsChanges\ContextActionCastSpellSimple.cs" />
