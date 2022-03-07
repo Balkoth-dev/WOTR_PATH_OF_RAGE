@@ -45,11 +45,10 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                 {
                     return;
                 }
-                var abyssalStorm = BlueprintTool.Get<BlueprintAbility>("58e9e2883bca1574e9c932e72fd361f9");
 
                 var demonicRageActivatableAbility = BlueprintTool.Get<BlueprintActivatableAbility>("0999f99d6157e5c4888f4cfe2d1ce9d6");
                     demonicRageActivatableAbility.OnlyInCombat = false;
-                    demonicRageActivatableAbility.DeactivateImmediately = false;
+                    demonicRageActivatableAbility.DeactivateImmediately = true;
                     demonicRageActivatableAbility.DeactivateIfCombatEnded = true;
                     demonicRageActivatableAbility.ActivationType = new AbilityActivationType();
                     demonicRageActivatableAbility.EditComponent<ActivatableAbilityResourceLogic>(c => c.SpendType = ActivatableAbilityResourceLogic.ResourceSpendType.NewRound);

@@ -58,6 +58,7 @@ namespace WOTR_PATH_OF_RAGE.DemonProgression
             }
             public static void PatchDemonLordAspects()
             {
+                return; // This was fixed in 1.2, ignoring settings.
                 if (Main.settings.PatchDemonLordAspects == false)
                 {
                     return;

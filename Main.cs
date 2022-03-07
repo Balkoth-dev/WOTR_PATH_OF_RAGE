@@ -26,6 +26,8 @@ namespace WOTR_PATH_OF_RAGE
             public bool AddLilithuAspect = true;
             public bool AddQuasitAspect = true;
             public bool PatchDemonicAura = true;
+            public bool PatchAutometamagic = true;
+            public bool AddMightyDemonrage = true;
 
             public override void Save(UnityModManager.ModEntry modEntry)
             {
@@ -125,15 +127,15 @@ namespace WOTR_PATH_OF_RAGE
                 {
                     UI.Label("Aspect icons are unchanged from vanilla".red().size(10));
                 }
-                UI.Toggle("Demon Lord Aspects Progression Fix".bold(), ref settings.PatchDemonLordAspects);
-                if (settings.PatchDemonLordAspects)
-                {
-                    UI.Label("Demon Lord Aspects are written to be given one at 9 and another at 10. This fixes that.".green().size(10));
-                }
-                else
-                {
-                    UI.Label("Demon Lord Aspect progression is unchanged.".red().size(10));
-                }
+                /* UI.Toggle("Demon Lord Aspects Progression Fix".bold(), ref settings.PatchDemonLordAspects);
+                  if (settings.PatchDemonLordAspects)
+                  {
+                      UI.Label("Demon Lord Aspects are written to be given one at 9 and another at 10. This fixes that.".green().size(10));
+                  } 
+                  else
+                  {
+                      UI.Label("Demon Lord Aspect progression is unchanged.".red().size(10));
+                  } This was fixed in 1.2 */
                 UI.Toggle("Allow Toggling Of Rages".bold(), ref settings.PatchBaseRagesForDemon);
                 if (settings.PatchBaseRagesForDemon)
                 {
@@ -196,6 +198,24 @@ namespace WOTR_PATH_OF_RAGE
                 else
                 {
                     UI.Label("Demonic Aura is not fixed.".red().size(10));
+                }
+                UI.Toggle("Autometamagic Fix".bold(), ref settings.PatchAutometamagic);
+                if (settings.PatchAutometamagic)
+                {
+                    UI.Label("Fixes autometamagic so that it will work on spells that are not originally part of a spellbook but added later. This is important for Arcane Bloodline for Bloodragers.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Autometamagic is not fixed.".red().size(10));
+                }
+                UI.Toggle("Mighty Demonrage addition".bold(), ref settings.AddMightyDemonrage);
+                if (settings.AddMightyDemonrage)
+                {
+                    UI.Label("Adds a new mythic ability called Mighty Demonrage. This allows you to cast a demon spell of fourth level or lower as a swift action while Demon Raging.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Mighty Demonrage is not added.".red().size(10));
                 }
             }
         }

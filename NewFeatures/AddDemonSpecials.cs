@@ -32,6 +32,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 DemonTear.AddDemonTear();
                 AspectOfLilithu.AddLilithuAspect();
                 AspectOfQuasit.AddQuasitAspect();
+                MightyDemonrage.AddMightyDemonrage();
                 AddDemonSpecialsToSelection();
             }
            

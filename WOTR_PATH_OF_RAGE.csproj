@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Output\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -120,7 +120,7 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MechanicsChanges\AbilityCasterSecondaryWeaponCheck.cs" />
-    <Compile Include="MechanicsChanges\BlueprintAbilityPatch.cs" />
+    <Compile Include="MechanicsChanges\AutometamagicPatch.cs" />
     <Compile Include="MechanicsChanges\BrimorakAspectDamage.cs" />
     <Compile Include="MechanicsChanges\BuffExtraAttackDemon.cs" />
     <Compile Include="MechanicsChanges\ContextActionCastSpellSimple.cs" />
@@ -140,6 +140,7 @@
     <Compile Include="NewFeatures\AddDemonSpecials.cs" />
     <Compile Include="NewFeatures\DemonTear.cs" />
     <Compile Include="BloodlineChanges\DemonicAura.cs" />
+    <Compile Include="NewFeatures\MightyDemonrage.cs" />
     <Compile Include="NewFeatures\SpecialFeatures.cs" />
     <Compile Include="NewFeatures\SpecialResources.cs" />
     <Compile Include="NewRules\IncreaseRageRounds.cs" />
@@ -174,10 +175,13 @@
     <Content Include="Output\Assets\Abilities\Incubus.png" />
     <Content Include="Output\Assets\Abilities\Kabriri.png" />
     <Content Include="Output\Assets\Abilities\Kalavakus.png" />
+    <Content Include="Output\Assets\Abilities\Lilithu.png" />
+    <Content Include="Output\Assets\Abilities\MightyDemonRage.png" />
     <Content Include="Output\Assets\Abilities\Nabasu.png" />
     <Content Include="Output\Assets\Abilities\Nocticula.png" />
     <Content Include="Output\Assets\Abilities\Omox.png" />
     <Content Include="Output\Assets\Abilities\Pazuzu.png" />
+    <Content Include="Output\Assets\Abilities\Quasit.png" />
     <Content Include="Output\Assets\Abilities\Schir.png" />
     <Content Include="Output\Assets\Abilities\ShadowDemon.png" />
     <Content Include="Output\Assets\Abilities\Socothbenoth.png" />

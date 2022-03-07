@@ -19,7 +19,6 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 * Kalvakus Aspect's bonus attack will only work while you have a melee weapon.
 * Shadow Demon Aspect will no longer give double the wisdom bonus when toggled.
 * Adds new icons to each aspect making it easier to tell them apart.
-* Demon Lord Aspects are written to be given one at 9 and another at 10. This fixes that.
 * Allows you to toggle Barbarian and Bloodrager rages while in a demon rage.
 * Abyssal Storm no longer hurts the caster.
 * Blood Haze now gives a +2 profane bonus to attack.
@@ -27,11 +26,18 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 * As a Major demonic aspect you can select Lilithu, gaining a bonus to your Charisma as well as allowing all your spells and spell-like abilites to be considered using Selective Metamagic.
 * As a Major demonic aspect you can select Quasit, gaining a bonus to your Dexterity and allowing all attacks to be rolled twice and take the highest result.
 * Fixes Demonic Aura so that it will only apply its damage when an enemy starts a new round instead of every time you activate Bloodrage.
+* Fixes autometamagic so that it will work on spells that are not originally part of a spellbook but added later. This is important for Arcane Bloodline for Bloodragers.
+* Adds a new mythic ability called Mighty Demonrage. This allows you to cast a demon spell of fourth level or lower as a swift action while Demon Raging.
 ```
 ## Current New Abilities
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+03/06/2022
+* Demon Lord aspects fix removed as it was fixed in 1.2
+* Fixes autometamagic so that it will work on spells that are not originally part of a spellbook but added later. This is important for Arcane Bloodline for Bloodragers.
+* Adds a new mythic ability called Mighty Demonrage. This allows you to cast a demon spell of fourth level or lower as a swift action while Demon Raging.
+* Demon Rage changed to allow you to turn it off and on in the same turn, allowing you to rage-cycle using Demon Rage.
 03/05/2022
 * Bloodrage and Barbarian rage now will immediately end when you turn them off.
 * Bloodrager''s Demonic Aura will now only affect targets when they start their turn in the aura.
