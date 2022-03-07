@@ -23,7 +23,7 @@ namespace WOTR_PATH_OF_RAGE.MechanicsChanges
         {
             static void Postfix(AutoMetamagic c, [NotNull] BlueprintAbility ability, [CanBeNull] AbilityData data, ref bool __result)
             {
-                if (__result)
+                if (Main.settings.PatchAutometamagic == false)
                 {
                     return;
                 }
@@ -105,6 +105,10 @@ namespace WOTR_PATH_OF_RAGE.MechanicsChanges
                                     }
                                 }
                             }
+                        }
+                        else
+                        {
+                            __result = true;
                         }
                         return;
                     }
