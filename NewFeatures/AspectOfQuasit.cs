@@ -123,6 +123,10 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
 
             Main.Log("Quasit Aspect Added To Mythic");
 
+            var nocticulaAspectBuff = BlueprintTool.Get<BlueprintBuff>("ef035e3fee135504ebfe9d0d052762f8");
+            nocticulaAspectBuff.GetComponent<AddFactsFromCaster>().m_Facts = nocticulaAspectBuff.GetComponent<AddFactsFromCaster>().m_Facts.AppendToArray(quasitSwitchBuff.ToReference<BlueprintUnitFactReference>());
+
+
         }
 
     }

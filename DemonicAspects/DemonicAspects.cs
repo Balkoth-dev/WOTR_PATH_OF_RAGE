@@ -10,6 +10,14 @@ using WOTR_PATH_OF_RAGE.Utilities;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.Enums;
 using WOTR_PATH_OF_RAGE.MechanicsChanges;
+using Kingmaker.Blueprints;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.ElementsSystem;
+using System;
+using Kingmaker.UnitLogic.Mechanics.Actions;
+using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 
 namespace WOTR_PATH_OF_RAGE.DemonRage
 {
@@ -31,6 +39,7 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                 PatchKalavakusAspect();
                 PatchShadowDemonAspect();
                 PatchSuccubusDemonAspect();
+                PatchNocticulaDemonAspect();
             }
 
             static void PatchDemonAspectIcons()
@@ -189,6 +198,69 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
             var succubusAspectContextStatBonus = (AddContextStatBonus)succubusAspectEnemyBuff.Components[1];
             succubusAspectContextStatBonus.Stat = Kingmaker.EntitySystem.Stats.StatType.AdditionalAttackBonus;
             Main.Log("Patching Succubus Aspect Complete");
+        }
+
+        static void PatchNocticulaDemonAspect()
+        {
+
+            var goldDragonCooldownBuff = BlueprintTool.Get<BlueprintBuff>("4e9ddf0456c4d65498ad90fe6e621c3b");
+
+            var nocticulaCooldownBuffGuid = new BlueprintGuid(new Guid("08f90ecc-feed-403a-81a0-f9e44a50870a"));
+
+            var nocticulaCooldownBuff = Helpers.CreateCopy(goldDragonCooldownBuff, bp =>
+            {
+                bp.AssetGuid = nocticulaCooldownBuffGuid;
+                bp.name = "Nocticula Aspect Cooldown" + bp.AssetGuid;
+                bp.m_DisplayName = Helpers.CreateString(bp + ".Name", "Nocticula Aspect Already Used");
+                bp.m_Description = Helpers.CreateString(bp + ".Description", "This is the cooldown debuff for Nocticula's Aspect");
+                bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
+            });
+
+            nocticulaCooldownBuff.AddComponent<CombatStateTrigger>(c => {
+                c.CombatStartActions = new ActionList();
+                c.CombatEndActions = new ActionList() {Actions = new GameAction[] { Helpers.Create<ContextActionRemoveSelf>() } };
+            });
+
+            Helpers.AddBlueprint(nocticulaCooldownBuff, nocticulaCooldownBuffGuid);
+
+            if (Main.settings.PatchSuccubusAspect == false)
+            {
+                return;
+            }
+
+            var nocticulaAspectAbility = BlueprintTool.Get<BlueprintAbility>("b968988d6c0e830458fd49efbfb86202");
+            nocticulaAspectAbility.m_Icon = AssetLoader.LoadInternal("Abilities", "Nocticula.png");
+            nocticulaAspectAbility.m_Description = Helpers.CreateString(nocticulaAspectAbility + ".Description", "Once per combat, when you activate Demon Rage you can use this ability to grant one ally all the " +
+                                                                                                                 "benefits of the demonic rage, including effects of your active aspects and major " +
+                                                                                                                 "aspects as a {g|Encyclopedia:Free_Action}free action{/g} until the end of combat.");
+
+            var applyCooldownBuff = Helpers.Create<ContextActionApplyBuff>(e => 
+                { e.m_Buff = nocticulaCooldownBuff.ToReference<BlueprintBuffReference>();
+                  e.UseDurationSeconds = true;
+                  e.DurationValue = new ContextDurationValue();
+                  e.Permanent = true;
+                  e.ToCaster = true;
+                  e.IsFromSpell = true; });
+
+            nocticulaAspectAbility.EditComponent<AbilityEffectRunAction>(c => {
+                c.Actions.Actions = nocticulaAspectAbility.GetComponent<AbilityEffectRunAction>().Actions.Actions.AppendToArray(applyCooldownBuff);
+            });
+
+            nocticulaAspectAbility.AddComponent<AbilityCasterHasNoFacts>(c => { c.m_Facts = new BlueprintUnitFactReference[] { nocticulaCooldownBuff.ToReference<BlueprintUnitFactReference>() }; });
+
+            var nocticulaAspectBuff = BlueprintTool.Get<BlueprintBuff>("ef035e3fee135504ebfe9d0d052762f8");
+            nocticulaAspectBuff.m_Icon = AssetLoader.LoadInternal("Abilities", "Nocticula.png");
+
+            var demonRageBuff = BlueprintTool.Get<BlueprintBuff>("36ca5ecd8e755a34f8da6b42ad4c965f");
+
+            var bloodragerStandartRageBuff = BlueprintTool.Get<BlueprintBuff>("5eac31e457999334b98f98b60fc73b2f");
+            var standartRageBuff = BlueprintTool.Get<BlueprintBuff>("da8ce41ac3cd74742b80984ccc3c9613");
+
+            nocticulaAspectBuff.GetComponent<AddFactsFromCaster>().m_Facts = nocticulaAspectBuff.GetComponent<AddFactsFromCaster>().m_Facts.AppendToArray(bloodragerStandartRageBuff.ToReference<BlueprintUnitFactReference>());
+            nocticulaAspectBuff.GetComponent<AddFactsFromCaster>().m_Facts = nocticulaAspectBuff.GetComponent<AddFactsFromCaster>().m_Facts.AppendToArray(standartRageBuff.ToReference<BlueprintUnitFactReference>());
+
+            Main.Log("Patching Nocticula Aspect Complete");
+
         }
 
     }

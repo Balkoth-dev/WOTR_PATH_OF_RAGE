@@ -46,13 +46,17 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                     return;
                 }
 
-                var demonicRageActivatableAbility = BlueprintTool.Get<BlueprintActivatableAbility>("0999f99d6157e5c4888f4cfe2d1ce9d6");
-                    demonicRageActivatableAbility.OnlyInCombat = false;
-                    demonicRageActivatableAbility.DeactivateImmediately = true;
-                    demonicRageActivatableAbility.DeactivateIfCombatEnded = true;
-                    demonicRageActivatableAbility.ActivationType = new AbilityActivationType();
-                    demonicRageActivatableAbility.EditComponent<ActivatableAbilityResourceLogic>(c => c.SpendType = ActivatableAbilityResourceLogic.ResourceSpendType.NewRound);
-                    demonicRageActivatableAbility.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRage.png");
+                var demonRageAbility = BlueprintTool.Get<BlueprintActivatableAbility>("0999f99d6157e5c4888f4cfe2d1ce9d6");
+                    demonRageAbility.OnlyInCombat = false;
+                    demonRageAbility.DeactivateImmediately = true;
+                    demonRageAbility.DeactivateIfCombatEnded = true;
+                    demonRageAbility.IsOnByDefault = true;
+                    demonRageAbility.m_ActivateOnUnitAction = AbilityActivateOnUnitActionType.Attack;
+                    demonRageAbility.ActivationType = AbilityActivationType.Immediately;
+    
+                demonRageAbility.ActivationType = new AbilityActivationType();
+                    demonRageAbility.EditComponent<ActivatableAbilityResourceLogic>(c => c.SpendType = ActivatableAbilityResourceLogic.ResourceSpendType.NewRound);
+                    demonRageAbility.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRage.png");
                 var demonRageDescription = "The power of the Abyss courses through the Demon waiting to be unleashed.\n" +
                     "The Demon can enter a demonic rage as a {g|Encyclopedia:Free_Action}free action{/g}.\n" +
                     "While in demonic rage, the Demon gains +2 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g}, {g|Encyclopedia:Damage}damage rolls{/g}, " +
@@ -60,17 +64,17 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                     "{g|Encyclopedia:Saving_Throw}saving throws{/g} against Demon's {g|Encyclopedia:Spell}spells{/g} and abilities are increased by 2.\n" +
                     "These benefits increase by 1 at 6th and 9th mythic ranks.\n" +
                     "You may enact your rage this way for 12 rounds with an additional 3 rounds per mythic rank.";
-                demonicRageActivatableAbility.m_Description = Helpers.CreateString(demonicRageActivatableAbility + ".Description", demonRageDescription);
+                demonRageAbility.m_Description = Helpers.CreateString(demonRageAbility + ".Description", demonRageDescription);
 
                 var demonRageFeature = BlueprintTool.Get<BlueprintFeature>("6a8af3f208a0fa747a465b70b7043019");
-                demonRageFeature.m_Description = demonicRageActivatableAbility.m_Description;
+                demonRageFeature.m_Description = demonRageAbility.m_Description;
                 demonRageFeature.RemoveComponents<AddFacts>();
                 demonRageFeature.AddComponent<AddFacts>(c => {
                     c.m_Facts = new BlueprintUnitFactReference[] {
-                    demonicRageActivatableAbility.ToReference<BlueprintUnitFactReference>()
+                    demonRageAbility.ToReference<BlueprintUnitFactReference>()
                 };
                 });
-                demonRageFeature.m_Icon = demonicRageActivatableAbility.m_Icon;
+                demonRageFeature.m_Icon = demonRageAbility.m_Icon;
 
                 var demonRageBuff = BlueprintTool.Get<BlueprintBuff>("36ca5ecd8e755a34f8da6b42ad4c965f");
                 demonRageBuff.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRage.png");

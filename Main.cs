@@ -28,6 +28,8 @@ namespace WOTR_PATH_OF_RAGE
             public bool PatchDemonicAura = true;
             public bool PatchAutometamagic = true;
             public bool AddMightyDemonrage = true;
+            public bool PatchNocticulaAspect = true;
+            public bool PatchLegendaryProportions = true;
 
             public override void Save(UnityModManager.ModEntry modEntry)
             {
@@ -216,6 +218,24 @@ namespace WOTR_PATH_OF_RAGE
                 else
                 {
                     UI.Label("Mighty Demonrage is not added.".red().size(10));
+                }
+                UI.Toggle("Patch Nocticula Aspect".bold(), ref settings.AddMightyDemonrage);
+                if (settings.PatchNocticulaAspect)
+                {
+                    UI.Label("Changes Nocticula Aspect to have a unique icon icon. Changes the aspect to give bloodrage/barbarian rage like Channel Rage does. Changes to only use once per combat.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Nocticula Aspect is not changed.".red().size(10));
+                }
+                UI.Toggle("Patch Legendary Proportions".bold(), ref settings.AddMightyDemonrage);
+                if (settings.PatchNocticulaAspect)
+                {
+                    UI.Label("Changes the Legendary Proportions to increase your size to Large instead of Huge. This is an annoying buff to use when you use Abyssal Bulk.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Legendary Proportions is not changed.".red().size(10));
                 }
             }
         }

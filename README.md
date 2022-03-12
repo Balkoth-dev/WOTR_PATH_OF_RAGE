@@ -33,6 +33,11 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+03/11/2022
+* Nocticula Aspect will now work with both Lilithu and Quasit major aspects.
+* Nocticula Aspect has a better icon so you don't lose it with all the other abilities.
+* Nocticula Aspect is restricted to once per combat.
+* Legendary Proportions no longer changes your size to Huge. This is because it conflicts with Abyssal Bulk from Bloodragers, and it's not tabletop compliant.
 03/06/2022
 * Demon Lord aspects fix removed as it was fixed in 1.2
 * Fixes autometamagic so that it will work on spells that are not originally part of a spellbook but added later. This is important for Arcane Bloodline for Bloodragers.
@@ -40,7 +45,7 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 * Demon Rage changed to allow you to turn it off and on in the same turn, allowing you to rage-cycle using Demon Rage.
 03/05/2022
 * Bloodrage and Barbarian rage now will immediately end when you turn them off.
-* Bloodrager''s Demonic Aura will now only affect targets when they start their turn in the aura.
+* Bloodrager's Demonic Aura will now only affect targets when they start their turn in the aura.
 01/29/2022
 * Consume Souls: Buff uptime has been increased from two minutes to twenty minutes, with an additional ten minutes every other level. This is because Enduring Spells no longer works on abilities.
 * Aspect of Lilithu has been added. This gives you a Charisma bonus as well as allowing all your spells and spell-like abilites to be considered using Selective Metamagic.
