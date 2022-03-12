@@ -28,6 +28,11 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 * Fixes Demonic Aura so that it will only apply its damage when an enemy starts a new round instead of every time you activate Bloodrage.
 * Fixes autometamagic so that it will work on spells that are not originally part of a spellbook but added later. This is important for Arcane Bloodline for Bloodragers.
 * Adds a new mythic ability called Mighty Demonrage. This allows you to cast a demon spell of fourth level or lower as a swift action while Demon Raging.
+* Nocticula Aspect will now work with both Lilithu and Quasit major aspects.
+* Nocticula Aspect has a better icon so you don't lose it with all the other abilities.
+* Nocticula Aspect is restricted to once per combat.
+* Nocticula Aspect is will give bloodrager and barbarian rages if you have them.
+* Legendary Proportions no longer changes your size to Huge. This is because it conflicts with Abyssal Bulk from Bloodragers, and it's not tabletop compliant.
 ```
 ## Current New Abilities
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
@@ -37,6 +42,7 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 * Nocticula Aspect will now work with both Lilithu and Quasit major aspects.
 * Nocticula Aspect has a better icon so you don't lose it with all the other abilities.
 * Nocticula Aspect is restricted to once per combat.
+* Nocticula Aspect is will give bloodrager and barbarian rages if you have them.
 * Legendary Proportions no longer changes your size to Huge. This is because it conflicts with Abyssal Bulk from Bloodragers, and it's not tabletop compliant.
 03/06/2022
 * Demon Lord aspects fix removed as it was fixed in 1.2
