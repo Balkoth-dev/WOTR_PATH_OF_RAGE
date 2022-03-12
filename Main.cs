@@ -219,7 +219,7 @@ namespace WOTR_PATH_OF_RAGE
                 {
                     UI.Label("Mighty Demonrage is not added.".red().size(10));
                 }
-                UI.Toggle("Patch Nocticula Aspect".bold(), ref settings.AddMightyDemonrage);
+                UI.Toggle("Patch Nocticula Aspect".bold(), ref settings.PatchNocticulaAspect);
                 if (settings.PatchNocticulaAspect)
                 {
                     UI.Label("Changes Nocticula Aspect to have a unique icon icon. Changes the aspect to give bloodrage/barbarian rage like Channel Rage does. Changes to only use once per combat.".green().size(10));
@@ -228,8 +228,8 @@ namespace WOTR_PATH_OF_RAGE
                 {
                     UI.Label("Nocticula Aspect is not changed.".red().size(10));
                 }
-                UI.Toggle("Patch Legendary Proportions".bold(), ref settings.AddMightyDemonrage);
-                if (settings.PatchNocticulaAspect)
+                UI.Toggle("Patch Legendary Proportions".bold(), ref settings.PatchLegendaryProportions);
+                if (settings.PatchLegendaryProportions)
                 {
                     UI.Label("Changes the Legendary Proportions to increase your size to Large instead of Huge. This is an annoying buff to use when you use Abyssal Bulk.".green().size(10));
                 }
