@@ -72,5 +72,3 @@ Thanks to @Vek17#1898, @bubbles#0538, @kadyn#6364, @WittleWolfie#8477, and every
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-
-"This is the real Balkoth"
