@@ -71,13 +71,13 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_DisplayName = Helpers.CreateString(c + ".Name", "Carnage Blast");
                 c.LocalizedSavingThrow = new LocalizedString();
                 c.LocalizedDuration = new LocalizedString();
-                c.m_Description = Helpers.CreateString(c + ".Description", "Deals 2d6 plus Mythic Rank damage in a 5 foot area.");
+                c.m_Description = Helpers.CreateString(c + ".Description", "Deals 2d6 plus Mythic Rank damage in a 10 foot area.");
             });
 
             demonRipBlast.AddComponent<AbilityTargetsAround>(c =>
             {
                 c.m_IncludeDead = true;
-                c.m_Radius = new Kingmaker.Utility.Feet() { m_Value = 5 };
+                c.m_Radius = new Kingmaker.Utility.Feet() { m_Value = 10 };
                 c.m_TargetType = TargetType.Enemy;
                 c.name = "AreaDemonSoulEffect";
                 c.m_Condition = new ConditionsChecker()
@@ -162,8 +162,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.name = "Victim of Carnage" + c.AssetGuid;
                 c.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRip.png");
                 c.m_DisplayName = Helpers.CreateString(c + ".Name", "Victim of Carnage");
-                c.m_Description = Helpers.CreateString(c + ".Description", "Target becomes vulnerable to Unholy damage.\nIn addition, the target " +
-                                                            "takes 1d6 Unholy damage per round.\nWhen they die they deal 2d6 plus Mythic Rank of damage to enemies in a 5 foot radius");
+                c.m_Description = Helpers.CreateString(c + ".Description", "\nThe target " +
+                                                            "takes 1d6 Unholy damage per round.\nWhen they die they deal 2d6 plus Mythic Rank of damage to enemies in a 10 foot radius");
             });
 
             var dismemberContext = Helpers.Create<ContextActionMarkForceDismemberOwner>(c =>
@@ -231,11 +231,14 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.Actions = new ActionList();
                 c.Actions.Actions = new GameAction[] { contextResourceIncrease, demonRipBuffContextActionCastSpell };
             });
-
-            demonRipBuff.AddComponent<AddEnergyVulnerability>(c => {
-                c.Type = DamageEnergyType.Unholy;
+            
+            demonRipBuff.AddComponent<AdditionalDamageOnHit>(c => {
+                c.Element = DamageEnergyType.Unholy;
+                c.EnergyDamageDice = new DiceFormula { m_Rolls = 1, m_Dice = DiceType.D8 };
+                c.SpecificWeapon = false;
+                c.OnlyMelee = false;
             });
-
+          
             Helpers.AddBlueprint(demonRipBuff, demonRipBuffGuid);
             ///
 
@@ -298,8 +301,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             });
 
             var demonRipDescription = "You let loose a 30ft aura of carnage that causes enemies to die more often in explosive fashion.\n" +
-                                      "Enemies take 1d6 Unholy damage per round, become vulnerable to Unholy damage, and each time an enemy dies while affected by this aura you " +
-                                      "restore a round of rage and they deal 2d6 Unholy damage plus Mythic Rank to all enemies within 5 feet.\n" +
+                                      "Enemies take 1d6 Unholy damage per round, and each time an enemy dies while affected by this aura you " +
+                                      "restore a round of rage and they deal 2d6 Unholy damage plus Mythic Rank to all enemies within 10 feet.\n" +
                                       "You may use this ability for a number of rounds equal to your mythic rank.";
             demonRip.m_Description = Helpers.CreateString(demonRip + ".Description", demonRipDescription);
 
