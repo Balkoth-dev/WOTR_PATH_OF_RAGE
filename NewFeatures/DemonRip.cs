@@ -232,11 +232,9 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.Actions.Actions = new GameAction[] { contextResourceIncrease, demonRipBuffContextActionCastSpell };
             });
             
-            demonRipBuff.AddComponent<AdditionalDamageOnHit>(c => {
-                c.Element = DamageEnergyType.Unholy;
-                c.EnergyDamageDice = new DiceFormula { m_Rolls = 1, m_Dice = DiceType.D8 };
-                c.SpecificWeapon = false;
-                c.OnlyMelee = false;
+            demonRipBuff.AddComponent<AddTargetAttackWithWeaponTrigger>(c => {
+                c.ActionOnSelf = new ActionList();
+                c.ActionOnSelf.Actions = new GameAction[] { demonRipBuffUnholyDamage };
             });
           
             Helpers.AddBlueprint(demonRipBuff, demonRipBuffGuid);
