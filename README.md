@@ -38,6 +38,11 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+03/21/2022
+* Carnage Incarnate's vulnerability removed
+* Carnage Incarnate's debuff will now deal 1d6 damage whenever attacked with a weapon.
+* Carnage Incarnate's explosion radius increased from 5 feet to 10 feet.
+* DEMONIC SMASH's radius increased from 5 feet to 10 feet.
 03/11/2022
 * Nocticula Aspect will now work with both Lilithu and Quasit major aspects.
 * Nocticula Aspect has a better icon so you don't lose it with all the other abilities.
