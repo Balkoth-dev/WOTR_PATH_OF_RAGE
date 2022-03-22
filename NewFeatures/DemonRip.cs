@@ -163,7 +163,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRip.png");
                 c.m_DisplayName = Helpers.CreateString(c + ".Name", "Victim of Carnage");
                 c.m_Description = Helpers.CreateString(c + ".Description", "\nThe target " +
-                                                            "takes 1d6 Unholy damage per round.\nWhen they die they deal 2d6 plus Mythic Rank of damage to enemies in a 10 foot radius");
+                                                            "takes 1d6 Unholy damage per round. When attacked weapon attack they take an additional 1d6 unholy damage.\nWhen they die they deal 2d6 plus Mythic Rank of damage to enemies in a 10 foot radius");
             });
 
             var dismemberContext = Helpers.Create<ContextActionMarkForceDismemberOwner>(c =>
@@ -205,8 +205,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                     },
                     BonusValue = new ContextValue
                     {
-                        ValueType = ContextValueType.Rank,
-                        ValueRank = AbilityRankType.DamageBonus
+                        ValueType = ContextValueType.Simple,
+                        ValueRank = AbilityRankType.Default,
                     }
                 };
                 c.m_IsAOE = true;
@@ -235,6 +235,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             demonRipBuff.AddComponent<AddTargetAttackWithWeaponTrigger>(c => {
                 c.ActionOnSelf = new ActionList();
                 c.ActionOnSelf.Actions = new GameAction[] { demonRipBuffUnholyDamage };
+                c.ActionsOnAttacker = new ActionList();
+                c.OnlyHit = false;
             });
           
             Helpers.AddBlueprint(demonRipBuff, demonRipBuffGuid);
@@ -299,7 +301,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             });
 
             var demonRipDescription = "You let loose a 30ft aura of carnage that causes enemies to die more often in explosive fashion.\n" +
-                                      "Enemies take 1d6 Unholy damage per round, and each time an enemy dies while affected by this aura you " +
+                                      "Enemies take 1d6 Unholy damage per round, when attacked with a weapon attack enemies take an additional 1d6 unholy damage, and each time an enemy dies while affected by this aura you " +
                                       "restore a round of rage and they deal 2d6 Unholy damage plus Mythic Rank to all enemies within 10 feet.\n" +
                                       "You may use this ability for a number of rounds equal to your mythic rank.";
             demonRip.m_Description = Helpers.CreateString(demonRip + ".Description", demonRipDescription);
