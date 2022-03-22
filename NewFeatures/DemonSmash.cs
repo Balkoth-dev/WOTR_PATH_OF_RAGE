@@ -59,7 +59,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonSmashDescription = "You erupt into a frenzy and smash your melee weapon into a foe with explosive results.\n" +
                 "You deal normal weapon damage on a hit, and regardless if you hit or miss you deal {g|Encyclopedia:Dice}1d6{/g} " +
                 "{g|Encyclopedia:Energy_Damage}unholy{/g} and {g|Encyclopedia:Dice}1d6{/g} {g|Encyclopedia:Energy_Damage}fire{/g} " +
-                "{g|Encyclopedia:Damage}damage{/g} per mythic rank in a fifteen foot radius to all targets.\n" +
+                "{g|Encyclopedia:Damage}damage{/g} per mythic rank in a ten foot radius to all targets.\n" +
                 "For each target affected you regain one round of Demon Rage. \n" +
                 "You may do this 2 times a day with an additional time every other mythic rank.";
             demonSmash.m_Description = Helpers.CreateString(demonSmash + ".Description", demonSmashDescription);
@@ -96,7 +96,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_Flags = fireballAbilityTargetsAround.m_Flags;
                 c.m_IncludeDead = fireballAbilityTargetsAround.m_IncludeDead;
                 c.m_PrototypeLink = fireballAbilityTargetsAround.m_PrototypeLink;
-                c.m_Radius = new Kingmaker.Utility.Feet() { m_Value = 15 };
+                c.m_Radius = new Kingmaker.Utility.Feet() { m_Value = 10 };
                 c.m_SpreadSpeed = fireballAbilityTargetsAround.m_SpreadSpeed;
                 c.m_TargetType = fireballAbilityTargetsAround.m_TargetType;
                 c.name = fireballAbilityTargetsAround.name;
