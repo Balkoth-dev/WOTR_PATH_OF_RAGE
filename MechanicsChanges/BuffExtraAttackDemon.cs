@@ -21,7 +21,7 @@ namespace WOTR_PATH_OF_RAGE.MechanicsChanges
 			public void OnEventAboutToTrigger(RuleCalculateAttacksCount evt)
 			{
 				int bonus = ((int)Math.Floor(base.Owner.Progression.MythicLevel / 3.0f));
-				evt.AddExtraAttacks(bonus, this.Haste, null);
+				evt.AddExtraAttacks(bonus, this.Haste, false);
 			}
 
 			// Token: 0x0600C462 RID: 50274 RVA: 0x000031E7 File Offset: 0x000013E7
