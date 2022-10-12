@@ -38,6 +38,9 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+10/11/2022
+* Added compatability with TTT-Base and the Brimorak Aspect Fix.
+* Added compatability with Dark Codex infinite rage resource.
 03/21/2022
 * Carnage Incarnate's vulnerability removed
 * Carnage Incarnate's debuff will now deal 1d6 damage whenever attacked with a weapon.

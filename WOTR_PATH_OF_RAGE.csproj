@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Output\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -190,6 +190,7 @@
     <Content Include="Output\Assets\Abilities\Vavakia.png" />
     <Content Include="Output\Assets\Abilities\Vrock.png" />
     <Content Include="Output\Assets\Abilities\Vrolikai.png" />
+    <Content Include="PathOfRageDemonologies.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="Publicise" AfterTargets="Clean">

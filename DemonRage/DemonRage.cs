@@ -19,6 +19,7 @@ using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Mechanics;
+using System;
 
 namespace WOTR_PATH_OF_RAGE.DemonRage
 {
@@ -41,6 +42,24 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
 
             static void PatchDemonRage()
             {
+
+                var demonRageResource = BlueprintTool.Get<BlueprintAbilityResource>("f3bf174f0f86b4f45a823e9ed6ccc7a5");
+
+                var newDemonRageResourceGuid = new BlueprintGuid(new Guid("bc2c2f64-ada5-4c78-a250-f8b72c48ae57"));
+
+                var newDemonRageResource = Helpers.CreateCopy(demonRageResource, bp =>
+                {
+                    bp.AssetGuid = newDemonRageResourceGuid;
+                    bp.name = "New Demon Rage Resource" + bp.AssetGuid;
+                });
+
+                newDemonRageResource.m_MaxAmount.BaseValue = 11;
+                newDemonRageResource.m_MaxAmount.StartingLevel = 1;
+                newDemonRageResource.m_MaxAmount.LevelStep = 1;
+                newDemonRageResource.m_MaxAmount.PerStepIncrease = 3;
+
+                Helpers.AddBlueprint(newDemonRageResource, newDemonRageResourceGuid);
+
                 if (Main.settings.PatchDemonRage == false)
                 {
                     return;
@@ -52,10 +71,9 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                     demonRageAbility.DeactivateIfCombatEnded = true;
                     demonRageAbility.IsOnByDefault = true;
                     demonRageAbility.m_ActivateOnUnitAction = AbilityActivateOnUnitActionType.Attack;
-                    demonRageAbility.ActivationType = AbilityActivationType.Immediately;
     
                 demonRageAbility.ActivationType = new AbilityActivationType();
-                    demonRageAbility.EditComponent<ActivatableAbilityResourceLogic>(c => c.SpendType = ActivatableAbilityResourceLogic.ResourceSpendType.NewRound);
+                demonRageAbility.EditComponent<ActivatableAbilityResourceLogic>(c => { c.SpendType = ActivatableAbilityResourceLogic.ResourceSpendType.NewRound; c.m_RequiredResource = newDemonRageResource.ToReference<BlueprintAbilityResourceReference>(); }); ;
                     demonRageAbility.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRage.png");
                 var demonRageDescription = "The power of the Abyss courses through the Demon waiting to be unleashed.\n" +
                     "The Demon can enter a demonic rage as a {g|Encyclopedia:Free_Action}free action{/g}.\n" +
@@ -74,20 +92,19 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                     demonRageAbility.ToReference<BlueprintUnitFactReference>()
                 };
                 });
+
+                demonRageFeature.RemoveComponents<AddAbilityResources>();
+                demonRageFeature.AddComponent<AddAbilityResources>(c =>
+                {
+                    c.RestoreAmount = true;
+                    c.m_Resource = newDemonRageResource.ToReference<BlueprintAbilityResourceReference>();
+                });
+
                 demonRageFeature.m_Icon = demonRageAbility.m_Icon;
 
                 var demonRageBuff = BlueprintTool.Get<BlueprintBuff>("36ca5ecd8e755a34f8da6b42ad4c965f");
                 demonRageBuff.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRage.png");
                 
-                //demonRageBuff.RemoveComponents<CombatStateTrigger>();
-
-                var demonRageResource = BlueprintTool.Get<BlueprintAbilityResource>("f3bf174f0f86b4f45a823e9ed6ccc7a5");
-
-                demonRageResource.m_MaxAmount.BaseValue = 11;
-                demonRageResource.m_MaxAmount.StartingLevel = 1;
-                demonRageResource.m_MaxAmount.LevelStep = 1;
-                demonRageResource.m_MaxAmount.PerStepIncrease = 3;
-
                 Main.Log("Patching Demonic Rage Complete");
             }
         }

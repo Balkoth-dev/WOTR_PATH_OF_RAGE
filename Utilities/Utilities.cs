@@ -3,6 +3,7 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Localization;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,6 +31,19 @@ namespace WOTR_PATH_OF_RAGE.Utilities
                 _ = texture.LoadImage(bytes);
                 var sprite = Sprite.Create(texture, new Rect(0, 0, 64, 64), new Vector2(0, 0));
                 return sprite;
+            }
+        }
+        public static bool GetBrimorakTTTBaseSetting()
+        {
+            try
+            {
+                var xks = System.IO.Path.Combine(ModEntry.Path, @"..\TabletopTweaks-Base\UserSettings\Fixes.json");
+                JObject o1 = JObject.Parse(File.ReadAllText(xks));
+                return (bool)o1["Demon"]["Settings"]["BrimorakAspect"]["Enabled"];
+            }
+            catch(Exception ex)
+            {
+                return false;
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.PubSubSystem;
+using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Mechanics;
@@ -25,13 +26,20 @@ namespace WOTR_PATH_OF_RAGE.MechanicsChanges
             }
             foreach(BaseDamage baseDamage in evt.DamageBundle)
             {
-                    int bonus = (1 + (int)Math.Floor(base.Owner.Progression.MythicLevel / 3.0f)) * baseDamage.Dice.Rolls;
+                if (!baseDamage.Precision)
+                {
+                    DiceFormula modifiedValue = baseDamage.Dice.ModifiedValue;
+                    int bonus = this.UseContextBonus ? this.Value.Calculate(context) * modifiedValue.Rolls : modifiedValue.Rolls;
                     baseDamage.AddModifier(bonus, base.Fact);
+                }
             }
         }
         public void OnEventDidTrigger(RuleCalculateDamage evt)
         {
 
         }
+
+        public bool UseContextBonus;
+        public ContextValue Value;
     }
 }
