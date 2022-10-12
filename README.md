@@ -39,6 +39,7 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ## Change Log
 ```
 10/11/2022
+* Brimorak Aspect Fix now works with the Areelu cloak.
 * Added compatibility with TTT-Base and the Brimorak Aspect Fix.
 * Added compatibility with Dark Codex infinite rage resource.
 03/21/2022
