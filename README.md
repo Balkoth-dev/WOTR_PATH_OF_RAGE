@@ -40,8 +40,8 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ```
 10/11/2022
 * Brimorak Aspect Fix now works with the Areelu cloak.
-* Added compatibility with TTT-Base and the Brimorak Aspect Fix.
-* Added compatibility with Dark Codex infinite rage resource.
+* Added compatibility with TTT-Base and the Brimorak Aspect Fix. If TTT-Base is installed and has its brimorak aspect setting active, then the setting on Path of Rage will turn off.
+* Made the new demon rage no longer work with Dark Codex's infinite rage resource.
 03/21/2022
 * Carnage Incarnate's vulnerability removed
 * Carnage Incarnate's debuff will now deal 1d6 damage whenever attacked with a weapon.
