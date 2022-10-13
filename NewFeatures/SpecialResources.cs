@@ -43,6 +43,23 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonMythicClass = BlueprintTool.Get<BlueprintCharacterClass>("8e19495ea576a8641964102d177e34b7").ToReference<BlueprintCharacterClassReference>();
             var demonSmashResourceGuid = new BlueprintGuid(new Guid("40536705-671e-4e96-979a-10a41ea6057e"));
 
+            var demonRageResource = BlueprintTool.Get<BlueprintAbilityResource>("f3bf174f0f86b4f45a823e9ed6ccc7a5");
+
+            var newDemonRageResourceGuid = new BlueprintGuid(new Guid("bc2c2f64-ada5-4c78-a250-f8b72c48ae57"));
+
+            var newDemonRageResource = Helpers.CreateCopy(demonRageResource, bp =>
+            {
+                bp.AssetGuid = newDemonRageResourceGuid;
+                bp.name = "New Demon Rage Resource" + bp.AssetGuid;
+            });
+
+            newDemonRageResource.m_MaxAmount.BaseValue = 11;
+            newDemonRageResource.m_MaxAmount.StartingLevel = 1;
+            newDemonRageResource.m_MaxAmount.LevelStep = 1;
+            newDemonRageResource.m_MaxAmount.PerStepIncrease = 3;
+
+            Helpers.AddBlueprint(newDemonRageResource, newDemonRageResourceGuid);
+
             var demonSmashResource = Helpers.Create<BlueprintAbilityResource>(bp => 
             {
                 bp.AssetGuid = demonSmashResourceGuid;

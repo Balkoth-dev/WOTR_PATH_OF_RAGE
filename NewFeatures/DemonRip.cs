@@ -46,7 +46,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
     {
         public static void AddDemonRip()
         {
-            var demonRageResource = BlueprintTool.Get<BlueprintAbilityResource>("f3bf174f0f86b4f45a823e9ed6ccc7a5").ToReference<BlueprintAbilityResourceReference>();
+            var demonRageResource = BlueprintTool.Get<BlueprintAbilityResource>("bc2c2f64ada54c78a250f8b72c48ae57").ToReference<BlueprintAbilityResourceReference>();
             var destructionDomainGreaterAura = BlueprintTool.Get<BlueprintAbilityAreaEffect>("5a6c8bb6faf11fc4bb1022c3683d12d3");
             var demonBlastAbility = BlueprintTool.Get<BlueprintAbility>("6fc3b519185341449e4a4fd803b34d35");
             var fireball00 = BlueprintTool.Get<BlueprintProjectile>("8927afa172e0fc54484a29fa0c4c40c4");

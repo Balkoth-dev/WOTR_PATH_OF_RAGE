@@ -35,7 +35,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
     {
         public static void AddDemonPolymorph()
         {
-            BlueprintAbilityResourceReference demonRageResource = BlueprintTool.Get<BlueprintAbilityResource>("f3bf174f0f86b4f45a823e9ed6ccc7a5").ToReference<BlueprintAbilityResourceReference>();
+            BlueprintAbilityResourceReference demonRageResource = BlueprintTool.Get<BlueprintAbilityResource>("bc2c2f64ada54c78a250f8b72c48ae57").ToReference<BlueprintAbilityResourceReference>();
 
             var demonicFormISchirBuff = BlueprintTool.Get<BlueprintBuff>("cfb58f71515d6fd49893a10de7984a43");
             var demonicFormIVGalluBuff = BlueprintTool.Get<BlueprintBuff>("051c8dea7acf6aa41b8b1c1f65cda421");

@@ -144,6 +144,7 @@
     <Compile Include="NewFeatures\SpecialFeatures.cs" />
     <Compile Include="NewFeatures\SpecialResources.cs" />
     <Compile Include="NewRules\IncreaseRageRounds.cs" />
+    <Compile Include="NewRules\RestrictionUnitHasResource.cs" />
     <Compile Include="Progression\DemonProgression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spells\AbyssalStorm.cs" />

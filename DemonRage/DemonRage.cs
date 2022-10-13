@@ -20,6 +20,8 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Mechanics;
 using System;
+using Kingmaker.Designers.EventConditionActionSystem.Actions;
+using WOTR_PATH_OF_RAGE.NewRules;
 
 namespace WOTR_PATH_OF_RAGE.DemonRage
 {
@@ -38,43 +40,32 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                 Main.Log("Patching Demonic Rage");
                 PatchDemonRage();
                 PatchBaseRagesForDemon();
+                var demonRageAbility = BlueprintTool.Get<BlueprintActivatableAbility>("0999f99d6157e5c4888f4cfe2d1ce9d6");
+                Main.Log(demonRageAbility.DeactivateIfCombatEnded.ToString());
             }
 
             static void PatchDemonRage()
             {
-
-                var demonRageResource = BlueprintTool.Get<BlueprintAbilityResource>("f3bf174f0f86b4f45a823e9ed6ccc7a5");
-
-                var newDemonRageResourceGuid = new BlueprintGuid(new Guid("bc2c2f64-ada5-4c78-a250-f8b72c48ae57"));
-
-                var newDemonRageResource = Helpers.CreateCopy(demonRageResource, bp =>
-                {
-                    bp.AssetGuid = newDemonRageResourceGuid;
-                    bp.name = "New Demon Rage Resource" + bp.AssetGuid;
-                });
-
-                newDemonRageResource.m_MaxAmount.BaseValue = 11;
-                newDemonRageResource.m_MaxAmount.StartingLevel = 1;
-                newDemonRageResource.m_MaxAmount.LevelStep = 1;
-                newDemonRageResource.m_MaxAmount.PerStepIncrease = 3;
-
-                Helpers.AddBlueprint(newDemonRageResource, newDemonRageResourceGuid);
+                var outOfCombatBuff = OutOfCombatBuff();
 
                 if (Main.settings.PatchDemonRage == false)
                 {
                     return;
                 }
 
+                BlueprintAbilityResourceReference newDemonRageResource = BlueprintTool.Get<BlueprintAbilityResource>("bc2c2f64ada54c78a250f8b72c48ae57").ToReference<BlueprintAbilityResourceReference>();
+
                 var demonRageAbility = BlueprintTool.Get<BlueprintActivatableAbility>("0999f99d6157e5c4888f4cfe2d1ce9d6");
+                    demonRageAbility.m_ActivateOnUnitAction = AbilityActivateOnUnitActionType.Attack;
+                    demonRageAbility.ActivationType = AbilityActivationType.Immediately;
+                    demonRageAbility.DeactivateIfCombatEnded = false;
                     demonRageAbility.OnlyInCombat = false;
                     demonRageAbility.DeactivateImmediately = true;
-                    demonRageAbility.DeactivateIfCombatEnded = true;
-                    demonRageAbility.IsOnByDefault = true;
-                    demonRageAbility.m_ActivateOnUnitAction = AbilityActivateOnUnitActionType.Attack;
-    
-                demonRageAbility.ActivationType = new AbilityActivationType();
-                demonRageAbility.EditComponent<ActivatableAbilityResourceLogic>(c => { c.SpendType = ActivatableAbilityResourceLogic.ResourceSpendType.NewRound; c.m_RequiredResource = newDemonRageResource.ToReference<BlueprintAbilityResourceReference>(); }); ;
-                    demonRageAbility.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRage.png");
+
+                demonRageAbility.EditComponent<ActivatableAbilityResourceLogic>(c => { c.SpendType = ActivatableAbilityResourceLogic.ResourceSpendType.NewRound; c.m_RequiredResource = newDemonRageResource; c.m_FreeBlueprint = outOfCombatBuff.ToReference<BlueprintUnitFactReference>(); }); ;
+                demonRageAbility.AddComponent<RestrictionUnitHasResource>(c => { c.m_resource = newDemonRageResource; });
+
+                demonRageAbility.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRage.png");
                 var demonRageDescription = "The power of the Abyss courses through the Demon waiting to be unleashed.\n" +
                     "The Demon can enter a demonic rage as a {g|Encyclopedia:Free_Action}free action{/g}.\n" +
                     "While in demonic rage, the Demon gains +2 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g}, {g|Encyclopedia:Damage}damage rolls{/g}, " +
@@ -89,23 +80,122 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                 demonRageFeature.RemoveComponents<AddFacts>();
                 demonRageFeature.AddComponent<AddFacts>(c => {
                     c.m_Facts = new BlueprintUnitFactReference[] {
-                    demonRageAbility.ToReference<BlueprintUnitFactReference>()
+                    demonRageAbility.ToReference<BlueprintUnitFactReference>(),
+                    outOfCombatBuff.ToReference<BlueprintUnitFactReference>()
                 };
+                });
+
+                var applyOutOfCombatBuff = new ContextActionApplyBuff()
+                {
+                    m_Buff = outOfCombatBuff.ToReference<BlueprintBuffReference>(),
+                    Permanent = true,
+                    DurationValue = new ContextDurationValue(),
+                    AsChild = true,
+                    IsFromSpell = false,
+                    IsNotDispelable = false,
+                    ToCaster = false,
+                    SameDuration = false,
+                    UseDurationSeconds = false,
+                    DurationSeconds = 0
+                };
+
+                var removeOutOfCombatBuff = new ContextActionRemoveBuff()
+                {
+                    m_Buff = outOfCombatBuff.ToReference<BlueprintBuffReference>(),
+                    OnlyFromCaster = false,
+                    ToCaster = true
+                };
+
+                var conditionalBuffEffects = new Conditional()
+                {
+                    ConditionsChecker = new ConditionsChecker()
+                    {
+                        Operation = Operation.And,
+                        Conditions = new Condition[] {
+                            new ContextConditionIsInCombat(){Not = true }
+                        }
+                    },
+                    IfFalse = new ActionList() { Actions = new GameAction[] { removeOutOfCombatBuff } },
+                    IfTrue = new ActionList() { Actions = new GameAction[] { applyOutOfCombatBuff } }
+                };
+
+                demonRageFeature.AddComponent<NewRoundTrigger>(c => {
+                    c.NewRoundActions = new ActionList();
+                    c.NewRoundActions.Actions = new GameAction[] { conditionalBuffEffects };
+                });
+
+                demonRageFeature.AddComponent<CombatStateTrigger>(c => {
+                    c.CombatStartActions = new ActionList();
+                    c.CombatStartActions.Actions = new GameAction[] { Helpers.Create<ContextActionRemoveBuff>(c => { c.m_Buff = outOfCombatBuff.ToReference<BlueprintBuffReference>(); c.ToCaster = true; }) };
+                    c.CombatEndActions = new ActionList();
+                    c.CombatEndActions.Actions = new GameAction[] { applyOutOfCombatBuff };
                 });
 
                 demonRageFeature.RemoveComponents<AddAbilityResources>();
                 demonRageFeature.AddComponent<AddAbilityResources>(c =>
                 {
                     c.RestoreAmount = true;
-                    c.m_Resource = newDemonRageResource.ToReference<BlueprintAbilityResourceReference>();
+                    c.m_Resource = newDemonRageResource;
                 });
 
                 demonRageFeature.m_Icon = demonRageAbility.m_Icon;
 
                 var demonRageBuff = BlueprintTool.Get<BlueprintBuff>("36ca5ecd8e755a34f8da6b42ad4c965f");
                 demonRageBuff.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRage.png");
-                
+
+                demonRageBuff.RemoveComponents<CombatStateTrigger>();
+
+                AddElementalRampage(demonRageBuff);
+
                 Main.Log("Patching Demonic Rage Complete");
+            }
+
+            private static void AddElementalRampage(BlueprintBuff demonRageBuff)
+            {
+                var elementalRampagerRampageFeature = BlueprintTool.Get<BlueprintFeature>("64c5dfe0ba664dd38b7e914ef0912a1c").ToReference<BlueprintUnitFactReference>();
+                var elementalRampagerRampageBuff = BlueprintTool.Get<BlueprintBuff>("98798aa2d21a4c20a31d31527642b5f5");
+                var elementalRampagerRampageBuffRef = BlueprintTool.Get<BlueprintBuff>("98798aa2d21a4c20a31d31527642b5f5").ToReference<BlueprintBuffReference>(); ;
+
+                elementalRampagerRampageBuff.AddComponent<ContextCalculateSharedValue>(c => { c.ValueType = Kingmaker.UnitLogic.Abilities.AbilitySharedValue.Duration; c.Value = new ContextDiceValue() { DiceType = Kingmaker.RuleSystem.DiceType.Zero, BonusValue = new ContextValue(), DiceCountValue = new ContextValue() }; c.Modifier = 1; });
+
+                var hasElementalRampageCondition = new Condition[] {
+                            new ContextConditionHasFact
+                            {
+                                m_Fact = elementalRampagerRampageFeature,
+                                Not = false
+                            }
+                };
+
+                var hasElementalRampageConditionsChecker = new ConditionsChecker()
+                {
+                    Conditions = hasElementalRampageCondition
+                };
+
+                var applyElementalRampageBuff = new ContextActionApplyBuff()
+                {
+                    m_Buff = elementalRampagerRampageBuffRef,
+                    Permanent = true,
+                    DurationValue = new ContextDurationValue(),
+                    AsChild = true,
+                    IsFromSpell = false,
+                    IsNotDispelable = true,
+                    ToCaster = false,
+                    SameDuration = false,
+                    UseDurationSeconds = false,
+                    DurationSeconds = 0
+                };
+
+                var conditionalElementalRampage = new Conditional()
+                {
+                    ConditionsChecker = hasElementalRampageConditionsChecker,
+                    IfTrue = new ActionList()
+                    {
+                        Actions = new GameAction[] { applyElementalRampageBuff }
+                    },
+                    IfFalse = new ActionList()
+                };
+
+                demonRageBuff.EditComponent<AddFactContextActions>(c => { c.Activated.Actions = c.Activated.Actions.AppendToArray(conditionalElementalRampage); });
             }
         }
 
@@ -120,6 +210,24 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
             bloodragerStandartRageActivateableAbility.DeactivateImmediately = true;
 
             Main.Log("Patching Barbarian and Bloodrager Rages Complete");
+        }
+
+        static BlueprintBuff OutOfCombatBuff()
+        {
+            var outOfCombatBuffGuid = new BlueprintGuid(new Guid("92b4d9eb-d91d-4759-b9a9-0423c9a587b5"));
+
+            var outOfCombatBuff = Helpers.Create<BlueprintBuff>(c =>
+            {
+                c.AssetGuid = outOfCombatBuffGuid;
+                c.name = "Out Of Combat" + c.AssetGuid;
+                c.m_Flags = BlueprintBuff.Flags.HiddenInUi;
+                c.Components = new BlueprintComponent[] { };
+                c.Stacking = StackingType.Replace;
+            });
+
+            Helpers.AddBlueprint(outOfCombatBuff, outOfCombatBuffGuid);
+
+            return outOfCombatBuff;
         }
     }
 }
