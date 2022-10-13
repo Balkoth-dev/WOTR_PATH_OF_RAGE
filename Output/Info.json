@@ -1,0 +1,13 @@
+{
+    "AssemblyName": "WOTR_PATH_OF_RAGE.dll",
+    "Author": "Balkoth",
+    "DisplayName": "PATH OF RAGE",
+    "EntryMethod": "WOTR_PATH_OF_RAGE.Main.Load",
+    "GameVersion": "1.2.0",
+    "HomePage": "https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE",
+    "Id": "WOTR_PATH_OF_RAGE",
+    "ManagerVersion": "0.23.0",
+    "Repository": "",
+    "Requirements": [],
+    "Version": "1.1.1"
+}
