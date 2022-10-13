@@ -367,6 +367,3 @@ lib/
 
 #dll
 *.dll
-
-#Output
-Output/
