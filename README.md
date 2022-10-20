@@ -84,7 +84,7 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ```
 
 ## Special Thanks
-Thanks to @Vek17#1898, @bubbles#0538, @kadyn#6364, @WittleWolfie#8477, and everyone else on the [Discord](https://discord.com/invite/wotr). Without their assistance this project would not have been possible.
+Thanks to @Vek17#1898, @bubbles#0538, @kadyn#6364, @WittleWolfie#8477, and everyone else on the [Discord](https://discord.gg/owlcat). Without their assistance this project would not have been possible.
 
 
 ## License
