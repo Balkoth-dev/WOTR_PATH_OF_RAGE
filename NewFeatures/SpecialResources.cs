@@ -123,7 +123,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                     m_ArchetypesDiv = new BlueprintArchetypeReference[0],
                     IncreasedByLevelStartPlusDivStep = true,
                     StartingLevel = 1,
-                    LevelStep = 3,
+                    LevelStep = 1,
                     PerStepIncrease = 1,
                     StartingIncrease = 1
                 };

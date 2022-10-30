@@ -28,6 +28,7 @@ using Kingmaker.UnitLogic.Buffs;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Designers.Mechanics.Buffs;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WOTR_PATH_OF_RAGE.NewFeatures
 {
@@ -64,19 +65,35 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonicFormIVBalor = BlueprintTool.Get<BlueprintAbility>("0258a875670fa134590c6ffdc23da2cf");
             var DemonicFormIIIGlabrezu = BlueprintTool.Get<BlueprintAbility>("0258a875670fa134590c6ffdc23da2cf");
 
+
+            var unstableDemonicFormIVBalorBuffGuild = new BlueprintGuid(new Guid("70c2561e-9fa9-4633-930c-815b03f90f4f"));
+
+            var unstableDemonicFormIVBalorBuff = Helpers.CreateCopy(demonicFormIVBalorBuff, bp =>
+            {
+                bp.AssetGuid = unstableDemonicFormIVBalorBuffGuild;
+                bp.name = "Unstable Balor Transformation";
+            });
+
+            unstableDemonicFormIVBalorBuff.AddComponent<AddCondition>(c =>
+            {
+                c.Condition = Kingmaker.UnitLogic.UnitCondition.AttackNearest;
+            });
+
+            Helpers.AddBlueprint(unstableDemonicFormIVBalorBuff, unstableDemonicFormIVBalorBuffGuild);
+
             var demonBalorFormGuid = new BlueprintGuid(new Guid("e30768ff-138f-4ab5-b947-03df2aa72a6a"));
 
             var demonBalorForm = Helpers.CreateCopy(demonicFormIVBalor, bp =>
             {
                 bp.AssetGuid = demonBalorFormGuid;
-                bp.name = "Balor Transformation";
+                bp.name = "Unstable Balor Transformation";
             });
 
             demonBalorForm.RemoveComponents<ContextRankConfig>();
 
             var demonBalorFormContextActionApplyBuff = (ContextActionApplyBuff)demonBalorForm.GetComponent<AbilityEffectRunAction>().Actions.Actions[1];
             demonBalorFormContextActionApplyBuff.DurationValue = null;
-            demonBalorFormContextActionApplyBuff.DurationSeconds = 60;
+            demonBalorFormContextActionApplyBuff.DurationSeconds = 30;
             demonBalorFormContextActionApplyBuff.UseDurationSeconds = true;
 
             demonBalorForm.AddComponent<AbilityResourceLogic>(c =>
@@ -85,6 +102,15 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_IsSpendResource = true;
                 c.m_RequiredResource = demonPolyResource.ToReference<BlueprintAbilityResourceReference>();
             });
+
+            var demonBalorFormAbilityEffectRunAction = demonBalorForm.GetComponent<AbilityEffectRunAction>();
+
+            foreach(var v in demonBalorFormAbilityEffectRunAction.Actions.Actions.OfType<ContextActionApplyBuff>())
+            {
+                v.m_Buff = unstableDemonicFormIVBalorBuff.ToReference<BlueprintBuffReference>();
+            }
+
+            demonBalorForm.m_DisplayName = Helpers.CreateString(demonBalorForm + ".Name", "Unstable Balor Form");
 
             Helpers.AddBlueprint(demonBalorForm, demonBalorFormGuid);
 
@@ -203,7 +229,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             demonPolymorphFeature.m_DisplayName = Helpers.CreateString(demonPolymorphFeature + ".Name", "Unleashed Demon");
             var demonPolymorphDescription = "You learn to unleash the demons within you.\n" +
                                             "While polymorphed into a demonic form for each attack that hits, you deal an extra 1d6 + Mythic Rank extra Unholy damage and have a 15% chance to restore a round of Demon Rage.\n" +
-                                            "You also gain the ability to transform yourself into a Balor as Demon Form IV for 1 minute. You may do this an addtional time at 6th and 9th mythic rank.\n" +
+                                            "You also gain the ability to transform yourself into an unstable Balor as Demon Form IV for 30 seconds, attacking anything and anyone near you. You may do this an addtional every mythic rank.\n" +
                                             "At 9th mythic rank, you gain the ability to tranform into a Sin Guzzler, a powerful version of a Glabrezu, at will.";
             demonPolymorphFeature.m_Description = Helpers.CreateString(demonPolymorphFeature + ".Description", demonPolymorphDescription);
 
@@ -238,7 +264,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                                         demonicFormIIINalfeshneeBuff,
                                         demonicFormIINabasuBuff,
                                         demonicFormIIIGlabrezuBuff,
-                                        demonSinGuzzlerBuff
+                                        demonSinGuzzlerBuff,
+                                        unstableDemonicFormIVBalorBuff
                                 }
                             }
                 };

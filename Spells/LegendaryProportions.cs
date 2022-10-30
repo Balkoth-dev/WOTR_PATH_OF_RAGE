@@ -38,7 +38,7 @@ namespace WOTR_PATH_OF_RAGE.Spells
                 if (Initialized) return;
                 Initialized = true;
 
-                Main.Log("Patching Blood Haze");
+                Main.Log("Patching Legendary Proportions");
                 PatchLegendaryProportions();
             }
             static void PatchLegendaryProportions()
