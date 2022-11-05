@@ -172,6 +172,7 @@
     <Content Include="Output\Assets\Abilities\DemonPolymorph.png" />
     <Content Include="Output\Assets\Abilities\DemonRage.png" />
     <Content Include="Output\Assets\Abilities\DemonRip.png" />
+    <Content Include="Output\Assets\Abilities\DemonRipDebuff.png" />
     <Content Include="Output\Assets\Abilities\DemonSmash.png" />
     <Content Include="Output\Assets\Abilities\DemonSoul.png" />
     <Content Include="Output\Assets\Abilities\DemonSoulBuff.png" />

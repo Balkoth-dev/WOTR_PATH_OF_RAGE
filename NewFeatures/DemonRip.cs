@@ -57,7 +57,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonChargeProjectile = BlueprintTool.Get<BlueprintAbility>("4b18d0f44f57cbf4c91f094addfed9f4");
             ///
 
-            var eldritchFontEldritchSurgeDCBuff = BlueprintTool.Get<BlueprintBuff>("91b2762997f0d8044baeeef0871eac6f");
+            var bleed1d6Buff = BlueprintTool.Get<BlueprintBuff>("75039846c3d85d940aa96c249b97e562");
 
             var demonRipBuffUnholyDamage = Helpers.Create<ContextActionDealDamage>(c =>
             {
@@ -77,15 +77,12 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                     DiceType = DiceType.D6,
                     DiceCountValue = new ContextValue()
                     {
-                        ValueType = ContextValueType.Rank,
-                        Value = 0,
-                        ValueRank = AbilityRankType.Default,
-                        Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
+                        Value = 1
                     },
                     BonusValue = new ContextValue
                     {
-                        ValueType = ContextValueType.Rank,
-                        ValueRank = AbilityRankType.DamageBonus
+                        ValueType = ContextValueType.Simple,
+                        ValueRank = AbilityRankType.Default
                     }
                 };
                 c.m_IsAOE = true;
@@ -93,27 +90,26 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
 
             var demonRipDebuffGuid = new BlueprintGuid(new Guid("b7805ba3-039e-4be9-ac34-17a54d85365f"));
 
-            var demonRipDebuff = Helpers.CreateCopy(eldritchFontEldritchSurgeDCBuff, bp =>
+            var demonRipDebuff = Helpers.CreateCopy(bleed1d6Buff, bp =>
             {
                 bp.AssetGuid = demonRipDebuffGuid;
                 bp.name = "carnage debuff" + bp.AssetGuid;
                 bp.m_DisplayName = Helpers.CreateString(bp + ".Name", "Victim Of Carnage");
                 bp.m_Description = Helpers.CreateString(bp + ".Description", "You have been hit in combat, when your turn starts you will take 1d6 damage per stack.");
-                bp.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRip.png");
+                bp.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRipDebuff.png");
                 bp.Components = new BlueprintComponent[] { };
                 bp.Stacking = StackingType.Rank;
-                bp.Ranks = 10;
-                bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
+                bp.Ranks = 30;
             });
-
+            
             Helpers.AddBlueprint(demonRipDebuff, demonRipDebuffGuid);
 
-            var removeDemonRipDebuff = new ContextActionRemoveBuff()
-            {
-                m_Buff = demonRipDebuff.ToReference<BlueprintBuffReference>(),
-                OnlyFromCaster = false,
-                ToCaster = true
-            };
+            var removeDemonRipDebuff = new ContextActionRemoveSelf();
+
+            demonRipDebuff.AddComponent<NewRoundTrigger>(c => {
+                c.NewRoundActions = new ActionList();
+                c.NewRoundActions.Actions = new GameAction[] { removeDemonRipDebuff };
+            });
 
             demonRipDebuff.AddComponent<AddFactContextActions>(c =>
             {
@@ -121,27 +117,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.Activated.Actions = new GameAction[] { demonRipBuffUnholyDamage };
                 c.Deactivated = new ActionList();
                 c.NewRound = new ActionList();
-                c.NewRound.Actions = new GameAction[] { demonRipBuffUnholyDamage, removeDemonRipDebuff };
+                c.NewRound.Actions = new GameAction[] { };
             });
-
-            demonRipDebuff.AddComponent<ContextRankConfig>(c =>
-            {
-                c.m_Type = AbilityRankType.Default;
-                c.m_BaseValueType = ContextRankBaseValueType.TargetBuffRank;
-                c.m_FeatureList = new BlueprintFeatureReference[] { };
-                c.m_Stat = Kingmaker.EntitySystem.Stats.StatType.Unknown;
-                c.m_SpecificModifier = ModifierDescriptor.None;
-                c.m_Buff = demonRipDebuff.ToReference<BlueprintBuffReference>();
-                c.m_Progression = ContextRankProgression.AsIs;
-                c.m_StartLevel = 0;
-                c.m_StepLevel = 0;
-                c.m_UseMin = false;
-                c.m_UseMax = false;
-                c.m_Max = 20;
-                c.m_ExceptClasses = false;
-            });
-
-            /////
 
             var demonRipBlastGuid = new BlueprintGuid(new Guid("f51dce1d-186d-4ca2-bf82-a0042d01e0e4"));
 
@@ -269,43 +246,13 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_resourceAmount = 1;
             });
 
-
-            var demonRipUnholyDamage2 = Helpers.Create<ContextActionDealDamage>(c =>
-            {
-                c.DamageType = new DamageTypeDescription
-                {
-                    Type = DamageType.Energy,
-                    Energy = DamageEnergyType.Unholy
-                };
-                c.Duration = new ContextDurationValue()
-                {
-                    m_IsExtendable = true,
-                    DiceCountValue = new ContextValue(),
-                    BonusValue = new ContextValue()
-                };
-                c.Value = new ContextDiceValue
-                {
-                    DiceType = DiceType.D6,
-                    DiceCountValue = new ContextValue()
-                    {
-                        Value = 1
-                    },
-                    BonusValue = new ContextValue
-                    {
-                        ValueType = ContextValueType.Simple,
-                        ValueRank = AbilityRankType.Default
-                    }
-                };
-                c.m_IsAOE = true;
-            });
-
             demonRipBuff.AddComponent<AddFactContextActions>(c =>
             {
                 c.Activated = new ActionList();
-                c.Activated.Actions = new GameAction[] { demonRipUnholyDamage2 };
+                c.Activated.Actions = new GameAction[] { demonRipUnholyDamage };
                 c.Deactivated = new ActionList();
                 c.NewRound = new ActionList();
-                c.NewRound.Actions = new GameAction[] { demonRipUnholyDamage2 };
+                c.NewRound.Actions = new GameAction[] { demonRipUnholyDamage };
             });
 
             var demonRipBuffContextActionCastSpell = Helpers.GenericAction<ContextActionCastSpellSimple>(c =>
@@ -325,13 +272,13 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             {
                 m_Buff = demonRipDebuff.ToReference<BlueprintBuffReference>(),
                 Permanent = true,
-                UseDurationSeconds = false,
+                UseDurationSeconds = true,
                 DurationValue  = new ContextDurationValue(),
                 DurationSeconds = 0,
                 IsFromSpell = false,
                 IsNotDispelable = false,
                 ToCaster = false,
-                AsChild = true,
+                AsChild = false,
                 SameDuration = false
             };
 
@@ -406,8 +353,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonRipDescription = "You let loose a 30ft aura of carnage that causes enemies to die more often in explosive fashion.\n" +
                                                   "Enemies take 1d6 Unholy damage per round and each time an enemy dies while affected by this aura you " +
                                                   "restore a round of rage and they deal 2d6 Unholy damage plus Mythic Rank to all enemies within 10 feet.\n" +
-                                                  "Any enemy under this effect will take 1d6 damage for every time they are attacked, hit or miss, at the start of their next round. " +
-                                                  "This stacks up to 10 times.\n" +
+                                                  $"Any enemy under this effect will take 1d6 damage for every time they are attacked, hit or miss, up to {demonRipDebuff.Ranks} times a round.\n" +
                                                   "You may use this ability for a number of rounds equal to your mythic rank.";
             demonRip.m_Description = Helpers.CreateString(demonRip + ".Description", demonRipDescription);
 

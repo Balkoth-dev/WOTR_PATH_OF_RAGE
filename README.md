@@ -43,6 +43,8 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+11/5/2022
+* Carnage Incarnate reworked for balancing reasons. Will max out at 30 times a round.
 10/30/2022
 * Balor Aspect should no longer give its intelligence bonus.
 * Unleashed Demon's balor form now has the correct number of times per day
