@@ -30,6 +30,7 @@ namespace WOTR_PATH_OF_RAGE
             public bool AddMightyDemonrage = true;
             public bool PatchNocticulaAspect = true;
             public bool PatchLegendaryProportions = true;
+            public bool PatchBalorAspect = true;
 
             public override void Save(UnityModManager.ModEntry modEntry)
             {
@@ -236,6 +237,15 @@ namespace WOTR_PATH_OF_RAGE
                 else
                 {
                     UI.Label("Legendary Proportions is not changed.".red().size(10));
+                }
+                UI.Toggle("Patch Balor Aspect".bold(), ref settings.PatchBalorAspect);
+                if (settings.PatchBalorAspect)
+                {
+                    UI.Label("Fixes Balor Aspect to not give a bonus on intelligence.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Fixes Balor Aspect to not give a bonus on intelligence.".red().size(10));
                 }
             }
         }

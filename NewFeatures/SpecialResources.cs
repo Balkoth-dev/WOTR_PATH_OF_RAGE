@@ -115,7 +115,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 bp.name = "DemonPolyResource" + bp.AssetGuid;
                 bp.m_MaxAmount = new BlueprintAbilityResource.Amount
                 {
-                    BaseValue = 0,
+                    BaseValue = 1,
                     IncreasedByStat = false,
                     m_ClassDiv = new BlueprintCharacterClassReference[] { demonMythicClass },
                     m_Class = new BlueprintCharacterClassReference[] { demonMythicClass },
@@ -125,7 +125,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                     StartingLevel = 1,
                     LevelStep = 1,
                     PerStepIncrease = 1,
-                    StartingIncrease = 1
+                    StartingIncrease = 0
                 };
             });
 

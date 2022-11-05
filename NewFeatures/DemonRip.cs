@@ -57,6 +57,91 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonChargeProjectile = BlueprintTool.Get<BlueprintAbility>("4b18d0f44f57cbf4c91f094addfed9f4");
             ///
 
+            var eldritchFontEldritchSurgeDCBuff = BlueprintTool.Get<BlueprintBuff>("91b2762997f0d8044baeeef0871eac6f");
+
+            var demonRipBuffUnholyDamage = Helpers.Create<ContextActionDealDamage>(c =>
+            {
+                c.DamageType = new DamageTypeDescription
+                {
+                    Type = DamageType.Energy,
+                    Energy = DamageEnergyType.Unholy
+                };
+                c.Duration = new ContextDurationValue()
+                {
+                    m_IsExtendable = true,
+                    DiceCountValue = new ContextValue(),
+                    BonusValue = new ContextValue()
+                };
+                c.Value = new ContextDiceValue
+                {
+                    DiceType = DiceType.D6,
+                    DiceCountValue = new ContextValue()
+                    {
+                        ValueType = ContextValueType.Rank,
+                        Value = 0,
+                        ValueRank = AbilityRankType.Default,
+                        Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None
+                    },
+                    BonusValue = new ContextValue
+                    {
+                        ValueType = ContextValueType.Rank,
+                        ValueRank = AbilityRankType.DamageBonus
+                    }
+                };
+                c.m_IsAOE = true;
+            });
+
+            var demonRipDebuffGuid = new BlueprintGuid(new Guid("b7805ba3-039e-4be9-ac34-17a54d85365f"));
+
+            var demonRipDebuff = Helpers.CreateCopy(eldritchFontEldritchSurgeDCBuff, bp =>
+            {
+                bp.AssetGuid = demonRipDebuffGuid;
+                bp.name = "carnage debuff" + bp.AssetGuid;
+                bp.m_DisplayName = Helpers.CreateString(bp + ".Name", "Carnage");
+                bp.m_Description = Helpers.CreateString(bp + ".Description", "You have been hit in combat, when your turn starts you will take 1d6 damage per stack.");
+                bp.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRip.png");
+                bp.Components = new BlueprintComponent[] { };
+                bp.Stacking = StackingType.Rank;
+                bp.Ranks = 10;
+            });
+
+            Helpers.AddBlueprint(demonRipDebuff, demonRipDebuffGuid);
+
+            var removeDemonRipDebuff = new ContextActionRemoveBuff()
+            {
+                m_Buff = demonRipDebuff.ToReference<BlueprintBuffReference>(),
+                OnlyFromCaster = false,
+                ToCaster = true
+            };
+
+            demonRipDebuff.AddComponent<AddFactContextActions>(c =>
+            {
+                c.Activated = new ActionList();
+                c.Activated.Actions = new GameAction[] { };
+                c.Deactivated = new ActionList();
+                c.NewRound = new ActionList();
+                c.NewRound.Actions = new GameAction[] { demonRipBuffUnholyDamage };
+            });
+
+            demonRipDebuff.AddComponent<ContextRankConfig>(c =>
+            {
+                c.m_Type = AbilityRankType.Default;
+                c.m_BaseValueType = ContextRankBaseValueType.TargetBuffRank;
+                c.m_FeatureList = new BlueprintFeatureReference[] { };
+                c.m_Stat = Kingmaker.EntitySystem.Stats.StatType.Unknown;
+                c.m_SpecificModifier = ModifierDescriptor.None;
+                c.m_Buff = demonRipDebuff.ToReference<BlueprintBuffReference>();
+                c.m_Progression = ContextRankProgression.AsIs;
+                c.m_StartLevel = 0;
+                c.m_StepLevel = 0;
+                c.m_UseMin = false;
+                c.m_UseMax = false;
+                c.m_Max = 20;
+                c.m_ExceptClasses = false;
+            });
+
+            /////
+
             var demonRipBlastGuid = new BlueprintGuid(new Guid("f51dce1d-186d-4ca2-bf82-a0042d01e0e4"));
 
             var demonRipBlast = Helpers.Create<BlueprintAbility>(c =>
@@ -183,36 +268,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_resourceAmount = 1;
             });
 
-            var demonRipBuffUnholyDamage = Helpers.Create<ContextActionDealDamage>(c =>
+            demonRipBuff.AddComponent<AddFactContextActions>(c =>
             {
-                c.DamageType = new DamageTypeDescription
-                {
-                    Type = DamageType.Energy,
-                    Energy = DamageEnergyType.Unholy
-                };
-                c.Duration = new ContextDurationValue()
-                {
-                    m_IsExtendable = true,
-                    DiceCountValue = new ContextValue(),
-                    BonusValue = new ContextValue()
-                };
-                c.Value = new ContextDiceValue
-                {
-                    DiceType = DiceType.D6,
-                    DiceCountValue = new ContextValue()
-                    {
-                        Value = 1
-                    },
-                    BonusValue = new ContextValue
-                    {
-                        ValueType = ContextValueType.Simple,
-                        ValueRank = AbilityRankType.Default,
-                    }
-                };
-                c.m_IsAOE = true;
-            });
-
-            demonRipBuff.AddComponent<AddFactContextActions>(c => {
                 c.Activated = new ActionList();
                 c.Activated.Actions = new GameAction[] { demonRipBuffUnholyDamage };
                 c.Deactivated = new ActionList();
@@ -220,7 +277,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.NewRound.Actions = new GameAction[] { demonRipBuffUnholyDamage };
             });
 
-            var demonRipBuffContextActionCastSpell = Helpers.GenericAction<ContextActionCastSpellSimple>(c => {
+            var demonRipBuffContextActionCastSpell = Helpers.GenericAction<ContextActionCastSpellSimple>(c =>
+            {
                 c.m_Spell = demonRipBlast.ToReference<BlueprintAbilityReference>();
                 c.DC = new ContextValue();
                 c.SpellLevel = new ContextValue();
@@ -231,14 +289,28 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.Actions = new ActionList();
                 c.Actions.Actions = new GameAction[] { contextResourceIncrease, demonRipBuffContextActionCastSpell };
             });
-            
+
+            var addDemonRipDebuff = new ContextActionApplyBuff()
+            {
+                m_Buff = demonRipDebuff.ToReference<BlueprintBuffReference>(),
+                Permanent = true,
+                UseDurationSeconds = false,
+                DurationValue  = new ContextDurationValue(),
+                DurationSeconds = 0,
+                IsFromSpell = false,
+                IsNotDispelable = false,
+                ToCaster = false,
+                AsChild = true,
+                SameDuration = false
+            };
+
             demonRipBuff.AddComponent<AddTargetAttackWithWeaponTrigger>(c => {
                 c.ActionOnSelf = new ActionList();
-                c.ActionOnSelf.Actions = new GameAction[] { demonRipBuffUnholyDamage };
+                c.ActionOnSelf.Actions = new GameAction[] { addDemonRipDebuff };
                 c.ActionsOnAttacker = new ActionList();
                 c.OnlyHit = false;
             });
-          
+
             Helpers.AddBlueprint(demonRipBuff, demonRipBuffGuid);
             ///
 
@@ -292,7 +364,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonRip = Helpers.Create<BlueprintActivatableAbility>(c =>
             {
                 c.AssetGuid = demonRipGuid;
-                c.name = "Carnage Incarnate"+ c.AssetGuid;
+                c.name = "Carnage Incarnate" + c.AssetGuid;
                 c.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRip.png");
                 c.m_Buff = demonRipAuraBuff.ToReference<BlueprintBuffReference>();
                 c.ActivationType = new AbilityActivationType();
@@ -310,7 +382,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             {
                 c.SpendType = ActivatableAbilityResourceLogic.ResourceSpendType.NewRound;
                 c.m_RequiredResource = demonRipResource.ToReference<BlueprintAbilityResourceReference>();
-            }); 
+            });
 
             Helpers.AddBlueprint(demonRip, demonRipGuid);
 

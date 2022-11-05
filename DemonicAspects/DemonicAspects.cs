@@ -41,6 +41,7 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                 PatchShadowDemonAspect();
                 PatchSuccubusDemonAspect();
                 PatchNocticulaDemonAspect();
+                PatchBalorDemonAspect();
             }
 
             static void PatchDemonAspectIcons()
@@ -268,6 +269,18 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
 
             Main.Log("Patching Nocticula Aspect Complete");
 
+        }
+
+        static void PatchBalorDemonAspect()
+        {
+            if (Main.settings.PatchBalorAspect == false)
+            {
+                return;
+            }
+            var balorAspectEffectBuff = BlueprintTool.Get<BlueprintBuff>("516462cc6f2e4774292fc7922393e297");
+            balorAspectEffectBuff.RemoveComponents<AddContextStatBonus>();
+
+            Main.Log("Patching Balor Aspect Complete");
         }
 
     }

@@ -8,6 +8,7 @@ using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Blueprints.Classes.Selection;
+using WOTR_PATH_OF_RAGE.MechanicsChanges;
 
 namespace WOTR_PATH_OF_RAGE.NewFeatures
 {
@@ -32,15 +33,17 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             quasitBuff.m_DisplayName = Helpers.CreateString(quasitBuff + ".Name", "Aspect Of Quasit");
             var quasitBuffDescription = "Demon adopts the aspect of Quasit, gaining a {g|Encyclopedia:Bonus}bonus{/g} to {g|Encyclopedia:Dexterity}Dexterity{/g} " +
                                          "{g|Encyclopedia:Ability_Scores}ability score{/g} equal to half of the Demon's mythic rank plus one.\nThe aspect of Quasit allows " +
-                                         "the Demon to reroll all attack rolls and take the highest result.";
+                                         "the Demon to reroll all attack rolls and concealment checks that fail.";
             quasitBuff.m_Description = Helpers.CreateString(quasitBuff + ".Description", quasitBuffDescription);
             quasitBuff.RemoveComponents<AddMechanicsFeature>();
             quasitBuff.AddComponent<ModifyD20>(c =>
-            {
-                c.TakeBest = true;
-                c.Rule = RuleType.AttackRoll;
-                c.RollsAmount = 1;
-            });
+             {
+                 c.TakeBest = true;
+                 c.Rule = RuleType.AttackRoll;
+                 c.RollsAmount = 1;
+                 c.RerollOnlyIfFailed = true;
+             });
+            quasitBuff.AddComponent<RerollConcealment>();
 
             Helpers.AddBlueprint(quasitBuff, quasitBuffGuid);
 

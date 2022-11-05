@@ -37,11 +37,16 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 * Made the new demon rage no longer work with Dark Codex's infinite rage resource.
 * Demon Rage now updated. You will be able to use it now for an unlimited amount of time out of combat. This also means it will not turn off when combat ends, meaning you get to stay angry even between cutscenes!
 * Elemental Rampager is now activated when you start your demonic rage.
+* Balor Aspect should no longer give its intelligence bonus.
 ```
 ## Current New Abilities
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+10/30/2022
+* Balor Aspect should no longer give its intelligence bonus.
+* Unleashed Demon's balor form now has the correct number of times per day
+* Aspect of Quasit will now reroll attack rolls if they fail and reroll on concealment rolls.
 10/30/2022
 * Unleashed Demon's Balor Form will now last 30 seconds.
 * Unleashed Demon's Balor Form will now leave the character to always attack the nearest target.
