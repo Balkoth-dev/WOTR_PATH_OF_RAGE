@@ -95,7 +95,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 bp.AssetGuid = demonRipDebuffGuid;
                 bp.name = "carnage debuff" + bp.AssetGuid;
                 bp.m_DisplayName = Helpers.CreateString(bp + ".Name", "Victim Of Carnage");
-                bp.m_Description = Helpers.CreateString(bp + ".Description", "You have been hit in combat, when your turn starts you will take 1d6 damage per stack.");
+                bp.m_Description = Helpers.CreateString(bp + ".Description", "You have been hit in combat and take 1d6 unholy damage, you become immune to this effect after 30 stacks.");
                 bp.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRipDebuff.png");
                 bp.Components = new BlueprintComponent[] { };
                 bp.Stacking = StackingType.Rank;

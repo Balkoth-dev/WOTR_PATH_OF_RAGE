@@ -145,6 +145,27 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
 
                 demonRageBuff.RemoveComponents<CombatStateTrigger>();
 
+                var removeDemonRageBuff = new ContextActionRemoveSelf();
+
+                conditionalBuffEffects = new Conditional()
+                {
+                    ConditionsChecker = new ConditionsChecker()
+                    {
+                        Operation = Operation.And,
+                        Conditions = new Condition[] {
+                            new ContextConditionIsInCombat(){Not = true },
+                            new ContextConditionHasFact(){Not = true, m_Fact = demonRageFeature.ToReference<BlueprintUnitFactReference>()}
+                        }
+                    },
+                    IfFalse = new ActionList() { Actions = new GameAction[] { } },
+                    IfTrue = new ActionList() { Actions = new GameAction[] { removeDemonRageBuff } }
+                };
+
+                demonRageBuff.AddComponent<NewRoundTrigger>(c => {
+                    c.NewRoundActions = new ActionList();
+                    c.NewRoundActions.Actions = new GameAction[] { conditionalBuffEffects };
+                });
+
                 AddElementalRampage(demonRageBuff);
 
                 Main.Log("Patching Demonic Rage Complete");

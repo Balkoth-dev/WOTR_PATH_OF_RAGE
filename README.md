@@ -38,11 +38,14 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 * Demon Rage now updated. You will be able to use it now for an unlimited amount of time out of combat. This also means it will not turn off when combat ends, meaning you get to stay angry even between cutscenes!
 * Elemental Rampager is now activated when you start your demonic rage.
 * Balor Aspect should no longer give its intelligence bonus.
+* Fixed bug with demon rage that causes it to persist when given as part of a cutscene.
 ```
 ## Current New Abilities
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+11/8/2022
+* Fixed bug with demon rage that causes it to persist when given as part of a cutscene.
 11/5/2022
 * Carnage Incarnate reworked for balancing reasons. Will max out at 30 times a round.
 10/30/2022
