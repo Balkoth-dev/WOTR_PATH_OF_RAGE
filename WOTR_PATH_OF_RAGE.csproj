@@ -132,7 +132,7 @@
     <Compile Include="MechanicsChanges\DemonRend.cs" />
     <Compile Include="MechanicsChanges\IncreaseSpelllistDC.cs" />
     <Compile Include="MechanicsChanges\ContextActionRestoreRandomSpell.cs" />
-    <Compile Include="NewFeatures\AspectOfQuasit.cs" />
+    <Compile Include="NewFeatures\AspectOfOolioddroo.cs" />
     <Compile Include="NewFeatures\AspectOfLilithu.cs" />
     <Compile Include="NewFeatures\DemonBlast.cs" />
     <Compile Include="NewFeatures\DemonPolymorph.cs" />
@@ -157,12 +157,14 @@
     <Compile Include="Utilities\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="lib\Assembly-CSharp_public.hash" />
     <None Include="Output\Info.json" />
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="lib\Assembly-CSharp_public.dll" />
     <Content Include="Output\Assets\Abilities\Areshkagal.png" />
     <Content Include="Output\Assets\Abilities\Balor.png" />
     <Content Include="Output\Assets\Abilities\Baubau.png" />
@@ -186,6 +188,7 @@
     <Content Include="Output\Assets\Abilities\Nabasu.png" />
     <Content Include="Output\Assets\Abilities\Nocticula.png" />
     <Content Include="Output\Assets\Abilities\Omox.png" />
+    <Content Include="Output\Assets\Abilities\Oolioddroo.png" />
     <Content Include="Output\Assets\Abilities\Pazuzu.png" />
     <Content Include="Output\Assets\Abilities\Quasit.png" />
     <Content Include="Output\Assets\Abilities\Schir.png" />

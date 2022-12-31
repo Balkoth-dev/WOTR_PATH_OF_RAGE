@@ -2,6 +2,8 @@
 
 This mod is for Pathfinder: Wrath of the Righteous, it contains a number of changes for the Demon mythic path to make it a more interesting and better "feeling" mythic path, while still trying to keep it within the vision of the game. It contains a number of bug-fixes, new abilities, and a different way of handling the Demon's main mechanic: Rage. 
 
+## [![Download zip](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/DownloadButton.png?raw=true "Download zip")](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/releases/latest/download/WOTR_PATH_OF_RAGE.zip) Latest Release 
+
 ## How to Install
 
 ```
@@ -24,11 +26,11 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 * Blood Haze now gives a +2 profane bonus to attack.
 * At Mythic Rank 4 you gain an ability to use Demonic Charge that isn't a teleport. This is for instances where you can't use Demonic Charge
 * As a Major demonic aspect you can select Lilithu, gaining a bonus to your Charisma as well as allowing all your spells and spell-like abilites to be considered using Selective Metamagic.
-* As a Major demonic aspect you can select Quasit, gaining a bonus to your Dexterity and allowing all attacks to be rolled twice and take the highest result.
+* As a Major demonic aspect you can select Oolioddroo, gaining a bonus to your Dexterity and allowing all attacks to be rolled twice and take the highest result.
 * Fixes Demonic Aura so that it will only apply its damage when an enemy starts a new round instead of every time you activate Bloodrage.
 * Fixes autometamagic so that it will work on spells that are not originally part of a spellbook but added later. This is important for Arcane Bloodline for Bloodragers.
 * Adds a new mythic ability called Mighty Demonrage. This allows you to cast a demon spell of fourth level or lower as a swift action while Demon Raging.
-* Nocticula Aspect will now work with both Lilithu and Quasit major aspects.
+* Nocticula Aspect will now work with both Lilithu and Oolioddroo major aspects.
 * Nocticula Aspect has a better icon so you don't lose it with all the other abilities.
 * Nocticula Aspect is restricted to once per combat.
 * Nocticula Aspect is will give bloodrager and barbarian rages if you have them.
@@ -44,6 +46,9 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+11/29/2022
+* Refixed bug with demon rage that causes it to persist when given as part of a cutscene.
+* Renamed Aspect of Quasit to Aspect of Oolioddroo
 11/8/2022
 * Fixed bug with demon rage that causes it to persist when given as part of a cutscene.
 11/5/2022

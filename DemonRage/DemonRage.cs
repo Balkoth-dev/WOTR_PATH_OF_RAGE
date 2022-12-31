@@ -161,9 +161,10 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
                     IfTrue = new ActionList() { Actions = new GameAction[] { removeDemonRageBuff } }
                 };
 
-                demonRageBuff.AddComponent<NewRoundTrigger>(c => {
-                    c.NewRoundActions = new ActionList();
-                    c.NewRoundActions.Actions = new GameAction[] { conditionalBuffEffects };
+                demonRageBuff.AddComponent<CombatStateTrigger>(c => {
+                    c.CombatEndActions = new ActionList();
+                    c.CombatEndActions.Actions = new GameAction[] { conditionalBuffEffects };
+                    c.CombatStartActions = new ActionList();
                 });
 
                 AddElementalRampage(demonRageBuff);

@@ -24,7 +24,7 @@ namespace WOTR_PATH_OF_RAGE
             public bool AddDemonBlast = true;
             public bool PatchDemonLordAspects = true;
             public bool AddLilithuAspect = true;
-            public bool AddQuasitAspect = true;
+            public bool AddOolioddrooAspect = true;
             public bool PatchDemonicAura = true;
             public bool PatchAutometamagic = true;
             public bool AddMightyDemonrage = true;
@@ -184,14 +184,14 @@ namespace WOTR_PATH_OF_RAGE
                 {
                     UI.Label("Lilithu Aspect is not added".red().size(10));
                 }
-                UI.Toggle("Quasit Aspect Addition".bold(), ref settings.AddQuasitAspect);
-                if (settings.AddQuasitAspect)
+                UI.Toggle("Oolioddroo Aspect Addition".bold(), ref settings.AddOolioddrooAspect);
+                if (settings.AddOolioddrooAspect)
                 {
-                    UI.Label("As a Major demonic aspect you can select Quasit, gaining a bonus to your Dexterity and allowing all attacks to be rolled twice and take the highest result.".green().size(10));
+                    UI.Label("As a Major demonic aspect you can select Oolioddroo, gaining a bonus to your Dexterity and allowing all attacks to be rolled twice and take the highest result.".green().size(10));
                 }
                 else
                 {
-                    UI.Label("Quasit Aspect is not added".red().size(10));
+                    UI.Label("Oolioddroo Aspect is not added".red().size(10));
                 }
                 UI.Toggle("Demonic Aura Fix".bold(), ref settings.PatchDemonicAura);
                 if (settings.PatchDemonicAura)
