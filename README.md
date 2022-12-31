@@ -2,7 +2,7 @@
 
 This mod is for Pathfinder: Wrath of the Righteous, it contains a number of changes for the Demon mythic path to make it a more interesting and better "feeling" mythic path, while still trying to keep it within the vision of the game. It contains a number of bug-fixes, new abilities, and a different way of handling the Demon's main mechanic: Rage. 
 
-## [![Download zip](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/downloadButton.png?raw=true "Download zip")](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/releases/latest/download/WOTR_PATH_OF_RAGE.zip) Latest Release 
+## [![Download zip](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/downloadButton.png?raw=true "Download zip")](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/releases/latest/download/WOTR_PATH_OF_RAGE.zip)
 
 ## How to Install
 
