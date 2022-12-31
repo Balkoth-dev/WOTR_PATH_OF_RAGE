@@ -164,6 +164,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="downloadButton.png" />
     <Content Include="lib\Assembly-CSharp_public.dll" />
     <Content Include="Output\Assets\Abilities\Areshkagal.png" />
     <Content Include="Output\Assets\Abilities\Balor.png" />
