@@ -57,7 +57,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             demonSmash.name = "Demon Smash";
             demonSmash.m_DisplayName = Helpers.CreateString(demonSmash + ".Name", "DEMONIC SMASH!");
             var demonSmashDescription = "You erupt into a frenzy and smash your melee weapon into a foe with explosive results.\n" +
-                "You deal normal weapon damage on a hit, and regardless if you hit or miss you deal {g|Encyclopedia:Dice}1d6{/g} " +
+                "You deal normal weapon damage on a hit to all targets in an area, and regardless if you hit or miss you deal {g|Encyclopedia:Dice}1d6{/g} " +
                 "{g|Encyclopedia:Energy_Damage}unholy{/g} and {g|Encyclopedia:Dice}1d6{/g} {g|Encyclopedia:Energy_Damage}fire{/g} " +
                 "{g|Encyclopedia:Damage}damage{/g} per mythic rank in a ten foot radius to all targets.\n" +
                 "For each target affected you regain one round of Demon Rage. \n" +
@@ -200,6 +200,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_resourceAmount = 1;
             });
 
+            var contextMeleeAction = Helpers.Create<ContextActionMeleeAttack>();
+
             var conditionalDamage = new Conditional()
             {
                 ConditionsChecker = new ConditionsChecker()
@@ -212,18 +214,16 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 },
                 IfTrue = new ActionList()
                 {
-                    Actions = new GameAction[] { contextResourceIncrease, demonSmashDamageUnholy, demonSmashDamageFire }
+                    Actions = new GameAction[] { contextResourceIncrease, demonSmashDamageUnholy, demonSmashDamageFire, contextMeleeAction }
                 },
                 IfFalse = new ActionList()
             };
 
-            var contextMeleeAction = Helpers.Create<ContextActionMeleeAttack>();
-
-            demonSmash.AddComponent<AbilityEffectRunActionOnClickedTarget>(c =>
+           /* demonSmash.AddComponent<AbilityEffectRunActionOnClickedUnit>(c =>
             {
                 c.Action = new ActionList();
                 c.Action.Actions = new GameAction[] { contextMeleeAction };
-            });
+            });*/
 
             demonSmash.AddComponent<AbilityEffectRunAction>(c =>
             {

@@ -46,6 +46,8 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+02/20/2023
+* DEMONIC SMASH changed to a weapon attack to all targets in the area.
 11/29/2022
 * Refixed bug with demon rage that causes it to persist when given as part of a cutscene.
 * Renamed Aspect of Quasit to Aspect of Oolioddroo
