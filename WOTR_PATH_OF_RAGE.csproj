@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Output\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -121,6 +121,7 @@
     <Compile Include="Components\AbilityEffectToggleBuff.cs" />
     <Compile Include="DemonRage\DemonRage.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="LocalizationChanges\UncontrollableRage.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="MechanicsChanges\AbilityCasterSecondaryWeaponCheck.cs" />
     <Compile Include="MechanicsChanges\AutometamagicPatch.cs" />
@@ -209,7 +210,12 @@
     <Publicise InputAssemblies="@(PubliciseInputAssemblies)" OutputPath="$(SolutionDir)lib/" PubliciseCompilerGenerated="true" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>(robocopy "$(TargetDir) " "%25WrathPath%25\Mods\WOTR_PATH_OF_RAGE\ " /s /e )^&amp; IF %25ERRORLEVEL%25 LEQ 1 exit 0</PostBuildEvent>
+    <PostBuildEvent>if defined DEBUG (
+    (robocopy "$(TargetDir) " "%25WrathPath%25\Mods\$(AssemblyName)\ " /s /e )^&amp; IF %25ERRORLEVEL%25 LEQ 1 exit 0
+) else (
+    $(ProjectDir)version.bat &amp;&amp; (robocopy "$(TargetDir) " "%25WrathPath%25\Mods\$(AssemblyName)\ " /s /e )^&amp; IF %25ERRORLEVEL%25 LEQ 1 exit 0
+)
+</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

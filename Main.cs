@@ -31,6 +31,9 @@ namespace WOTR_PATH_OF_RAGE
             public bool PatchNocticulaAspect = true;
             public bool PatchLegendaryProportions = true;
             public bool PatchBalorAspect = true;
+            public bool UncontrollableRageLocalization = true;
+            public bool UncontrollableRageToggle = true;
+            public bool UncontrollableRageFix = true;
 
             public override void Save(UnityModManager.ModEntry modEntry)
             {
@@ -245,7 +248,34 @@ namespace WOTR_PATH_OF_RAGE
                 }
                 else
                 {
-                    UI.Label("Fixes Balor Aspect to not give a bonus on intelligence.".red().size(10));
+                    UI.Label("Balor Aspect is unchanged.".red().size(10));
+                }
+                UI.Toggle("Patch Uncontrollable Rage Localization".bold(), ref settings.UncontrollableRageLocalization);
+                if (settings.PatchBalorAspect)
+                {
+                    UI.Label("Fixes Uncontrollable Rage's localization to have an actual description and name".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Uncontrollable Rage's localization is not changed.".red().size(10));
+                }
+                UI.Toggle("Turn Uncontrollable Rage to Toggle".bold(), ref settings.UncontrollableRageToggle);
+                if (settings.PatchBalorAspect)
+                {
+                    UI.Label("Changes Uncontrollable Rage to be a toggle, instead of a feature.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Uncontrollable Rage is not turned into a toggle.".red().size(10));
+                }
+                UI.Toggle("Fix Uncontrollable Rage".bold(), ref settings.UncontrollableRageToggle);
+                if (settings.PatchBalorAspect)
+                {
+                    UI.Label("Fixes Uncontrollable Rage so that it does what the description says.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Uncontrollable Rage is unfixed.".red().size(10));
                 }
             }
         }

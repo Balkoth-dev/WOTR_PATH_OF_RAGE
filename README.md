@@ -46,6 +46,10 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+03/10/2023
+* Uncontrollable Rage fixed to have a localization.
+* Uncontrollable Rage is changed to a toggle, rather than a passive.
+* Uncontrollable Rage rebuilt in case of patching.
 02/20/2023
 * DEMONIC SMASH changed to a weapon attack to all targets in the area.
 11/29/2022

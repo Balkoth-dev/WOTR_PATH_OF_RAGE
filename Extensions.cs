@@ -15,6 +15,13 @@ namespace WOTR_PATH_OF_RAGE
                 obj.SetComponents(obj.ComponentsArray.RemoveFromArray(c));
             }
         }
+        public static void RemoveAllComponents(this BlueprintScriptableObject obj)
+        {
+            var components = obj.GetComponents<BlueprintComponent>();
+            obj.SetComponents(obj.ComponentsArray.Except(components).ToArray());
+        }
+
+
         public static T[] RemoveFromArray<T>(this T[] array, T value)
         {
             var list = array.ToList();
