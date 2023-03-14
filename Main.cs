@@ -34,6 +34,7 @@ namespace WOTR_PATH_OF_RAGE
             public bool UncontrollableRageLocalization = true;
             public bool UncontrollableRageToggle = true;
             public bool UncontrollableRageFix = true;
+            public bool DarkCodexLimitlessRageDisable = true;
 
             public override void Save(UnityModManager.ModEntry modEntry)
             {
@@ -251,7 +252,7 @@ namespace WOTR_PATH_OF_RAGE
                     UI.Label("Balor Aspect is unchanged.".red().size(10));
                 }
                 UI.Toggle("Patch Uncontrollable Rage Localization".bold(), ref settings.UncontrollableRageLocalization);
-                if (settings.PatchBalorAspect)
+                if (settings.UncontrollableRageLocalization)
                 {
                     UI.Label("Fixes Uncontrollable Rage's localization to have an actual description and name".green().size(10));
                 }
@@ -260,7 +261,7 @@ namespace WOTR_PATH_OF_RAGE
                     UI.Label("Uncontrollable Rage's localization is not changed.".red().size(10));
                 }
                 UI.Toggle("Turn Uncontrollable Rage to Toggle".bold(), ref settings.UncontrollableRageToggle);
-                if (settings.PatchBalorAspect)
+                if (settings.UncontrollableRageToggle)
                 {
                     UI.Label("Changes Uncontrollable Rage to be a toggle, instead of a feature.".green().size(10));
                 }
@@ -269,13 +270,22 @@ namespace WOTR_PATH_OF_RAGE
                     UI.Label("Uncontrollable Rage is not turned into a toggle.".red().size(10));
                 }
                 UI.Toggle("Fix Uncontrollable Rage".bold(), ref settings.UncontrollableRageToggle);
-                if (settings.PatchBalorAspect)
+                if (settings.UncontrollableRageToggle)
                 {
                     UI.Label("Fixes Uncontrollable Rage so that it does what the description says.".green().size(10));
                 }
                 else
                 {
                     UI.Label("Uncontrollable Rage is unfixed.".red().size(10));
+                }
+                UI.Toggle("Dark Codex Limitless Rage".bold(), ref settings.DarkCodexLimitlessRageDisable);
+                if (settings.DarkCodexLimitlessRageDisable)
+                {
+                    UI.Label("Removes the limitless rage resource that Dark Codex gives to Demon Rage. This only affects the new Demon Rage.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Dark Codex will still give demonic rage limitless rage.".red().size(10));
                 }
             }
         }

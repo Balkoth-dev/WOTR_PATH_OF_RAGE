@@ -59,8 +59,8 @@ namespace WOTR_PATH_OF_RAGE.LocalizationChanges
                     "This immunity includes but is not limited to paralysis, petrification, confusion, sleep, stun, fear, and daze.\n" +
                     "Additionally, your weapon increases by two size categories, your base attack bonus is equal to your character level, " +
                     "and you gain a +6 enhancement bonus to strength, dexterity, and constitution. You also gain a +4 natural armor bonus to your AC.\n" +
-                    "Furthermore, your base strength is set to a minimum of double your mythic level + 16. However, while under this effect, you cannot distinguish " +
-                    "between an ally and an enemy, and you lose control of yourself, attacking the nearest creature.";
+                    "Furthermore, your base strength is set to a minimum of double your mythic level + 16. And your movement speed is increased by the same amount.\n" +
+                    "However, while under this effect, you cannot distinguish between an ally and an enemy, and you lose control of yourself, attacking the nearest creature.";
 
                 demonRageForcedRageFeature.m_DisplayName = Helpers.CreateString(demonRageForcedRageFeature + ".Name", nameString);
                 demonRageBuffUncontrollable.m_DisplayName = Helpers.CreateString(demonRageBuffUncontrollable + ".Name", nameString);

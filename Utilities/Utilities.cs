@@ -130,8 +130,8 @@ namespace WOTR_PATH_OF_RAGE.Utilities
                     selection.m_Features = selection.m_Features.AppendToArray(featureReference);
                 }
             }
-            selection.m_AllFeatures = selection.m_AllFeatures.OrderBy(feature => feature.Get().Name).ToArray();
-            selection.m_Features = selection.m_Features.OrderBy(feature => feature.Get().Name).ToArray();
+            selection.m_AllFeatures = selection.m_AllFeatures.OrderBy(feature => feature?.Get()?.Name ?? "noname").ToArray();
+            selection.m_Features = selection.m_Features.OrderBy(feature => feature?.Get()?.Name ?? "noname").ToArray();
         }
         public static T Get<T>(string nameOrGuid) where T : SimpleBlueprint
         {

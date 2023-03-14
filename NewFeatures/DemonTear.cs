@@ -47,6 +47,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var devilClawLeft00 = BlueprintTool.Get<BlueprintProjectile>("11a1193626d322b49b3cf5578384142b").ToReference<BlueprintProjectileReference>();
             var devilClawRight00 = BlueprintTool.Get<BlueprintProjectile>("f76e194520d6f9946bb48d8852ce9e8c").ToReference<BlueprintProjectileReference>();
             var clawType = BlueprintTool.Get<BlueprintWeaponType>("d4f7aee36efe0b54e810c9d3407b6ab3").ToReference<BlueprintWeaponTypeReference>();
+            var slamType = BlueprintTool.Get<BlueprintWeaponType>("f18cbcb39a1b35643a8d129b1ec4e716").ToReference<BlueprintWeaponTypeReference>();
             var bleed1d4Buff = BlueprintTool.Get<BlueprintBuff>("5eb68bfe186d71a438d4f85579ce40c1").ToReference<BlueprintBuffReference>();
             var bloodHazeBuff = BlueprintTool.Get<BlueprintBuff>("173af01d6aae5574ba0391e277e9b168");
 
@@ -142,10 +143,10 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                     c.DurationValue = Helpers.Create<ContextDurationValue>(c => { c.m_IsExtendable = true; });})};
             });
             demonTearAbility.AddComponent<AbilityCasterMainWeaponCheck>(c => {
-                c.Category = new WeaponCategory[] { WeaponCategory.Claw };                 
+                c.Category = new WeaponCategory[] { WeaponCategory.Claw, WeaponCategory.Slam };                 
             });
             demonTearAbility.AddComponent<AbilityCasterSecondaryWeaponCheck>(c => {
-                c.Category = new WeaponCategory[] { WeaponCategory.Claw };
+                c.Category = new WeaponCategory[] { WeaponCategory.Claw, WeaponCategory.Slam };
             });
             demonTearAbility.AddComponent<AbilityCasterNotPolymorphed>();
 
@@ -246,6 +247,14 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.Action = new ActionList();
                 c.Action.Actions = new GameAction[] { conditionalEffects };
                 c.m_WeaponType = clawType;
+            });
+
+            demonTearFeature.AddComponent<AddInitiatorAttackWithWeaponTrigger>(c =>
+            {
+                c.OnlyHit = true;
+                c.Action = new ActionList();
+                c.Action.Actions = new GameAction[] { conditionalEffects };
+                c.m_WeaponType = slamType;
             });
 
             demonTearFeature.AddComponent<AddFacts>(c =>

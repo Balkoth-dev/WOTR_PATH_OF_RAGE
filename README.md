@@ -46,6 +46,13 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+03/14/2023
+* Added a toggle that will disable Dark Codex's limitless rage affecting Demon Rage. This only affects the new Demon Rage.
+* Unleashed Demon will now affect Shifter wildshapes.
+* Rend Asunder should now affect Slams.
+03/11/2023
+* Sin Guzzler Form should now be hidden in the UI if you have not selected Demon Unleashed.
+* Some modded games didn't like Mighty Demonrage being added if another mod added a mythic feature without a name. Fixed.
 03/10/2023
 * Uncontrollable Rage fixed to have a localization.
 * Uncontrollable Rage is changed to a toggle, rather than a passive.

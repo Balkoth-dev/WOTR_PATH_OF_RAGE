@@ -51,6 +51,53 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonicFormIIINalfeshneeBuff = BlueprintTool.Get<BlueprintBuff>("469a412c607bf4f43aabe62c2de22837");
             var demonicFormIINabasuBuff = BlueprintTool.Get<BlueprintBuff>("82d638a78c1a7704684555189ba85d88");
             var demonicFormIIIGlabrezuBuff = BlueprintTool.Get<BlueprintBuff>("f65726a206c68af4085af036f58aca45");
+
+            var shifterWildShapeFeyBuff = BlueprintTool.Get<BlueprintBuff>("477259fe81a647ad9a38b47140e38de6");
+            var shifterWildShapeBearBuff = BlueprintTool.Get<BlueprintBuff>("68ca4094f4e7488c8e869af833e153f1");
+            var shifterWildShapeFeyBuff8 = BlueprintTool.Get<BlueprintBuff>("6fc7df0ddb9a466d976a3808a8f1437a");
+            var shifterWildShapeBoarBuff = BlueprintTool.Get<BlueprintBuff>("c6b493bf01ec4478bbb7247f56d670f8");
+            var shifterWildShapeWolfBuff = BlueprintTool.Get<BlueprintBuff>("fe61e45eb3d1441795179eb0bff1ef3b");
+            var shifterWildShapeFeyBuff15 = BlueprintTool.Get<BlueprintBuff>("dee544177d0148edbaa7ca6a0aee03c0");
+            var shifterWildShapeTigerBuff = BlueprintTool.Get<BlueprintBuff>("7a5da4b80a494bf2b96fa7756d3f89cc");
+            var shifterWildShapeHorseBuff = BlueprintTool.Get<BlueprintBuff>("b3e5540f487d4a2b9aa50aad34c60ec3");
+            var shifterWildShapeBoarBuff8 = BlueprintTool.Get<BlueprintBuff>("ae71fed93f9f442cbce5b601e4aa1a23");
+            var shifterWildShapeWolfBuff8 = BlueprintTool.Get<BlueprintBuff>("a983157daa464ab7a725ed5f53110a32");
+            var shifterWildShapeBearBuff8 = BlueprintTool.Get<BlueprintBuff>("9cc0eceb9cbc44e4b1ecc5e8b5f97c45");
+            var shifterWildShapeWolfBuff15 = BlueprintTool.Get<BlueprintBuff>("14bf6a8c9f9f40dba2f6fc41e6235270");
+            var shifterWildShapeBoarBuff15 = BlueprintTool.Get<BlueprintBuff>("b8c0ad632442496aa20b96864dde4454");
+            var shifterWildShapeTigerBuff8 = BlueprintTool.Get<BlueprintBuff>("defa946808514ab0a1023192fa13ede3");
+            var shifterWildShapeSpiderBuff = BlueprintTool.Get<BlueprintBuff>("58e7d688873242f38b6cc66a7ae3d794");
+            var shifterWildShapeBearBuff15 = BlueprintTool.Get<BlueprintBuff>("5adecdc82eda4271b6dc4a7e6a921c89");
+            var shifterWildShapeHorseBuff8 = BlueprintTool.Get<BlueprintBuff>("4a5e4c66ca8d4657b281060a24886ad1");
+            var shifterWildShapeLizardBuff = BlueprintTool.Get<BlueprintBuff>("0b15a8dce67746e1979dfc597f13827f");
+            var shifterWildShapeTigerBuff15 = BlueprintTool.Get<BlueprintBuff>("f49109fdb0a24f75a4ab466bf95843af");
+            var shifterWildShapeHorseBuff15 = BlueprintTool.Get<BlueprintBuff>("f493bc3e006d44fb8815267ffa49ec76");
+            var shifterWildShapeGriffonBuff = BlueprintTool.Get<BlueprintBuff>("e76d475eb1f1470e9950a5fee99ddb40");
+            var shifterWildShapeLizardBuff8 = BlueprintTool.Get<BlueprintBuff>("f246e4e203f84f52bed2dc16e6d36087");
+            var shifterWildShapeSpiderBuff8 = BlueprintTool.Get<BlueprintBuff>("c163b127ce354363a20946bb01967cac");
+            var shifterWildShapeDinosaurBuff = BlueprintTool.Get<BlueprintBuff>("bdbc24300ebd4fd6810172e4d4b1ab19");
+            var shifterWildShapeGriffonBuff9 = BlueprintTool.Get<BlueprintBuff>("3a7511f1b8a94b11bbb21245e150c0b6");
+            var shifterWildShapeElephantBuff = BlueprintTool.Get<BlueprintBuff>("7e90cc7393624b13b6d319774bf6d812");
+            var shifterWildShapeLizardBuff15 = BlueprintTool.Get<BlueprintBuff>("ba5b0df349c94c91ad7a38309b042537");
+            var shifterWildShapeSpiderBuff15 = BlueprintTool.Get<BlueprintBuff>("d895c3b8663f4b73a3868e6369bba6d4");
+            var shifterWildShapeManticoreBuff = BlueprintTool.Get<BlueprintBuff>("91f12a442b374bd7bfdfb05f5ab80f4c");
+            var shifterWildShapeDinosaurBuff8 = BlueprintTool.Get<BlueprintBuff>("f6d0e7d4d96b4f7897557968a0706f74");
+            var shifterWildShapeElephantBuff8 = BlueprintTool.Get<BlueprintBuff>("38f84f5a0da94b169131b863be81957b");
+            var shifterWildShapeGriffonBuff14 = BlueprintTool.Get<BlueprintBuff>("821fa7f586ca44238a0894115824035c");
+            var shifterWildShapeWolverineBuff = BlueprintTool.Get<BlueprintBuff>("350ba136f5d04e588f1a6e3ba22233cb");
+            var shifterWildShapeElephantBuff15 = BlueprintTool.Get<BlueprintBuff>("fdb39ec525c2411aad43f6b12ad4b1c0");
+            var shifterWildShapeGriffonGodBuff = BlueprintTool.Get<BlueprintBuff>("4b95ed9a351e4effbb2a83e246ee6334");
+            var shifterWildShapeDinosaurBuff15 = BlueprintTool.Get<BlueprintBuff>("ab0f757d55a74658b812829518566df4");
+            var shifterWildShapeManticoreBuff8 = BlueprintTool.Get<BlueprintBuff>("28861899db294aa593ada213a8d1fd36");
+            var shifterWildShapeWolverineBuff8 = BlueprintTool.Get<BlueprintBuff>("12272456258f4334a11b87610cf33abd");
+            var shifterWildShapeWolverineBuff15 = BlueprintTool.Get<BlueprintBuff>("cd5f29d5f50a43f9a2d5f3debce86477");
+            var shifterWildShapeGriffonGodBuff9 = BlueprintTool.Get<BlueprintBuff>("d8b979bf19554b85bbed05e6369c0f63");
+            var shifterWildShapeManticoreBuff15 = BlueprintTool.Get<BlueprintBuff>("f5331d1b15ac4c4a833e2928ce3bf18d");
+            var shifterWildShapeGriffonGodBuff14 = BlueprintTool.Get<BlueprintBuff>("10c913c645364bafbde759f83d103ce6");
+            var shifterWildShapeGriffonDemonBuff = BlueprintTool.Get<BlueprintBuff>("6236b745b60a4a578c435c861df393f4");
+            var shifterWildShapeGriffonDemonBuff9 = BlueprintTool.Get<BlueprintBuff>("7d4798e5fe5f4a349b56686340008824");
+            var shifterWildShapeGriffonDemonBuff14 = BlueprintTool.Get<BlueprintBuff>("431ca9188d6f401f9f8df8079c526e59");
+
             var keen = BlueprintTool.Get<BlueprintWeaponEnchantment>("102a9c8c9b7a75e4fb5844e79deaf4c0").ToReference<BlueprintFeatureReference>();
 
             var demonPolyResource = BlueprintTool.Get<BlueprintAbilityResource>("fb938b3d9deb46b3b3a44de61cd2d574");
@@ -81,40 +128,40 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
 
             Helpers.AddBlueprint(unstableDemonicFormIVBalorBuff, unstableDemonicFormIVBalorBuffGuild);
 
-            var demonBalorFormGuid = new BlueprintGuid(new Guid("e30768ff-138f-4ab5-b947-03df2aa72a6a"));
+            var unstableDemonBalorFormGuid = new BlueprintGuid(new Guid("e30768ff-138f-4ab5-b947-03df2aa72a6a"));
 
-            var demonBalorForm = Helpers.CreateCopy(demonicFormIVBalor, bp =>
+            var unstableDemonBalorForm = Helpers.CreateCopy(demonicFormIVBalor, bp =>
             {
-                bp.AssetGuid = demonBalorFormGuid;
+                bp.AssetGuid = unstableDemonBalorFormGuid;
                 bp.name = "Unstable Balor Transformation";
             });
 
-            demonBalorForm.RemoveComponents<ContextRankConfig>();
+            unstableDemonBalorForm.RemoveComponents<ContextRankConfig>();
 
-            var demonBalorFormContextActionApplyBuff = (ContextActionApplyBuff)demonBalorForm.GetComponent<AbilityEffectRunAction>().Actions.Actions[1];
+            var demonBalorFormContextActionApplyBuff = (ContextActionApplyBuff)unstableDemonBalorForm.GetComponent<AbilityEffectRunAction>().Actions.Actions[1];
             demonBalorFormContextActionApplyBuff.DurationValue = null;
             demonBalorFormContextActionApplyBuff.DurationSeconds = 30;
             demonBalorFormContextActionApplyBuff.UseDurationSeconds = true;
 
-            demonBalorForm.AddComponent<AbilityResourceLogic>(c =>
+            unstableDemonBalorForm.AddComponent<AbilityResourceLogic>(c =>
             {
                 c.Amount = 1;
                 c.m_IsSpendResource = true;
                 c.m_RequiredResource = demonPolyResource.ToReference<BlueprintAbilityResourceReference>();
             });
 
-            var demonBalorFormAbilityEffectRunAction = demonBalorForm.GetComponent<AbilityEffectRunAction>();
+            var demonBalorFormAbilityEffectRunAction = unstableDemonBalorForm.GetComponent<AbilityEffectRunAction>();
 
-            foreach(var v in demonBalorFormAbilityEffectRunAction.Actions.Actions.OfType<ContextActionApplyBuff>())
+            foreach (var v in demonBalorFormAbilityEffectRunAction.Actions.Actions.OfType<ContextActionApplyBuff>())
             {
                 v.m_Buff = unstableDemonicFormIVBalorBuff.ToReference<BlueprintBuffReference>();
             }
 
-            demonBalorForm.m_DisplayName = Helpers.CreateString(demonBalorForm + ".Name", "Unstable Balor Form");
+            unstableDemonBalorForm.m_DisplayName = Helpers.CreateString(unstableDemonBalorForm + ".Name", "Unstable Balor Form");
 
-            Helpers.AddBlueprint(demonBalorForm, demonBalorFormGuid);
+            Helpers.AddBlueprint(unstableDemonBalorForm, unstableDemonBalorFormGuid);
 
-            Main.Log("Demon Balor Form Added" + demonBalorForm.AssetGuid.ToString());
+            Main.Log("Demon Balor Form Added" + unstableDemonBalorForm.AssetGuid.ToString());
             ///
 
             var demonSinGuzzlerBuffGuid = new BlueprintGuid(new Guid("e0edd270-bb50-4b45-937f-b60d047e0fd5"));
@@ -122,14 +169,15 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonSinGuzzlerBuff = Helpers.CreateCopy(demonicFormIIIGlabrezuBuff, bp =>
             {
                 bp.AssetGuid = demonSinGuzzlerBuffGuid;
-                bp.name = "Demonic Form Sin Guzzler"+ bp.AssetGuid;
+                bp.name = "Demonic Form Sin Guzzler" + bp.AssetGuid;
                 bp.m_Icon = DemonicFormIIIGlabrezu.m_Icon;
             });
             demonSinGuzzlerBuff.m_DisplayName = Helpers.CreateString(demonSinGuzzlerBuff + ".Name", "Demonic Form - Sin Guzzler");
             var demonSinGuzzlerBuffDescription = "You transform into a Sin Guzzler. Gaining the Rend of the Glabrezu, DR10/Good, and are considered airborne.";
             demonSinGuzzlerBuff.m_Description = Helpers.CreateString(demonSinGuzzlerBuff + ".Description", demonSinGuzzlerBuffDescription);
 
-            demonSinGuzzlerBuff.EditComponent<Polymorph>(c => {
+            demonSinGuzzlerBuff.EditComponent<Polymorph>(c =>
+            {
                 c.m_Prefab = sW_GlabrezuBoss.Prefab;
                 c.NaturalArmor = 8;
                 c.m_Facts = new BlueprintUnitFactReference[]{
@@ -143,7 +191,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.ConstitutionBonus = 6;
             });
 
-            demonSinGuzzlerBuff.EditComponent<ReplaceAsksList>(c => {
+            demonSinGuzzlerBuff.EditComponent<ReplaceAsksList>(c =>
+            {
                 c.m_Asks = sW_GlabrezuBoss.Visual.m_Barks;
             });
 
@@ -156,7 +205,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonSinGuzzlerForm = Helpers.CreateCopy(DemonicFormIIIGlabrezu, bp =>
             {
                 bp.AssetGuid = demonSinGuzzlerFormGuid;
-                bp.name = "Demonic Sin Guzzler Balor Transformation"+ bp.AssetGuid;
+                bp.name = "Demonic Sin Guzzler Balor Transformation" + bp.AssetGuid;
                 bp.m_DisplayName = demonSinGuzzlerBuff.m_DisplayName;
                 bp.m_Icon = demonSinGuzzlerBuff.m_Icon;
                 bp.m_Description = demonSinGuzzlerBuff.m_Description;
@@ -164,7 +213,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
 
             demonSinGuzzlerForm.RemoveComponents<ContextRankConfig>();
 
-            var demonSinGuzzlerFormContextApplyAction = Helpers.Create<ContextActionApplyBuff>(c => {
+            var demonSinGuzzlerFormContextApplyAction = Helpers.Create<ContextActionApplyBuff>(c =>
+            {
                 c.ToCaster = true;
                 c.m_Buff = demonSinGuzzlerBuff.ToReference<BlueprintBuffReference>();
                 c.UseDurationSeconds = true;
@@ -203,7 +253,6 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                     };
             });
 
-
             Helpers.AddBlueprint(demonSinGuzzlerPolymorphFeature, demonSinGuzzlerPolymorphFeatureGuid);
 
             Main.Log("Demon SinGuzzler Added" + demonSinGuzzlerPolymorphFeature.AssetGuid.ToString());
@@ -215,7 +264,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonPolymorphFeature = Helpers.Create<BlueprintFeature>(c =>
             {
                 c.AssetGuid = demonPolymorphFeatureGuid;
-                c.name = "Unleashed Demon"+c.AssetGuid;
+                c.name = "Unleashed Demon" + c.AssetGuid;
                 c.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonPolymorph.png");
                 c.Ranks = 1;
                 c.IsClassFeature = true;
@@ -228,7 +277,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             });
             demonPolymorphFeature.m_DisplayName = Helpers.CreateString(demonPolymorphFeature + ".Name", "Unleashed Demon");
             var demonPolymorphDescription = "You learn to unleash the demons within you.\n" +
-                                            "While polymorphed into a demonic form for each attack that hits, you deal an extra 1d6 + Mythic Rank extra Unholy damage and have a 15% chance to restore a round of Demon Rage.\n" +
+                                            "While polymorphed into a demonic or shifter form for each attack that hits, you deal an extra 1d6 + Mythic Rank extra Unholy damage and have a 15% chance to restore a round of Demon Rage.\n" +
                                             "You also gain the ability to transform yourself into an unstable Balor as Demon Form IV for 30 seconds, attacking anything and anyone near you. You may do this an addtional every mythic rank.\n" +
                                             "At 9th mythic rank, you gain the ability to tranform into a Sin Guzzler, a powerful version of a Glabrezu, at will.";
             demonPolymorphFeature.m_Description = Helpers.CreateString(demonPolymorphFeature + ".Description", demonPolymorphDescription);
@@ -265,7 +314,52 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                                         demonicFormIINabasuBuff,
                                         demonicFormIIIGlabrezuBuff,
                                         demonSinGuzzlerBuff,
-                                        unstableDemonicFormIVBalorBuff
+                                        unstableDemonicFormIVBalorBuff,
+                                        shifterWildShapeFeyBuff,
+                                        shifterWildShapeBearBuff,
+                                        shifterWildShapeFeyBuff8,
+                                        shifterWildShapeBoarBuff,
+                                        shifterWildShapeWolfBuff,
+                                        shifterWildShapeFeyBuff15,
+                                        shifterWildShapeTigerBuff,
+                                        shifterWildShapeHorseBuff,
+                                        shifterWildShapeBoarBuff8,
+                                        shifterWildShapeWolfBuff8,
+                                        shifterWildShapeBearBuff8,
+                                        shifterWildShapeWolfBuff15,
+                                        shifterWildShapeBoarBuff15,
+                                        shifterWildShapeTigerBuff8,
+                                        shifterWildShapeSpiderBuff,
+                                        shifterWildShapeBearBuff15,
+                                        shifterWildShapeHorseBuff8,
+                                        shifterWildShapeLizardBuff,
+                                        shifterWildShapeTigerBuff15,
+                                        shifterWildShapeHorseBuff15,
+                                        shifterWildShapeGriffonBuff,
+                                        shifterWildShapeLizardBuff8,
+                                        shifterWildShapeSpiderBuff8,
+                                        shifterWildShapeDinosaurBuff,
+                                        shifterWildShapeGriffonBuff9,
+                                        shifterWildShapeElephantBuff,
+                                        shifterWildShapeLizardBuff15,
+                                        shifterWildShapeSpiderBuff15,
+                                        shifterWildShapeManticoreBuff,
+                                        shifterWildShapeDinosaurBuff8,
+                                        shifterWildShapeElephantBuff8,
+                                        shifterWildShapeGriffonBuff14,
+                                        shifterWildShapeWolverineBuff,
+                                        shifterWildShapeElephantBuff15,
+                                        shifterWildShapeGriffonGodBuff,
+                                        shifterWildShapeDinosaurBuff15,
+                                        shifterWildShapeManticoreBuff8,
+                                        shifterWildShapeWolverineBuff8,
+                                        shifterWildShapeWolverineBuff15,
+                                        shifterWildShapeGriffonGodBuff9,
+                                        shifterWildShapeManticoreBuff15,
+                                        shifterWildShapeGriffonGodBuff14,
+                                        shifterWildShapeGriffonDemonBuff,
+                                        shifterWildShapeGriffonDemonBuff9,
+                                        shifterWildShapeGriffonDemonBuff14
                                 }
                             }
                 };
@@ -333,7 +427,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             demonPolymorphFeature.AddComponent<AddFacts>(c =>
             {
                 c.m_Facts = new BlueprintUnitFactReference[]{
-                        demonBalorForm.ToReference<BlueprintUnitFactReference>()
+                        unstableDemonBalorForm.ToReference<BlueprintUnitFactReference>()
                     };
             });
 
@@ -347,12 +441,17 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.m_Feature = demonPolymorphFeature.ToReference<BlueprintFeatureReference>();
             });
 
-            demonSinGuzzlerForm.AddComponent<AbilityCasterHasFacts>(c => {
+            demonSinGuzzlerForm.AddComponent<AbilityCasterHasFacts>(c =>
+            {
                 c.m_Facts = new BlueprintUnitFactReference[]{
                         demonPolymorphFeature.ToReference<BlueprintUnitFactReference>()
                     };
             });
 
+            demonSinGuzzlerForm.AddComponent<AbilityShowIfCasterHasFact>(c =>
+            {
+                c.m_UnitFact = demonPolymorphFeature.ToReference<BlueprintUnitFactReference>();
+            });
 
             Helpers.AddBlueprint(demonPolymorphFeature, demonPolymorphFeatureGuid);
 
