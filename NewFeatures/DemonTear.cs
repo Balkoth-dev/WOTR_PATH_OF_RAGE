@@ -216,7 +216,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.RendType = new DamageTypeDescription { Common = new DamageTypeDescription.CommomData(), Energy = DamageEnergyType.Unholy, Type = DamageType.Energy };
                 c.SpellDescriptor = SpellDescriptor.Polymorph;
                 c.Action = new ActionList();
-                c.Category = new WeaponCategory[] { WeaponCategory.Claw };
+                c.Category = new WeaponCategory[] { WeaponCategory.Claw, WeaponCategory.Slam };
                 c.Action.Actions = new GameAction[] { contextResourceIncrease, demonTearRightFx, demonTearLeftFx };
                 c.UseMythicLevel = true;
                 c.ApplyStrengthBonus = false;
