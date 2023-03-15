@@ -25,11 +25,6 @@ namespace WOTR_PATH_OF_RAGE.MechanicsChanges
             bool isPolymorphed = base.Context.MaybeCaster.Body.IsPolymorphed;
             bool isKeepSlots = base.Context.MaybeCaster.Body.IsPolymorphKeepSlots;
 
-            if (Not && !isPolymorphed && !isKeepSlots)
-            {
-                return true;
-            }
-
             if (isPolymorphed || isKeepSlots)
             {
                 return true;

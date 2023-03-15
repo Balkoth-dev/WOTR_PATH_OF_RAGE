@@ -215,6 +215,8 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
                 c.RendDamage = new DiceFormula { m_Rolls = 2, m_Dice = DiceType.D8 };
                 c.RendType = new DamageTypeDescription { Common = new DamageTypeDescription.CommomData(), Energy = DamageEnergyType.Unholy, Type = DamageType.Energy };
                 c.SpellDescriptor = SpellDescriptor.Polymorph;
+                c.CheckBuff = false;
+                c.CheckShapeshift = true;
                 c.Action = new ActionList();
                 c.Category = new WeaponCategory[] { WeaponCategory.Claw, WeaponCategory.Slam };
                 c.Action.Actions = new GameAction[] { contextResourceIncrease, demonTearRightFx, demonTearLeftFx };

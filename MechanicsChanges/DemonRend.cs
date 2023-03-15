@@ -68,23 +68,36 @@ namespace WOTR_PATH_OF_RAGE.MechanicsChanges
         // Token: 0x0600C235 RID: 49717 RVA: 0x00338544 File Offset: 0x00336744
         public void OnEventDidTrigger(RuleAttackWithWeapon evt)
         {
-            Main.Log("Event Trigger");
+            Main.Log("Demon Rend Event Trigger");
             try
             {
                 bool hasBuff = false;
                 bool hasBothWeapons = false;
-                foreach (Buff buff in base.Context.MaybeCaster.Buffs)
+                if ((base.Context.MaybeCaster.Body.IsPolymorphed || base.Context.MaybeCaster.Body.IsPolymorphKeepSlots) && CheckShapeshift)
                 {
-                    if (buff.MaybeContext != null && (buff.MaybeContext.SpellDescriptor & this.SpellDescriptor) != Kingmaker.Blueprints.Classes.Spells.SpellDescriptor.None)
+                    hasBuff = true;
+                    Main.Log("Is Polymorphed");
+                }
+                else if (CheckBuff)
+                {
+                    foreach (Buff buff in base.Context.MaybeCaster.Buffs)
                     {
-                        hasBuff = true;
-                        break;
+                        if (buff.MaybeContext != null && (buff.MaybeContext.SpellDescriptor & this.SpellDescriptor) != Kingmaker.Blueprints.Classes.Spells.SpellDescriptor.None)
+                        {
+
+                            hasBuff = true;
+                            break;
+                        }
                     }
                 }
 
                 foreach (var cat in Category)
                 {
                     hasBothWeapons = (base.Context.MaybeCaster.Body.SecondaryHand.Weapon.Blueprint.Type.Category == cat) && (base.Context.MaybeCaster.Body.PrimaryHand.Weapon.Blueprint.Type.Category == cat);
+                    if(hasBothWeapons)
+                    {
+                        break;
+                    }
                 }
 
                 if (evt.IsRend && evt.AttackRoll.IsHit && hasBuff == false && hasBothWeapons == true)
@@ -131,6 +144,10 @@ namespace WOTR_PATH_OF_RAGE.MechanicsChanges
         public bool UseMythicLevel;
 
         public bool ApplyStrengthBonus;
+
+        public bool CheckBuff;
+
+        public bool CheckShapeshift;
 
         public WeaponCategory[] Category;
     };
