@@ -36,7 +36,7 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 * Nocticula Aspect is will give bloodrager and barbarian rages if you have them.
 * Legendary Proportions no longer changes your size to Huge. This is because it conflicts with Abyssal Bulk from Bloodragers, and it's not tabletop compliant.
 * Added compatibility with TTT-Base and the Brimorak Aspect Fix. If TTT-Base is installed and has its brimorak aspect setting active, then the setting on Path of Rage will turn off.
-* Made the new demon rage no longer work with Dark Codex's infinite rage resource.
+* Added a toggle that will disable Dark Codex's limitless rage affecting Demon Rage. This only affects the new Demon Rage.
 * Demon Rage now updated. You will be able to use it now for an unlimited amount of time out of combat. This also means it will not turn off when combat ends, meaning you get to stay angry even between cutscenes!
 * Elemental Rampager is now activated when you start your demonic rage.
 * Balor Aspect should no longer give its intelligence bonus.
@@ -46,6 +46,8 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+03/15/2023
+* Hotfix for Demon Rend and non-shapeshifted polymorph spells.
 03/14/2023
 * Added a toggle that will disable Dark Codex's limitless rage affecting Demon Rage. This only affects the new Demon Rage.
 * Unleashed Demon will now affect Shifter wildshapes.

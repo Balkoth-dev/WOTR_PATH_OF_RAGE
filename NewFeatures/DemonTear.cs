@@ -204,8 +204,7 @@ namespace WOTR_PATH_OF_RAGE.NewFeatures
             var demonTearNotPolymorphed = Helpers.Create<ConditionsChecker>(c =>
             {
                 c.Conditions = new Condition[] {
-                            new ContextConditionCasterHasBuffWithDescriptor() {
-                                SpellDescriptor = SpellDescriptor.Polymorph,
+                            new ContextConditionIsShapeshifted() {
                                 Not = true
                             }
                         };                

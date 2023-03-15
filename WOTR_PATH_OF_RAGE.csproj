@@ -130,6 +130,7 @@
     <Compile Include="MechanicsChanges\ContextActionCastSpellSimple.cs" />
     <Compile Include="MechanicsChanges\ContextConditionCasterHasBuff.cs" />
     <Compile Include="MechanicsChanges\ContextConditionHasWeapons.cs" />
+    <Compile Include="MechanicsChanges\ContextConditionIsShapeshifted.cs" />
     <Compile Include="MechanicsChanges\DemonRend.cs" />
     <Compile Include="MechanicsChanges\IncreaseSpelllistDC.cs" />
     <Compile Include="MechanicsChanges\ContextActionRestoreRandomSpell.cs" />
