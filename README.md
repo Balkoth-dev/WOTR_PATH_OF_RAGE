@@ -46,6 +46,8 @@ This mod is for Pathfinder: Wrath of the Righteous, it contains a number of chan
 ![alt text](https://github.com/Balkoth-dev/WOTR_PATH_OF_RAGE/blob/master/PathOfRageDemonologies.png?raw=true)
 ## Change Log
 ```
+03/26/2023
+* Allows Demonic Charge to target a point instead of a unit.
 03/15/2023
 * Hotfix for Demon Rend and non-shapeshifted polymorph spells.
 03/14/2023
