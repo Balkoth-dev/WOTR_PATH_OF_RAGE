@@ -35,6 +35,7 @@ namespace WOTR_PATH_OF_RAGE
             public bool UncontrollableRageToggle = true;
             public bool UncontrollableRageFix = true;
             public bool DarkCodexLimitlessRageDisable = true;
+            public bool DemonicChargePointTargetting = true;
 
             public override void Save(UnityModManager.ModEntry modEntry)
             {
@@ -286,6 +287,15 @@ namespace WOTR_PATH_OF_RAGE
                 else
                 {
                     UI.Label("Dark Codex will still give demonic rage limitless rage.".red().size(10));
+                }
+                UI.Toggle("Demonic Charge Point Targetting".bold(), ref settings.DemonicChargePointTargetting);
+                if (settings.DemonicChargePointTargetting)
+                {
+                    UI.Label("Allows Demonic Charge to target a point instead of a unit.".green().size(10));
+                }
+                else
+                {
+                    UI.Label("Demonic Charge unchanged.".red().size(10));
                 }
             }
         }
