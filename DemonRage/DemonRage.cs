@@ -64,11 +64,6 @@ namespace WOTR_PATH_OF_RAGE.DemonRage
 
                 demonRageAbility.EditComponent<ActivatableAbilityResourceLogic>(c => { c.SpendType = ActivatableAbilityResourceLogic.ResourceSpendType.NewRound; c.m_RequiredResource = newDemonRageResource; c.m_FreeBlueprint = outOfCombatBuff.ToReference<BlueprintUnitFactReference>(); }); ;
                 demonRageAbility.AddComponent<RestrictionUnitHasResource>(c => { c.m_resource = newDemonRageResource; });
-                
-                if (Main.settings.DarkCodexLimitlessRageDisable == false)
-                {
-                    demonRageAbility.GetComponent<AbilityResourceLogic>().ResourceCostDecreasingFacts = null;
-                }
 
                 demonRageAbility.m_Icon = AssetLoader.LoadInternal("Abilities", "DemonRage.png");
                 var demonRageDescription = "The power of the Abyss courses through the Demon waiting to be unleashed.\n" +

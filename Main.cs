@@ -279,15 +279,6 @@ namespace WOTR_PATH_OF_RAGE
                 {
                     UI.Label("Uncontrollable Rage is unfixed.".red().size(10));
                 }
-                UI.Toggle("Dark Codex Limitless Rage".bold(), ref settings.DarkCodexLimitlessRageDisable);
-                if (settings.DarkCodexLimitlessRageDisable)
-                {
-                    UI.Label("Removes the limitless rage resource that Dark Codex gives to Demon Rage. This only affects the new Demon Rage.".green().size(10));
-                }
-                else
-                {
-                    UI.Label("Dark Codex will still give demonic rage limitless rage.".red().size(10));
-                }
                 UI.Toggle("Demonic Charge Point Targetting".bold(), ref settings.DemonicChargePointTargetting);
                 if (settings.DemonicChargePointTargetting)
                 {
